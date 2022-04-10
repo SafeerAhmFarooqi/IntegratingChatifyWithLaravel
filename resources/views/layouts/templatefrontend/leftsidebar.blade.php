@@ -17,7 +17,7 @@
       <li><i class="icon ion-ios-people-outline"></i><div>{{--<a href="{{route('profile')}}"> --}}<a href="{{route('download.pdf')}}">Get PDF</a></div></li>
       <li><i class="icon ion-ios-people-outline"></i><div>{{--<a href="{{route('profile')}}"> --}}<a>PDF Pass : {{Auth::user()->pdf_password}} </a></div></li>
       <li><i class="icon ion-ios-people"></i><div><a href="nearuser.php">People Nearby</a></div></li>
-      <li><i class="icon ion-chatboxes"></i><div><a href="message.php">Messages</a></div></li>
+      <li><i class="icon ion-chatboxes"></i><div><a href="/chatify">Messages</a></div></li>
       <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('groups.index')}}">Groups</a></div></li>
 
       <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('users.index')}}">Users</a></div></li>
