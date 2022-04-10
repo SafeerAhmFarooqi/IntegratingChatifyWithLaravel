@@ -30,7 +30,7 @@ class MessagesController extends Controller
         $authData = json_encode([
             'user_id' => Auth::user()->id,
             'user_info' => [
-                'name' => Auth::user()->name
+                'name' => Auth::user()->firstname
             ]
         ]);
         // check if user authorized
@@ -368,7 +368,7 @@ class MessagesController extends Controller
         $getRecords = null;
         $input = trim(filter_var($request['input'], FILTER_SANITIZE_STRING));
         $records = User::where('id','!=',Auth::user()->id)
-                    ->where('name', 'LIKE', "%{$input}%")
+        ->where('firstname', 'LIKE', "%{$input}%")
                     ->paginate($request->per_page ?? $this->perPage);
         foreach ($records->items() as $record) {
             $getRecords .= view('Chatify::layouts.listItem', [
