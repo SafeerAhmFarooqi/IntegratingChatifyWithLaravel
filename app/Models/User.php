@@ -30,6 +30,10 @@ class User extends Authenticatable
         'password',
         'pdf_password',
         'options',
+        'address',
+        'phone',
+        'about', 
+        'profile_pic', 
     ];
 
     /**

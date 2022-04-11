@@ -12,8 +12,8 @@
 <div class="col-md-3">
 <div class="profile-info">
 <!-- <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo"> -->
-@if($data->profile_pic)
-<img src="{{asset('images/user_profile_pics/'.$data->profile_pic)}}" class="img-responsive profile-photo">
+@if($user->profile_pic)
+<img src="{{asset('images/user_profile_pics/'.$user->profile_pic)}}" class="img-responsive profile-photo">
 @else
 <img src="{{asset('images/user_profile_pics/photoicon.jpg')}}" class="img-responsive profile-photo">
 @endif
@@ -25,8 +25,8 @@
 <div class="col-md-9">
 <ul class="list-inline profile-menu">
 <li><a href="{{route('home')}}">Home</a></li>
-<li><a href="{{route('profile.index')}}">Basic Information</a></li>
-<li><a href="{{route('profile.edit',Auth::user()->id)}}" >Profile Image</a></li>
+<li><a href="{{route('profile.index')}}">Basic Inforamtion</a></li>
+<li><a href="{{route('profile.edit',Auth::user()->id)}}">Profile Image</a></li>
 <!--<li><a href="timeline-album.html">Album</a></li>
 <li><a href="timeline-friends.html">Friends</a></li> -->
 </ul>
@@ -40,7 +40,6 @@
 <!--Timeline Menu for Small Screens-->
 <div class="navbar-mobile hidden-lg hidden-md">
 <div class="profile-info">
-
 <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo">
 <h4>Sarah Cruiz</h4>
 <p class="text-muted">Creative Director</p>
@@ -62,8 +61,8 @@
 <!--Edit Profile Menu-->
 <ul class="edit-menu">
 <!-- <li><i class="icon ion-ios-information-outline"></i><a href="edit-profile-basic.html">Basic Information</a></li> -->
-<li class="active"><i class="icon ion-ios-briefcase-outline"></i><a href="{{route('profile.index')}}">Basic Information</a></li>
-<li><i class="icon ion-ios-heart-outline"></i><a href="{{route('profile.edit',Auth::user()->id)}}">Profile Image</a></li>
+<li><i class="icon ion-ios-briefcase-outline"></i><a href="{{route('profile.index')}}">Basic Information</a></li>
+<li class="active"><i class="icon ion-ios-heart-outline"></i><a href="{{route('profile.edit',Auth::user()->id)}}">Profile Image</a></li>
 <li><i class="icon ion-ios-locked-outline"></i><a href="{{route('profile.show',Auth::user()->id)}}">Privacy</a></li>
 <!-- <li><i class="icon ion-ios-settings"></i><a href="edit-profile-settings.html">Account Settings</a></li>
 <li><i class="icon ion-ios-locked-outline"></i><a href="edit-profile-password.html">Change Password</a></li> -->
@@ -74,58 +73,41 @@
 ================================================= -->
 <div class="edit-profile-container">
 <div class="block-title">
-<h4 class="grey"><i class="icon ion-ios-book-outline"></i>My Information</h4>
+<h4 class="grey"><i class="icon ion-ios-book-outline"></i>Edit Profile Image</h4>
 <div class="line"></div>
 <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate</p> -->
 <!-- <div class="line"></div> -->
 </div>
 <div class="edit-block">
-<form name="education" id="education" class="form-inline" style="margin-top:30px" action="{{route('profile.update',$data->id)}}" method="POST">
+
+@if($user->profile_pic)	
+<img src="{{asset('images/user_profile_pics/'.$user->profile_pic)}}" class="img-responsive">
+@else
+<img src="{{asset('images/user_profile_pics/user-4.jpg')}}" class="img-responsive">
+@endif
+
+ <form method="POST" action="{{route('edit_p_pic',$user->id)}}" class="form-sample" enctype="multipart/form-data">
 
 	@csrf
 	@method('PUT')
+
 <div class="row">
-<div class="form-group col-xs-6">
-<label for="date-from">Username</label>
-<input id="date-from" class="form-control input-group-lg" type="text" name="email" placeholder="asad6351" value="{{$data->email}}">
+	<div class="form-group col-xs-6">
+		<label for="date-from"></label>
+		<input id="date-from" class="form-control input-group-lg" type="file" name="profile_pic">
+	</div>
 </div>
-</div>
+
 <div class="row">
-<div class="form-group col-xs-6">
-<label for="date-from">First Name</label>
-<input id="date-from" class="form-control input-group-lg" type="text" name="firstname" placeholder="Muhammad" value="{{$data->firstname}}">
+	<div class="form-group col-xs-6">
+		<input type="submit" name="update" class="btn btn-primary" value="Update">
+	</div>
 </div>
-<div class="form-group col-xs-6">
-<label for="date-to" class="">Last Name</label>
-<input id="date-to" class="form-control input-group-lg" type="text" name="last_name" placeholder="Asad" value="{{$data->lastname}}">
-</div>
-</div>
-<div class="row">
-<div class="form-group col-xs-12">
-<label for="school">Geburtsdatum</label>
-<input id="school" class="form-control input-group-lg" type="text" name="dob" placeholder="12-10-2012" value="{{$data->dob}}">
-</div>
-</div>
-<div class="row">
-<div class="form-group col-xs-12">
-<label for="school">Address</label>
-<input id="school" class="form-control input-group-lg" type="text" name="address" placeholder="" value="{{$data->address}}">
-</div>
-</div>
-<div class="row">
-<div class="form-group col-xs-12">
-<label for="school">Phone</label>
-<input id="school" class="form-control input-group-lg" type="text" name="phone" placeholder="" value="{{$data->phone}}">
-</div>
-</div>
-<div class="row">
-<div class="form-group col-xs-12">
-<label for="edu-description">Info</label>
-<textarea id="edu-description" name="about" class="form-control" rows="4" cols="400">{{$data->about}}</textarea>
-</div>
-</div>
-<input type="submit" name="submitgernalsettings" class="btn btn-primary" value="Save Changes">
-</form>
+
+
+
+
+
 </div>
 </div>
 </div>
