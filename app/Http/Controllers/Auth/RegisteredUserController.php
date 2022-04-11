@@ -16,6 +16,7 @@ use PDF;
 use Illuminate\Support\Facades\Storage;
 use File;
 use Illuminate\Support\Str;
+use App\Models\Profile_Privacy;
 
 class RegisteredUserController extends Controller
 {
@@ -81,6 +82,14 @@ class RegisteredUserController extends Controller
             'file_name' => 'myDocument.pdf',
             'options' => $request->category,
             'pdf_password' => $pdfPassword,
+        ]);
+
+        Profile_Privacy::insert([
+            'user_id'=> $user->id,
+            'dob_status'=> 0,
+            'address_status'=> 0,
+            'phone_status'=> 0,
+            'about_status'=> 0,
         ]);
         event(new Registered($user));
 

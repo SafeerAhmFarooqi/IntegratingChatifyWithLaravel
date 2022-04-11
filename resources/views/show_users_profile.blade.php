@@ -20,45 +20,67 @@
  </div>
  <div class="edit-block">
  <form name="education" id="education" class="form-inline" style="margin-top:30px" action="" method="POST">
+ 
  <div class="row">
- <div class="form-group col-xs-6">
- <label for="date-from">Username</label>
- <input id="date-from" class="form-control input-group-lg" type="text" name="username"  value="{{$user->email}}" disabled="">
+   <div class="form-group col-xs-6">
+     <label for="date-from">Username</label>
+     <input id="date-from" class="form-control input-group-lg" type="text" name="username"  value="{{$user->email}}" disabled="">
+   </div>
  </div>
- </div>
+ 
  <div class="row">
- <div class="form-group col-xs-6">
- <label for="date-from">First Name</label>
- <input id="date-from" class="form-control input-group-lg" type="text" name="firstname"  value="{{$user->name}}" disabled="">
+   <div class="form-group col-xs-6">
+     <label for="date-from">First Name</label>
+     <input id="date-from" class="form-control input-group-lg" type="text" name="firstname"  value="{{$user->firstname}}" disabled="">
+   </div>
+   <div class="form-group col-xs-6">
+     <label for="date-to" class="">Last Name</label>
+     <input id="date-to" class="form-control input-group-lg" type="text" name="lastname"   value="{{$user->lastname}}" disabled="">
+   </div>
  </div>
- <div class="form-group col-xs-6">
- <label for="date-to" class="">Last Name</label>
- <input id="date-to" class="form-control input-group-lg" type="text" name="lastname"   value="{{$user->last_name}}" disabled="">
- </div>
- </div>
+ 
  <div class="row">
- <div class="form-group col-xs-12">
- <label for="school">Geburtsdatum</label>
- <input id="school" class="form-control input-group-lg" type="text" name="dateofbirth" placeholder="12-10-2012"  value="{{$user->dob}}" disabled="">
+   <div class="form-group col-xs-12">
+     <label for="school">Geburtsdatum</label>
+     @if($user->dob_status==1)
+     <input id="school" class="form-control input-group-lg" type="text" name="dateofbirth" value="Private" disabled="">
+     @else
+     <input id="school" class="form-control input-group-lg" type="text" name="dateofbirth" value="{{$user->dob}}" disabled="">
+     @endif
+   </div>
  </div>
- </div>
+ 
  <div class="row">
- <div class="form-group col-xs-12">
- <label for="school">Address</label>
- <input id="school" class="form-control input-group-lg" type="text" name="residence" placeholder="house 54"  value="{{$user->address}}" disabled="">
+   <div class="form-group col-xs-12">
+     <label for="school">Address</label>
+     @if($user->address_status==1)
+     <input id="school" class="form-control input-group-lg" type="text" name="residence" value="Private" disabled="">
+     @else
+     <input id="school" class="form-control input-group-lg" type="text" name="residence" value="{{$user->address}}" disabled="">
+     @endif
+   </div>
  </div>
- </div>
+ 
  <div class="row">
- <div class="form-group col-xs-12">
- <label for="school">Phone</label>
- <input id="school" class="form-control input-group-lg" type="text" name="phone" placeholder="+923244218660"  value="{{$user->phone}}" disabled="">
+   <div class="form-group col-xs-12">
+     <label for="school">Phone</label>
+     @if($user->phone_status==1)
+     <input id="school" class="form-control input-group-lg" type="text" name="phone" value="Private" disabled="">
+     @else
+     <input id="school" class="form-control input-group-lg" type="text" name="phone" value="{{$user->phone}}" disabled="">
+     @endif
+   </div>
  </div>
- </div>
+ 
  <div class="row">
- <div class="form-group col-xs-12">
- <label for="edu-description">Info</label>
- <textarea id="edu-description" name="about" class="form-control" rows="4" cols="400" disabled="">{{$user->info}}</textarea>
- </div>
+   <div class="form-group col-xs-12">
+     <label for="edu-description">Info</label>
+     @if($user->about_status==1)
+     <input id="school" class="form-control input-group-lg" type="text" name="phone" value="Private" disabled="">
+     @else
+     <textarea id="edu-description" name="about" class="form-control" rows="4" cols="400" disabled="">{{$user->about}}</textarea>
+     @endif
+   </div>
  </div>
  
  </form>

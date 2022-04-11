@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\GroupsController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,17 +31,32 @@ Route::get('/dashboard', function () {
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/download', [App\Http\Controllers\HomeController::class, 'downloadPdf'])->name('download.pdf');
-Route::get('/form',function(){
-    return view('home');
-});
+
 Route::post('/form_submit',[PostController::class,'form_submit']);
 
 Route::get('/profile',[PostController::class,'profile'])->name('profile');
 Route::Put('/profile_update/{id}',[PostController::class,'profile_update'])->name('profile_update');
 
+
+
+//User Profile
+Route::resource('/profile',ProfileController::class);
+
+//Edit User Profile Pic
+Route::put('/edit_p_pic/{id}', [App\Http\Controllers\ProfileController::class, 'edit_p_pic'])->name('edit_p_pic');
+
+//Profile Privacy
+Route::put('/profile_privacy/{id}', [App\Http\Controllers\ProfileController::class, 'profile_privacy'])->name('profile_privacy');
+
+//User Posts
+Route::resource('/post',PostController::class);
+
+//Groups
 Route::resource('/groups',GroupsController::class);
 
+//Locations
 Route::resource('/location',LocationController::class);
 
+//Users
 Route::resource('/users',UsersController::class);
 require __DIR__.'/auth.php';

@@ -27,6 +27,7 @@
 <li><a href="{{route('home')}}">Home</a></li>
 <li><a href="{{route('profile.index')}}">Basic Information</a></li>
 <li><a href="{{route('profile.edit',Auth::user()->id)}}" >Profile Image</a></li>
+
 <!--<li><a href="timeline-album.html">Album</a></li>
 <li><a href="timeline-friends.html">Friends</a></li> -->
 </ul>
@@ -62,9 +63,9 @@
 <!--Edit Profile Menu-->
 <ul class="edit-menu">
 <!-- <li><i class="icon ion-ios-information-outline"></i><a href="edit-profile-basic.html">Basic Information</a></li> -->
-<li class="active"><i class="icon ion-ios-briefcase-outline"></i><a href="{{route('profile.index')}}">Basic Information</a></li>
+<li><i class="icon ion-ios-briefcase-outline"></i><a href="{{route('profile.index')}}">Basic Information</a></li>
 <li><i class="icon ion-ios-heart-outline"></i><a href="{{route('profile.edit',Auth::user()->id)}}">Profile Image</a></li>
-<li><i class="icon ion-ios-locked-outline"></i><a href="{{route('profile.show',Auth::user()->id)}}">Privacy</a></li>
+<li class="active"><i class="icon ion-ios-locked-outline"></i><a href="{{route('profile.show',Auth::user()->id)}}">Privacy</a></li>
 <!-- <li><i class="icon ion-ios-settings"></i><a href="edit-profile-settings.html">Account Settings</a></li>
 <li><i class="icon ion-ios-locked-outline"></i><a href="edit-profile-password.html">Change Password</a></li> -->
 </ul>
@@ -74,57 +75,77 @@
 ================================================= -->
 <div class="edit-profile-container">
 <div class="block-title">
-<h4 class="grey"><i class="icon ion-ios-book-outline"></i>My Information</h4>
+<h4 class="grey"><i class="icon ion-ios-locked-outline"></i>Profile Privacy</h4>
 <div class="line"></div>
 <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate</p> -->
 <!-- <div class="line"></div> -->
 </div>
 <div class="edit-block">
-<form name="education" id="education" class="form-inline" style="margin-top:30px" action="{{route('profile.update',$data->id)}}" method="POST">
+<form name="education" id="education" class="form-inline" style="margin-top:30px" action="{{route('profile_privacy',$data->id)}}" method="POST">
 
 	@csrf
 	@method('PUT')
+
 <div class="row">
-<div class="form-group col-xs-6">
-<label for="date-from">Username</label>
-<input id="date-from" class="form-control input-group-lg" type="text" name="email" placeholder="asad6351" value="{{$data->email}}">
+	<div class="form-group col-xs-6">
+		<label for="date-from">Username</label>
+		<input id="date-from" class="form-control input-group-lg" type="text" name="email" placeholder="asad6351" value="{{$data->email}}">
+	</div>
 </div>
-</div>
+
 <div class="row">
-<div class="form-group col-xs-6">
-<label for="date-from">First Name</label>
-<input id="date-from" class="form-control input-group-lg" type="text" name="firstname" placeholder="Muhammad" value="{{$data->firstname}}">
+	<div class="form-group col-xs-6">
+		<label for="date-from">First Name</label>
+		<input id="date-from" class="form-control input-group-lg" type="text" name="firstname" placeholder="Muhammad" value="{{$data->firstname}}">
+	</div>
+	<div class="form-group col-xs-6">
+		<label for="date-to" class="">Last Name</label>
+		<input id="date-to" class="form-control input-group-lg" type="text" name="last_name" placeholder="Asad" value="{{$data->lastname}}">
+	</div>
 </div>
-<div class="form-group col-xs-6">
-<label for="date-to" class="">Last Name</label>
-<input id="date-to" class="form-control input-group-lg" type="text" name="last_name" placeholder="Asad" value="{{$data->lastname}}">
-</div>
-</div>
+
 <div class="row">
-<div class="form-group col-xs-12">
-<label for="school">Geburtsdatum</label>
-<input id="school" class="form-control input-group-lg" type="text" name="dob" placeholder="12-10-2012" value="{{$data->dob}}">
+	<div class="form-group col-xs-12">
+		<label for="school">Geburtsdatum ( {{ $data->dob }} )</label>
+		<select id="school" class="form-control input-group-lg" name="dob_status">
+			<option value="0">Public</option>
+			<option value="1">Private</option>
+		</select>
+	</div>
 </div>
-</div>
+
 <div class="row">
-<div class="form-group col-xs-12">
-<label for="school">Address</label>
-<input id="school" class="form-control input-group-lg" type="text" name="address" placeholder="" value="{{$data->address}}">
+	<div class="form-group col-xs-12">
+		<label for="school">Address ( {{ $data->address }} )</label>
+		<select id="school" class="form-control input-group-lg" name="address_status">
+			<option value="0">Public</option>
+			<option value="1">Private</option>
+		</select>
+	</div>
 </div>
-</div>
+
 <div class="row">
-<div class="form-group col-xs-12">
-<label for="school">Phone</label>
-<input id="school" class="form-control input-group-lg" type="text" name="phone" placeholder="" value="{{$data->phone}}">
+	<div class="form-group col-xs-12">
+		<label for="school">Phone ( {{ $data->phone }} )</label>
+		<select id="school" class="form-control input-group-lg" name="phone_status">
+			<option value="0">Public</option>
+			<option value="1">Private</option>
+		</select>
+	</div>
 </div>
-</div>
+
 <div class="row">
-<div class="form-group col-xs-12">
-<label for="edu-description">Info</label>
-<textarea id="edu-description" name="about" class="form-control" rows="4" cols="400">{{$data->about}}</textarea>
+	<div class="form-group col-xs-12">
+		<label for="edu-description">Info ( {{ $data->about }} )</label>
+		<select id="school" class="form-control input-group-lg" name="about_status">
+			<option value="0">Public</option>
+			<option value="1">Private</option>
+		</select>
+	</div>
 </div>
-</div>
+<div>
 <input type="submit" name="submitgernalsettings" class="btn btn-primary" value="Save Changes">
+</div>
 </form>
 </div>
 </div>

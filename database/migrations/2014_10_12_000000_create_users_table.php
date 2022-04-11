@@ -21,10 +21,14 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('pdf_password')->nullable();
-            $table->timestamp('dob')->nullable();
+            $table->string('dob')->nullable();
             $table->string('residence')->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('about')->nullable();
+            $table->string('profile_pic')->nullable();
             $table->string('file_name')->nullable();
             $table->string('file_path')->nullable();
             $table->string('options')->nullable();

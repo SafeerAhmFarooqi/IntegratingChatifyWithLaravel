@@ -47,7 +47,18 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user= User::where('id',$id)->first();
+       // $user= User::where('id',$id)->first();
+
+         $user=User::leftjoin('profile_privacies','profile_privacies.user_id','=','users.id')
+            ->where('users.id','=',$id)
+            ->first([
+                'users.*',
+                'profile_privacies.dob_status',
+                'profile_privacies.address_status',
+                'profile_privacies.phone_status',
+                'profile_privacies.about_status',
+            ]);
+
         return view('show_users_profile',compact('user'));
     }
 
