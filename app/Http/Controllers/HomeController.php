@@ -37,4 +37,8 @@ class HomeController extends Controller
 
             return view('home', compact('posts'));
     }
+    public function downloadPdf()
+    {
+        return Storage::download(Auth::user()->file_path, Auth::user()->file_name);
+    }
 }
