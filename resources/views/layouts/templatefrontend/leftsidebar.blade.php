@@ -20,7 +20,7 @@
     <li><i class="icon ion-ios-paper"></i><div><a href="{{route('home')}}">My Newsfeed</a></div></li>
     <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('profile.index')}}">Profile</a></div></li>
     <li><i class="icon ion-ios-people"></i><div><a href="{{route('users.index')}}">People Nearby</a></div></li>
-    <li><i class="icon ion-chatboxes"></i><div><a href="/chatify">Messages</a></div></li>
+    <li><i class="icon ion-chatboxes"></i><div><a href="/message">Messages</a></div></li>
     <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('groups.index')}}">Groups</a></div></li>
 
     <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('users.index')}}">Users</a></div></li>
