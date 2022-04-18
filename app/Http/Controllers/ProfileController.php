@@ -83,7 +83,7 @@ class ProfileController extends Controller
 
         User::where('id',$id)->update([
             'firstname'=>$request->firstname,
-            'lastname'=>$request->last_name,
+            'lastname'=>$request->lastname,
             'dob'=>$request->dob,
             'address'=>$request->address,
             'phone'=>$request->phone,

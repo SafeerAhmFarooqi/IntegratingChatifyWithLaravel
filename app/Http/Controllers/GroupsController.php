@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Location;
 use App\Models\Group;
+use App\Models\User;
+use App\Models\Group_Member;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -17,11 +19,20 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        $user=Auth::user()->id;
+        $login_user=Auth::user()->id;
         $location=Location::all();
-        $groups= Group::where('created_by',$user)->get();
+        $users= User::all();
 
-        return view('groups',compact('location','groups'));
+
+        $groups= Group::where('created_by',$login_user)->get();
+
+         $group_members= Group_Member::all();
+
+         
+
+
+
+        return view('groups',compact('location','groups','users'));
     }
 
     /**

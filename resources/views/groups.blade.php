@@ -65,14 +65,61 @@
    
  <div class="col-md-6 col-sm-6">
  <div class="friend-card">
- <a href="groupmembers.php?group=7">
+ <a href="{{route('group_posts.show',$group->id)}}">
  <img src="{{asset('user_frontend/images/covers/10.jpg')}}" alt="profile-cover" class="img-responsive cover">
  </a>
  <div class="card-info">
  <!-- <img src="images/users/user-5.jpg" alt="user" class="profile-photo-lg"> -->
  <div class="friend-info">
  <a href="groupmembers.php?group=7" class="pull-right text-green"> <i class="fa fa-map-marker" aria-hidden="true"></i>{{$group->location}}</a>
- <h5><a href="groupmembers.php?group=7" class="profile-link">{{$group->group_title}} </a>
+ 
+ 
+ <!-- Add Group Members -->
+ <a href="#" class="pull-right text-green" data-toggle="modal" data-target="#groupMembers-{{$group->id}}">add members</a>
+ 
+ <!-- Full Height Modal Right -->
+ <div class="modal fade right" id="groupMembers-{{$group->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+ aria-hidden="true">
+ <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+ <div class="modal-dialog modal-full-height modal-right" role="document">
+ <div class="modal-content">
+ <div class="modal-header">
+ <h4 class="modal-title w-100" id="myModalLabel">+ Add Members</h4>
+ <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+ <span aria-hidden="true">×</span>
+ </button>
+ </div>
+ <div class="modal-body">
+ <form action="{{route('group_members.store')}}" method="post" onsubmit="return confirm('Are you sure you want to Add Members')">
+   @csrf
+ <div class="form-group">
+ <label for="usr">Group</label>
+ <input type="text" class="form-control" name="group_title" value="{{$group->group_title}}" disabled="">
+ </div>
+ <div class="form-group">
+ <label for="sel1">Members</label>
+ <select class="form-control" name="members[]" multiple="">
+   <option value="">Select Members</option>
+   @foreach($users as $user)
+   <option value="{{$user->id}}">{{$user->firstname}}</option>
+   @endforeach
+ </select>
+ </div>
+ <div class="form-group">
+ <input type="hidden" class="form-control" name="group_id" value="{{$group->id}}">
+ </div>
+ </div>
+ <div class="modal-footer justify-content-center">
+ <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+ <input type="submit" class="btn btn-primary" name="submit" value="Add">
+ </div>
+ </form>
+ </div>
+ </div>
+ </div>
+ 
+ <!-- End Group Members -->
+ <h5><a href="" class="profile-link">{{$group->group_title}} </a>
  <br><br>
  <i class="fa fa-user" aria-hidden="true"></i>
  {{$group->created_by}} </h5>

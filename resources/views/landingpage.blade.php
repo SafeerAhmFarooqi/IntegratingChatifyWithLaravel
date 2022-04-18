@@ -40,10 +40,17 @@
                     <div class="form-wrapper">
                         <p class="signup-text">Signup now and meet awesome people around the world</p> 
                         <p>By signning up you agree to the terms</p>
-                        <a href="{{route('login')}}" class="btn-secondary" style="padding:8px 40px 8px 40px;text-decoration: none;margin-top:5px">Log In</a>
+                        <a href="login" class="btn-secondary" style="padding:8px 40px 8px 40px;text-decoration: none;margin-top:5px">Log In</a>
                     </div>
                     <a href="register">Register New account?</a>
                     <img class="form-shadow" src="{{asset('user_frontend/images/bottom-shadow.png')}}" alt="" />
+
+                    <div>
+                        
+                    </div>
+
+                    <a href="{{route('Shop.login')}}"> Shop login </a> <br>
+                   <a href="{{route('Admin.login')}}">Admin Login</a>
                 </div><!-- Sign Up Form End -->
 
         <svg class="arrows hidden-xs hidden-sm">

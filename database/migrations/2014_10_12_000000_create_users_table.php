@@ -28,10 +28,13 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('about')->nullable();
+            $table->string('long')->nullable();
+            $table->string('lat')->nullable();
             $table->string('profile_pic')->nullable();
             $table->string('file_name')->nullable();
             $table->string('file_path')->nullable();
             $table->string('options')->nullable();
+            $table->integer('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
