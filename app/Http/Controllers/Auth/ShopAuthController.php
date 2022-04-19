@@ -19,7 +19,7 @@ class ShopAuthController extends Controller
        
     	if(Auth::guard('shop')->check()){
 
-    		redirect()->intended(url('/Shop/dashboard'));
+    		redirect('Shop/dashboard');
     	}else{
     		return view('auth.shopLogin');
     	}
