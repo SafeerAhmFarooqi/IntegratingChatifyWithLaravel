@@ -3,68 +3,69 @@
 
  <div id="page-contents">
    <div class="container">
-     <div class="row">
- 
+     <div class="row" id="newsfeed">
        <!-- Newsfeed Common Side Bar Left
        ================================================= -->
-       @include('layouts.templatefrontend.leftsidebar');
-    <div id="newsfeed">
-       
- @foreach($members as $member)
- <?php 
+               @include('layouts.templatefrontend.leftsidebar');
  
-  $user=explode(',',$member->member_id);
-  $login= Auth::user()->id;
-  foreach ($user as $value) {
-   if ($login == $value) { ?>
-  <div class="col-md-6">
+            
+               
+               @foreach($members as $member)
+               <?php 
+ 
+                $user=explode(',',$member->member_id);
+                $login= Auth::user()->id;
+                foreach ($user as $value) {
+                 if ($login == $value) { ?>
+       <div class="col-md-6">
              <!-- Post Create Box
              ================================================= -->
-             <div class="create-post">
+           <div class="create-post">
                <form  id="postform"  enctype="multipart/form-data">
                  @csrf
-               <div class="row">
-                 <div class="col-md-8">
-                   <div class="form-group" style="width:100%">
+             <div class="row">
+               <div class="col-md-8">
+                 <div class="form-group" style="width:100%">
                      <!-- <img src="images/users/user-1.jpg" alt="" class="profile-photo-md" /> -->
   
-                                                 
                            @if(Auth::user()->profile_pic)
                            <img src="{{asset('images/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"" class="profile-photo-md">
                            @else
                            <img src="{{asset('images/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"" class="profile-photo-md">
                            @endif
                         
-                       
                           <textarea name="post_text" rows="2" placeholder="What are you thinking?" id="post_text" class="form-control" required></textarea>
-                     </div>
-                   </div>
-                 <div class="col-md-4">
-                   <div class="tools">
-                     <ul class="publishing-tools list-inline">
- 
-   <div class="image-upload">
-     <label for="file-input">
-       <img src="https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-13.png" style="pointer-events: none;width:30px">
-     </label>
- 
-     <input id="file-input" type="file" name="post_image">
-   </div>
- 
- <input type="hidden" name="group_id" value="{{$member->group_id}}">
- <input type="hidden" name="member" value="{{$login}}">
-                       
-                     </ul>
- 
-                     <input type="submit" name="submit" id="post_sub_btn" class="btn btn-primary pull-right" value="Publish">
-                      
-                   </div>
                  </div>
                </div>
+ 
+               <div class="col-md-4">
+                 <div class="tools">
+                     <ul class="publishing-tools list-inline">
+ 
+                   <div class="image-upload">
+                     <label for="file-input">
+                       <img src="https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-13.png" style="pointer-events: none;width:30px">
+                     </label>
+ 
+                     <input id="file-input" type="file" name="post_image">
+                   </div>
+ 
+                       <input type="hidden" name="group_id" value="{{$member->group_id}}">
+                       <input type="hidden" name="member" value="{{$login}}">
+                         
+                       </ul>
+ 
+                       <input type="submit" name="submit" id="post_sub_btn" class="btn btn-primary pull-right" value="Publish">
+                      
+                 </div>
+               </div>
+ 
+           </div>
+ 
              </form>
-             <div class="alert alert-success" id="message" style="display:none">
+           <div class="alert alert-success" id="message" style="display:none">
                <strong>Success!</strong> Post Submitted Successfully ! 
-             </div>
+           </div>
  <br><br><br>
  
  <div id="post-list">
@@ -73,11 +74,8 @@
  </div>
       </div>
  
-       <!-- Newsfeed Common Side Bar Right
-       ================================================= -->
+      
       </div>
- 
- 
  
  <?php
    }
@@ -85,8 +83,49 @@
  
  ?>
  
- @endforeach
-      
+ 
+ 
+ <div class="col-md-3">
+   <div class="row">
+   
+ 
+ <?php 
+    $g_member=explode(',',$member->member_id);
+  $login= Auth::user()->id;
+  $a=0;
+  foreach ($user as $g_member) {
+ $a++;
+ $query=DB::table('users')->where('id',$g_member)->first();
+ 
+ ?>
+ 
+ 
+   <div class="col-md-3" style="border:1px solid black; margin: 2px">
+       <div>
+          <img src="{{asset('images/user_profile_pics/'.$query->profile_pic)}}" alt="logo" style="width:30px;border-radius:50%;margin-top:-10px">
+       </div>
+ 
+       <div>
+       {{$query->name}}
+       </div>
+       
+     </div>
+ 
+     
+ 
+ 
+ <?php 
+ 
+ }
+   ?>
+   @endforeach
+ 
+    
+   </div>
+   
+ </div> 
+ 
+ 
    </div>
  </div>
  
