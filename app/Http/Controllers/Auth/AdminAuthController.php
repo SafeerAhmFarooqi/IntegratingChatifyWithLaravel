@@ -45,7 +45,7 @@ class AdminAuthController extends Controller
         ])) {
             $user = auth()->user();
 
-            return redirect()->intended(url('/Admin/dashboard'));
+            return redirect('Admin/dashboard');
         } else {
             return redirect()->back()->withError('username or password doesn\'t match.');
         }
