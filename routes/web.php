@@ -6,6 +6,16 @@ use App\Http\Controllers\GroupsController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserVoucherController;
+use App\Http\Controllers\GroupMembersController;
+use App\Http\Controllers\GroupPostController;
+use App\Http\Controllers\PeopleNearbyController;
+use App\Http\Controllers\Admin\ShopCategoryController;
+use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Auth\ShopAuthController;
+use App\Http\Controllers\Shop\ShopController;
+
 
 /*
 |--------------------------------------------------------------------------

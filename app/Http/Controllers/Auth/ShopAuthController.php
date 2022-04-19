@@ -33,8 +33,7 @@ class ShopAuthController extends Controller
             'password' => $request->password,
         ])) {
             $user = auth()->user();
-
-            return redirect()->intended(url('/Shop/dashboard'));
+            return redirect('/Shop/dashboard');
         } else {
             return redirect()->back()->withError('username or email doesn\'t match.');
         }
