@@ -17,6 +17,7 @@ class GroupPostController extends Controller
     public function index()
     {
         //
+        
     }
 
     /**
