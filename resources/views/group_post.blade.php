@@ -106,7 +106,7 @@
        </div>
  
        <div>
-       {{$query->name}}
+       {{$query->firstname}}
        </div>
        
      </div>
