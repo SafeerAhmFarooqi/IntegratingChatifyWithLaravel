@@ -9,7 +9,8 @@
        ================================================= -->
        @include('layouts.templatefrontend.leftsidebar');
     <div id="newsfeed">
-    @include('layouts.templatefrontend.home');
+    {{-- @include('layouts.templatefrontend.home'); --}}
+    <livewire:show-posts />
       </div>
  
        <!-- Newsfeed Common Side Bar Right
