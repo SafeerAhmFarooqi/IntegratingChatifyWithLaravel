@@ -5,7 +5,6 @@
         ================================================= -->
         <div class="create-post">
           <form  wire:submit.prevent="submit" id="postform"  enctype="multipart/form-data">
-          @csrf
           <div class="row">
             <div class="col-md-8">
               <div class="form-group" style="width:100%">
