@@ -4,7 +4,7 @@
         <!-- Post Create Box
         ================================================= -->
         <div class="create-post">
-          <form  wire:submit.prevent="submit" id="postform"  enctype="multipart/form-data">
+          <form  wire:submit.prevent="submit"   enctype="multipart/form-data">
           @csrf
           <div class="row">
             <div class="col-md-8">
