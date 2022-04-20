@@ -55,6 +55,7 @@
     </style>
     
     <script src="{{asset('user_frontend/js/jquery-3.1.1.min.js')}}"></script>
+    @livewireStyles
 	</head>
   <body>
 
@@ -113,4 +114,6 @@
         </div><!-- /.container -->
       </nav>
     </header>
-    <!--Header End-->
+    @livewireScripts
+  </body>
+  </html>
