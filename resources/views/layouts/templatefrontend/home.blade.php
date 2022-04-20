@@ -79,14 +79,15 @@ success: function (response) {
 
  $.each(response.posts, function(key,item){
 
-  var name = item.name;
-//  var date= item.created_at;
+  var name = item.firstname;
+//var date= item.created_at;
+  var date  = new Date(item.created_at);
  // var time= item.created_at;
   var user_img= "{{asset('images/user_profile_pics/')}}/"+item.profile_pic;
   var post_text= item.post_text;
-  var post_img= item.post_img;
+  var post_img= item.post_image;
   
-  $("#post-list").append('<div class="post-content"><div class="post-container"><img src="'+user_img+'" style="min-width: 50px;border-radius: 50%;max-width: 40px;max-height: 50px;min-height: 40px;" class="profile-photo-md pull-left"><div class="post-detail" id="post-data"><div class="user-info"><h5><a href="" class="profile-link">'+name+'</a><p style="float:right;"><i class="icon ion-ios-calendar-outline"></i>date &nbsp; <i class="icon ion-ios-clock-outline"></i> Time </p></h5></div><div class="post-text"><p>'+post_text+' </p></div></div></div></div>');
+  $("#post-list").append('<div class="post-content"><div class="post-container"><img src="'+user_img+'" style="min-width: 50px;border-radius: 50%;max-width: 40px;max-height: 50px;min-height: 40px;" class="profile-photo-md pull-left"><div class="post-detail" id="post-data"><div class="user-info"><h5><a href="" class="profile-link">'+name+'</a><p style="float:right;"><i class="icon ion-ios-calendar-outline"></i> '+date.toDateString()+' &nbsp; <i class="icon ion-ios-clock-outline"></i> '+date.toLocaleTimeString()+' </p></h5></div><div class="post-text"><p>'+post_text+' </p></div></div></div></div>');
 });
 }
 
