@@ -66,7 +66,7 @@ crossorigin=anonymous></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
-
+  $("#post-list").empty();
 fetchpost();
 function fetchpost()
 {
@@ -111,7 +111,7 @@ success:function(result){
  $("#message").show();
  $("#message").delay(10000).hide(0);
  jQuery('#postform')['0'].reset();
-
+ $("#post-list").empty();
   fetchpost();
 
 }
