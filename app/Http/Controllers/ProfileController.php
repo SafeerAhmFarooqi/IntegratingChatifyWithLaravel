@@ -112,7 +112,7 @@ class ProfileController extends Controller
            $file=$request->file('profile_pic');
            $filename= $file->getClientOriginalName();
            $filename= time(). '.' .$filename;
-           $file->storeAs('user_profile_pics',$filename);
+           $file->storeAs('user_profile_pics',$filename,'local');
 
             $pic=$filename;
         }else
