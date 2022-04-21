@@ -38,6 +38,8 @@
                                                 <th>Title</th>
                                                 <th>Code</th>
                                                 <th>Discount</th>
+                                                <th>Shop ID</th>
+                                                <th>User email</th>
                                                
                                             </tr>
                                         </thead>
@@ -48,6 +50,8 @@
                                                 <td>{{$use_vouchers->title}}</td>
                                                 <td>{{$use_vouchers->code}}</td>
                                                 <td>{{$use_vouchers->discount}}</td>
+                                                <td>{{$use_vouchers->shop_id}}</td>
+                                                <td>{{$use_vouchers->user_email}}</td>
                                                 
                                             </tr>
                                             @endforeach       

@@ -76,7 +76,7 @@ class VoucherController extends Controller
         $use_voucher->image=$query->image;
         $use_voucher->discount=$query->discount;
         $use_voucher->shop_id=$query->shop_id;
-        $use_voucher->user_id=$request->user_id;
+        $use_voucher->user_email=$request->user_email;
 
         $use_voucher->save();
 

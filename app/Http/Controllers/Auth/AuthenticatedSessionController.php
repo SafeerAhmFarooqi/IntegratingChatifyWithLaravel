@@ -33,6 +33,18 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME);
+
+         //  if($query->status == 1){
+        
+        // $request->authenticate();
+
+        // $request->session()->regenerate();
+
+        // return redirect()->intended(RouteServiceProvider::HOME);
+
+        // }else{
+        //     return back()->with('error', 'Your Account is not Verified!');
+        // }
     }
 
     /**

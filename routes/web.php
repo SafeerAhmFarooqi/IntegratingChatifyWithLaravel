@@ -80,6 +80,9 @@ Route::resource('/user_voucher',UserVoucherController::class);
 //User Search
 Route::post('/user_search', [UsersController::class, 'user_search'])->name('user_search');
 
+//User Use Vouchers
+Route::get('/savings', [UserVoucherController::class, 'savings'])->name('savings');
+
 //Group  Members
 Route::resource('/group_members',GroupMembersController::class);
 

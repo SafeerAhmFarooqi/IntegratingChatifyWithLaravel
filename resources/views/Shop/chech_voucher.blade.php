@@ -42,9 +42,9 @@
                                   </div>
                                   <div class="col-md-6">
                                     <div class="form-group row">
-                                       <label class="col-sm-3 col-form-label">User id</label>
+                                      <label class="col-sm-3 col-form-label">User Email</label>
                                       <div class="col-sm-9">
-                                        <input type="text" name="user_id" value="{{old('code')}}" class="form-control">
+                                        <input type="text" name="user_email" value="{{old('user_email')}}" class="form-control">
                                       </div>
                                     </div>
                                   </div>
