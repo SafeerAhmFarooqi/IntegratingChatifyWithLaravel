@@ -75,14 +75,44 @@
                     <p>{{$post->post_text}}
                         </p>
                     </div>
-                </div>
-                @if ($post->post_image)
-            <img src="{{asset('images/user_post_pics/'.$post->post_image)}}" style="width: 100px;" />    
-            @endif
+                    @if ($post->post_image)
+                    <img src="{{asset('images/user_post_pics/'.$post->post_image)}}" style="width: 100%" />    
+                    @endif
+               
+
+                    <br>  <br> 
+                         <form id="myform"  method="POST"  class="form_statusinput">
+                    <textarea class="form-control comment" id="comment" name="comment" placeholder="write a comment..." rows="2"></textarea>
+                    <br>
+                    <input type="hidden" name="postid" id="postid" value=" ">
+                    
+                    <input type="hidden" name="username" id="username" value="  ">
+                     
+                    <input type="submit" id="post" class="btn btn-info pull-right" value="Comment">
+
+                </form>
+
+
+  <div class="clearfix"></div>
+              
+
+    
+
+  <div class="post-comment">
+       
+                <img src="http://lds.local/images/user_profile_pics/1650539884.mypic.jpeg" alt="" class="img-circle" class="profile-photo-sm" style="height:40px;min-width:40px;max-width:40px;">
+ 
+                    <p><a href="userprofile.php?id= " class="profile-link">&nbsp;username here  >  </a><i class="em em-laughing"></i> test </p>
+                  </div>
+
+ 
+                
+              
             </div>
             
             
         </div>
+      </div> 
           @endforeach
        
 
