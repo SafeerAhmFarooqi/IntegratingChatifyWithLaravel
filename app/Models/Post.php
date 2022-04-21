@@ -23,5 +23,13 @@ class Post extends Authenticatable
         'post_image',
     ];
 
+    public function comments()
+    {
+        return $this->hasMany(Comments::class, 'post_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
  
 }

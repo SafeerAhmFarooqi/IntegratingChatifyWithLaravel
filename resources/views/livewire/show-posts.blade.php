@@ -61,10 +61,10 @@
           @foreach ($posts as $post)
           <div class="post-content">
             <div class="post-container">
-                <img src="{{Auth::user()->profile_pic ?asset('images/user_profile_pics/'.Auth::user()->profile_pic) : asset('images/user_profile_pics/photoicon.jpg') }}" class="profile-photo-md pull-left">
+                <img src="{{$post->user->profile_pic ?asset('images/user_profile_pics/'.$post->user->profile_pic) : asset('images/user_profile_pics/photoicon.jpg') }}" class="profile-photo-md pull-left">
                 <div class="post-detail" id="post-data">
                     <div class="user-info"><h5>
-                        <a href="" class="profile-link">{{Auth::user()->firstname}}</a>
+                        <a href="" class="profile-link">{{$post->user->firstname.' '.$post->user->lastname}}</a>
                         <p style="float:right;">
                             <i class="icon ion-ios-calendar-outline"></i> {{ \Carbon\Carbon::parse($post->created_at)->format('F d, Y') }} &nbsp; 
                             <i class="icon ion-ios-clock-outline"></i> {{ \Carbon\Carbon::parse($post->created_at)->format('h:i:s') }}
@@ -76,19 +76,17 @@
                         </p>
                     </div>
                     @if ($post->post_image)
-                    <img src="{{asset('images/user_post_pics/'.$post->post_image)}}" style="width: 100%" />    
+                    <img src="{{$post->post_image ?asset('images/user_post_pics/'.$post->post_image) : asset('images/user_profile_pics/photoicon.jpg') }}" style="width: 100%" />    
                     @endif
                
 
                     <br>  <br> 
-                         <form id="myform"  method="POST"  class="form_statusinput">
-                    <textarea class="form-control comment" id="comment" name="comment" placeholder="write a comment..." rows="2"></textarea>
+                         <form  wire:submit.prevent="saveComment"   class="form_statusinput">
+                    <textarea class="form-control comment" wire:model.defer="commentText" placeholder="write a comment..." rows="2"></textarea>
                     <br>
-                    <input type="hidden" name="postid" id="postid" value=" ">
                     
-                    <input type="hidden" name="username" id="username" value="  ">
                      
-                    <input type="submit" id="post" class="btn btn-info pull-right" value="Comment">
+                    <input type="submit"  class="btn btn-info pull-right" wire:click="currentId({{$post->user->id}},{{$post->id}})">
 
                 </form>
 
@@ -97,20 +95,77 @@
               
 
     
-
-  <div class="post-comment">
+  @foreach ($post->comments as $comment)
+  {{-- old commnets starts --}}
+{{-- <div class="post-container">
        
-                <img src="http://lds.local/images/user_profile_pics/1650539884.mypic.jpeg" alt="" class="img-circle" class="profile-photo-sm" style="height:40px;min-width:40px;max-width:40px;">
- 
-                    <p><a href="userprofile.php?id= " class="profile-link">&nbsp;username here  >  </a><i class="em em-laughing"></i> test </p>
-                  </div>
+  <img src="{{$comment->user->profile_pic ?asset('images/user_profile_pics/'.$comment->user->profile_pic) : asset('images/user_profile_pics/photoicon.jpg') }}" alt="" class="img-circle" class="profile-photo-sm" style="height:40px;min-width:40px;max-width:40px;">
 
- 
-                
+      <p><a href="userprofile.php?id= " class="profile-link">&nbsp;{{$comment->user->firstname.' '.$comment->user->lastname}}</a> {{-- <i class="em em-laughing"></i>  </p>
+      <div class="container">{{$comment->comment}}</div>  
+      
+
+      
+      
+      
+      
+    </div>  --}}
+{{-- oold comments end --}}
+
+
+{{-- new comments start --}}
+
+<div class="post-content">
+  <div class="post-container">
+      <img src="{{$comment->user->profile_pic ?asset('images/user_profile_pics/'.$comment->user->profile_pic) : asset('images/user_profile_pics/photoicon.jpg') }}" class="profile-photo-md pull-left">
+      <div class="post-detail" id="post-data">
+          <div class="user-info"><h5>
+              <a href="" class="profile-link">{{$comment->user->firstname.' '.$comment->user->lastname}}</a>
               
-            </div>
-            
-            
+          </h5>
+      </div>
+      <div class="post-text">
+          <p>{{$comment->comment}}
+              </p>
+          </div>
+  </div>          
+</div>
+</div> 
+
+
+
+{{-- new comments end --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    @endforeach
+  
+
+
+
+            </div>          
         </div>
       </div> 
           @endforeach
