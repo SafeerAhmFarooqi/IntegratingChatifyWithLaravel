@@ -30,7 +30,7 @@
  <div class="friend-info">
  <a href="{{route('users.show',$user->id)}}" class="pull-right text-green btn btn-default">Profile</a>
  &nbsp; &nbsp;
- <a href="message.php?id=24" class="pull-right text-green btn btn-default"> <i class="icon ion-chatboxes"></i> Chat</a>
+ <a href="{{config('chatify.routes.prefix')}}/{{$user->id}}" class="pull-right text-green btn btn-default"> <i class="icon ion-chatboxes"></i> Chat</a>
  <h5><a href="timeline.html" class="profile-link">{{$user->firstname}}</a></h5>
  <p> army,</p>
  </div>
