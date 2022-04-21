@@ -61,9 +61,20 @@ class GroupPostController extends Controller
          $members=Group_Member::where('group_id',$id)->get();
 
          return view('group_post', compact('members'));
+    }
+
+
+      public function show_group($id, $name)
+    {
+    
+         $members=Group_Member::where('group_id',$id)->get();
+
+         return view('group_post', compact('members','name'));
+
+    } 
 
         
-    }
+   
 
     /**
      * Show the form for editing the specified resource.

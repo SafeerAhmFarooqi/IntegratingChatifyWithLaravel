@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vouchers', function (Blueprint $table) {
+        Schema::create('use_vouchers', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
+             $table->string('title')->nullable();
             $table->string('code')->nullable();
             $table->string('image')->nullable();
             $table->string('discount')->nullable();
             $table->string('shop_id')->nullable();
-            $table->integer('status')->default(1);
+            $table->string('user_id')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vouchers');
+        Schema::dropIfExists('use_vouchers');
     }
 };

@@ -65,7 +65,7 @@
    
  <div class="col-md-6 col-sm-6">
  <div class="friend-card">
- <a href="{{route('group_posts.show',$group->id)}}">
+ <a href="{{route('show_group',[$group->id,$group->group_title])}}">
  <img src="{{asset('user_frontend/images/covers/10.jpg')}}" alt="profile-cover" class="img-responsive cover">
  </a>
  <div class="card-info">
@@ -119,7 +119,7 @@
  </div>
  
  <!-- End Group Members -->
- <h5><a href="" class="profile-link">{{$group->group_title}} </a>
+ <h5><a href="{{route('show_group',[$group->id,$group->group_title])}}" class="profile-link">{{$group->group_title}} </a>
  <br><br>
  <i class="fa fa-user" aria-hidden="true"></i>
  {{$group->created_by}} </h5>
