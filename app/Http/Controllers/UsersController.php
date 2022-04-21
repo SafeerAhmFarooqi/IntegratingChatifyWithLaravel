@@ -95,4 +95,19 @@ class UsersController extends Controller
     {
         //
     }
+    public function user_search(Request $request)
+    {
+        $search=$request->search_user;
+
+        $users = User::query()
+        ->where('firstname', 'LIKE', "%{$search}%")
+        ->orWhere('lastname', 'LIKE', "%{$search}%")
+        ->get();
+
+        if ($users = []) {
+            return "empty";
+        }
+
+        return view('search_user' ,compact('users'));
+    }
 }

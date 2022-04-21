@@ -25,7 +25,7 @@
 
     <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('users.index')}}">Users</a></div></li>
     <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('user_voucher.index')}}">Vouchers</a></div></li>
-    <li><i class="icon ion-ios-people-outline"></i><div><a href="savings.php">Savings</a></div></li>
+    <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('savings')}}">Savings</a></div></li>
 
     <!-- 
     <li><i class="icon ion-images"></i><div><a href="newsfeed-images.html">Images</a></div></li>

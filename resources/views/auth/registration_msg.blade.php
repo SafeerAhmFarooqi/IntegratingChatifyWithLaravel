@@ -1,0 +1,1 @@
+<h2>Thank you for your registration You will recieve confirm Message soon</h2>

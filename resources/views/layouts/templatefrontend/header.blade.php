@@ -104,10 +104,11 @@
                
                
             </ul>
-            <form class="navbar-form navbar-right hidden-sm" action="userslist.php">
+            <form class="navbar-form navbar-right hidden-sm" action="{{route('user_search')}}" method="post">
+              @csrf
               <div class="form-group">
                 <i class="icon ion-android-search"></i>
-                <input type="text" class="form-control" placeholder="Search peoples">
+                <input type="text" class="form-control" placeholder="Search peoples" name="search_user">
               </div>
             </form>
           </div><!-- /.navbar-collapse -->

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Voucher;
+use Auth;
+use App\Models\UseVoucher;
 
 class UserVoucherController extends Controller
 {
@@ -83,5 +85,13 @@ class UserVoucherController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function savings()
+    {
+        $login= Auth::user()->email;
+
+         $use_vouchers= UseVoucher::where('user_email',$login)->get();
+
+         return view('user_use_vouchers', compact('use_vouchers'));
     }
 }
