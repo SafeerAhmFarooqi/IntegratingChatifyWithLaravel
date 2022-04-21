@@ -5,9 +5,11 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 
 use App\Models\Post;
+use App\Models\Comments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
 
 class ShowPosts extends Component
 {
@@ -15,6 +17,15 @@ class ShowPosts extends Component
 
     public $postImage='';
     public $postText='';
+    public $commentText='';
+    public $currentPostId=0;
+    public $currentUserId=0;
+
+    public function currentId($userId,$postId)
+    {
+        $this->currentUserId=$userId;
+        $this->currentPostId=$postId;
+    }
 
 
     public function submit()
@@ -50,15 +61,42 @@ class ShowPosts extends Component
     }
     public function render()
     {
-        $posts= Post::leftjoin('users','users.id','=','posts.user_id')
+        // $posts= Post::leftjoin('users','users.id','=','posts.user_id')
+        // ->orderBy('id','desc')
+        // ->get([
+        //     'posts.*',
+        //     'users.firstname',
+        //     'users.lastname',
+        //     'users.id as userId',
+        //     'users.profile_pic'
+        // ]);
+
+        $posts= Post::with(['comments' => function ($query) {
+            $query->with('user')
+            ->orderBy('id', 'desc');
+        }])
+        ->with('user')
         ->orderBy('id','desc')
-        ->get([
-            'posts.*',
-            'users.firstname',
-            'users.profile_pic'
-        ]);
+        ->get();
+
         return view('livewire.show-posts',[
             'posts'=>$posts,
         ]);
+    }
+
+    public function saveComment()
+    {
+        $this->validate([
+            'commentText' => 'required',
+        ]);
+
+        $model=new Comments();
+        $model->user_id=$this->currentUserId; 
+        $model->post_id=$this->currentPostId; 
+        $model->comment=$this->commentText;
+         $model->save();
+         $this->currentUserId=0;
+         $this->currentPostId=0;
+         $this->commentText='';
     }
 }
