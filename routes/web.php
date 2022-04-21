@@ -89,6 +89,8 @@ Route::resource('/people_nearby',PeopleNearbyController::class);
 //Group Posts
 Route::resource('/group_posts',GroupPostController::class);
 
+Route::get('/show_group/{id}/{name}', [GroupPostController::class, 'show_group'])->name('show_group');
+
 
 
 // Route::get('Admin/users_list', [App\Http\Controllers\UsersController::class, 'users_list'])->name('Admin/users_list');
@@ -179,6 +181,16 @@ Route::get('Shop/vouchers',[App\Http\Controllers\Shop\VoucherController::class, 
 Route::get('Shop/create_vouchers',[App\Http\Controllers\Shop\VoucherController::class, 'create_vouchers']);
 
 Route::post('Shop/store_voucher',[App\Http\Controllers\Shop\VoucherController::class, 'store_voucher']);
+
+Route::get('Shop/use_vouchers',[App\Http\Controllers\Shop\VoucherController::class, 'use_vouchers'])->name('Shop.use_vouchers');
+
+Route::get('/Shop/check',function(){
+     return view('Shop.chech_voucher');
+ });
+
+Route::post('Shop/check_voucher',[App\Http\Controllers\Shop\VoucherController::class, 'check_voucher']);
+
+
 
 
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Shop;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Voucher;
+use App\Models\UseVoucher;
 use Auth;
 
 class VoucherController extends Controller
@@ -50,6 +51,48 @@ class VoucherController extends Controller
       	$voucher->save();
 
     	return redirect('Shop/vouchers');
+    }
+
+     public function use_vouchers()
+    {
+      $use_vouchers= UseVoucher::all();
+
+        return view('Shop.use_vouchers', compact('use_vouchers'));
+    }
+
+
+     public function check_voucher(Request $request)
+    {
+
+        $query=Voucher::where('code',$request->code)->first();
+
+        if($query->status == 1){
+
+
+        $use_voucher= new UseVoucher;
+
+        $use_voucher->title=$query->title;
+        $use_voucher->code=$query->code;
+        $use_voucher->image=$query->image;
+        $use_voucher->discount=$query->discount;
+        $use_voucher->shop_id=$query->shop_id;
+        $use_voucher->user_id=$request->user_id;
+
+        $use_voucher->save();
+
+        Voucher::where('code',$query->code)->update([
+
+            'status'=> 0,
+        ]);
+
+        return redirect('Shop/dashboard');
+
+        }else{
+
+          return "already use this voucher";
+        }
+
+    
     }
 
     

@@ -8,8 +8,9 @@
        ================================================= -->
                @include('layouts.templatefrontend.leftsidebar');
  
-            
-               
+            <div class="col-md-6">
+            <h3>{{$name}}</h3>
+              
                @foreach($members as $member)
                <?php 
  
@@ -17,7 +18,7 @@
                 $login= Auth::user()->id;
                 foreach ($user as $value) {
                  if ($login == $value) { ?>
-       <div class="col-md-6">
+
              <!-- Post Create Box
              ================================================= -->
            <div class="create-post">
@@ -78,8 +79,7 @@
       </div>
  
  <?php
-   }
-  }
+
  
  ?>
  
@@ -115,7 +115,8 @@
  
  
  <?php 
- 
+    }
+  }
  }
    ?>
    @endforeach

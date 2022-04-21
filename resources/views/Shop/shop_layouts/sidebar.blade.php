@@ -19,6 +19,8 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+
+           
             
            <!--  <li
                 class="sidebar-item  has-sub">
@@ -56,6 +58,23 @@
                 <a href="vouchers" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span> vouchers </span>
+                </a>
+            </li>
+
+
+             <li
+                class="sidebar-item ">
+                <a href="check" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Chech Voucher</span>
+                </a>
+            </li>
+
+            <li
+                class="sidebar-item ">
+                <a href="{{route('Shop.use_vouchers')}}" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Use Voucher List</span>
                 </a>
             </li>
 
