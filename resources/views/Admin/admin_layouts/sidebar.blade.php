@@ -20,7 +20,7 @@
                 </a>
             </li>
             
-            <li
+           <!--  <li
                 class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i class="bi bi-stack"></i>
@@ -49,7 +49,7 @@
                             <a   href="center_1_unsuccessfull.php">Un Successfull </a>
                         </li>
                 </ul>
-            </li>
+            </li> -->
 
 
             <li
@@ -57,6 +57,14 @@
                 <a href="{{route('Admin.users_list')}}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>users</span>
+                </a>
+            </li>
+
+             <li
+                class="sidebar-item ">
+                <a href="{{route('user_pdf.index')}}" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Documents</span>
                 </a>
             </li>
             

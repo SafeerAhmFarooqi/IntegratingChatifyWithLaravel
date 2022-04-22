@@ -61,6 +61,12 @@ class GroupsController extends Controller
 
         $group->save();
 
+        Group_Member::insert([
+
+            'group_id'=>$group->id,
+            'member_id'=>$group->created_by,
+        ]);
+
         return redirect('groups');
 
     }

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Voucher;
-use Auth;
-use App\Models\UseVoucher;
+use App\Models\User;
 
-class UserVoucherController extends Controller
+class UserPDFController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class UserVoucherController extends Controller
      */
     public function index()
     {
-        $vouchers=Voucher::all();
-
-        return view('vouchers_list',compact('vouchers'));
+         $user_pdf= User::all();
+        return view('Admin.user_pdf_list',compact('user_pdf'));
     }
 
     /**
@@ -85,15 +83,5 @@ class UserVoucherController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function savings()
-    {
-        $login= Auth::user()->email;
-
-        $t_savings=UseVoucher::where('user_email',$login)->sum('discount');
-
-         $use_vouchers= UseVoucher::where('user_email',$login)->get();
-
-         return view('user_use_vouchers', compact('use_vouchers','t_savings'));
     }
 }

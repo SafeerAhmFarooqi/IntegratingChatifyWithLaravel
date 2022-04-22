@@ -18,7 +18,7 @@
  
  <div class="col-md-6 col-sm-6">
  <div class="friend-card">
- 
+ <h3>Total Savings: {{$t_savings}}</h3>
  <table border="1" width="100%">
    <tr>
      <td>Title</td>

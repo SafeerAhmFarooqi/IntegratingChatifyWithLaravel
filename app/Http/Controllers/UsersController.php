@@ -104,10 +104,6 @@ class UsersController extends Controller
         ->orWhere('lastname', 'LIKE', "%{$search}%")
         ->get();
 
-        if ($users = []) {
-            return "empty";
-        }
-
         return view('search_user' ,compact('users'));
     }
 }

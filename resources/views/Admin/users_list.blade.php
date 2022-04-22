@@ -37,6 +37,7 @@
                                                 <th>User Name</th>
                                                 <th>Email</th>
                                                 <th>Phone</th>
+                                                <th>Current Status</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -47,6 +48,13 @@
                                                 <td>{{$user->firstname}}</td>
                                                 <td>{{$user->email}}</td>
                                                 <td>{{$user->phone}}</td>
+                                                <td>
+                                                    @if($user->status == 1)
+                                                        Active
+                                                    @else
+                                                        De-Active    
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <a href="user_status/active/{{$user->id}}" class="btn btn-success">Active</a>
                                                     <a href="user_status/de_active/{{$user->id}}" class="btn btn-danger">De-Active</a>
