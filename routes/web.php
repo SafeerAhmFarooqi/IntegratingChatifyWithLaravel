@@ -13,6 +13,7 @@ use App\Http\Controllers\PeopleNearbyController;
 use App\Http\Controllers\Admin\ShopCategoryController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserPDFController;
 use App\Http\Controllers\Auth\ShopAuthController;
 use App\Http\Controllers\Shop\ShopController;
 
@@ -134,6 +135,9 @@ Route::get('/Admin/shop_delete/{id}',[App\Http\Controllers\Admin\AdminController
 
 //Shops Category
 Route::resource('/Admin/shops_category',ShopCategoryController::class);
+
+//Users PDF
+Route::resource('/Admin/user_pdf',UserPDFController::class);
 
 
 //Locations

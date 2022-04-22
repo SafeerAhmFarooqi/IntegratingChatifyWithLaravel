@@ -90,8 +90,9 @@
  </button>
  </div>
  <div class="modal-body">
- <form action="{{route('group_members.store')}}" method="post" onsubmit="return confirm('Are you sure you want to Add Members')">
+ <form action="{{route('group_members.update',$group->id)}}" method="post" onsubmit="return confirm('Are you sure you want to Add Members')">
    @csrf
+   @method('PUT')
  <div class="form-group">
  <label for="usr">Group</label>
  <input type="text" class="form-control" name="group_title" value="{{$group->group_title}}" disabled="">
@@ -121,15 +122,25 @@
  <!-- End Group Members -->
  <h5><a href="{{route('show_group',[$group->id,$group->group_title])}}" class="profile-link">{{$group->group_title}} </a>
  <br><br>
- <i class="fa fa-user" aria-hidden="true"></i>
- {{$group->created_by}} </h5>
+
+ <?php 
+$t_members= DB::table('group_members')->where('group_id',$group->id)->first();
+$new=explode(',',$t_members->member_id);
+$a=0;
+ foreach ($new as $test) {
+  $a++;
+ }
+?>
+
+<i class="fa fa-user" aria-hidden="true"></i>
+{{$a}} </h5>
  <!-- <p>Traveler</p> -->
  </div>
  </div>
  </div>
  </div>
- 
  @endforeach
+ 
  
  
  

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Group_Member;
+use Auth;
 
 class GroupMembersController extends Controller
 {
@@ -76,7 +77,25 @@ class GroupMembersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $login_user=Auth::user()->id;
+         $arra= array();
+
+        foreach ($request->members as $value) {
+            $a = array();
+            $a[] = $value;
+            $a[]= $login_user;
+
+            $arra[] = $a;
+            //done oksssss t
+        }
+        return $arra;
+
+        Group_Member::where('group_id',$id)->update([
+
+            'member_id'=>implode(',',$request->members),
+        ]);
+
+        return redirect('groups');
     }
 
     /**

@@ -32,6 +32,8 @@
              <div class="alert alert-success" id="message" style="display:none">
    <strong>Success!</strong> Post Submitted Successfully ! 
  </div>
+
+ <a href="{{route('people_nearby.update',1)}}">Test</a>
  
  </div>
  </div>

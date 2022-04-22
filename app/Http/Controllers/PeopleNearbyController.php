@@ -47,7 +47,13 @@ class PeopleNearbyController extends Controller
      */
     public function show($id)
     {
-        //
+        $login=User::where('id',Auth::user()->id)->first();
+
+        $GLOBALS['mylat'] = $mylat=$login['lat'];
+        $GLOBALS['mylong'] =$login['long'];
+
+        return $GLOBALS;
+
     }
 
     /**
