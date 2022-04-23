@@ -67,6 +67,7 @@ strong{
 } </style>	
 </head>
     <body>
+        
 
     <!-- Header
     ================================================= -->
@@ -83,23 +84,45 @@ strong{
         </div><!-- /.container -->
       </nav>
     </header>
+    
     <!--Header End-->
     
     <!-- Landing Page Contents
     ================================================= -->
     <div id="lp-register">
+        
         <div class="container wrapper">
+            
         <div class="row">
+            
             <div class="col-sm-5">
             <div class="intro-texts">
+               
+
                 <h1 class="text-white">Make Cool Friends !!!</h1>
                 <p>Friend Finder is a social network template that can be used to connect people. The template offers Landing pages, News Feed, Image/Video Feed, Chat Box, Timeline and lot more. <br /> <br />Why are you waiting for? Buy it now.</p>
               <button class="btn btn-primary">Learn More</button>
             </div>
           </div>
             <div class="col-sm-6 col-sm-offset-1">
+                
+                  @if(session()->has('status'))
+    <div class="alert alert-success" role="alert">
+        status :{{ session()->get('status') }}
+      </div>
+            @endif
+            @if(session()->has('message'))
+    <div class="alert alert-success">
+       message :  {{ session()->get('message') }}
+    </div>
+@endif
+@if ($errors->any())
+@foreach ($errors->all() as $error)
+   errors any :  <div class="alert alert-danger" role="alert">{{$error}}</div>
+@endforeach
+@endif
             <div class="reg-form-container"> 
-            
+                
               <!-- Register/Login Tabs-->
               <div class="reg-options">
                 <ul class="nav nav-tabs">
@@ -110,6 +133,8 @@ strong{
               
                
                 <!--Login-->
+                
+
                 <div class="tab-pane" id="login">
                   <h3>Forgot Password</h3>
                   <p class="text-muted">No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</p>
@@ -154,7 +179,6 @@ strong{
           </div>
         </div>
       </div>
-    </div>
 
     <!--preloader-->
     <div id="spinner-wrapper">
