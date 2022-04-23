@@ -108,17 +108,12 @@ strong{
                 
                   @if(session()->has('status'))
     <div class="alert alert-success" role="alert">
-        status :{{ session()->get('status') }}
+        {{ session()->get('status') }}
       </div>
             @endif
-            @if(session()->has('message'))
-    <div class="alert alert-success">
-       message :  {{ session()->get('message') }}
-    </div>
-@endif
 @if ($errors->any())
 @foreach ($errors->all() as $error)
-   errors any :  <div class="alert alert-danger" role="alert">{{$error}}</div>
+   <div class="alert alert-danger" role="alert">{{$error}}</div>
 @endforeach
 @endif
             <div class="reg-form-container"> 

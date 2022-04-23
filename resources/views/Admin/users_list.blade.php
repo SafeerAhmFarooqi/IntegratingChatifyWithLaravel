@@ -64,7 +64,7 @@
                                                     <a href="user_status/active/{{$user->id}}" class="btn btn-success">Active</a>
                                                     <a href="user_status/de_active/{{$user->id}}" class="btn btn-danger">De-Active</a>
                                                     <a href="user_delete/{{$user->id}}" class="btn btn-danger">Delete</a>
-                                                    <a href="{{route('send-mail',['userEmail'=>$user->email])}}" class="btn btn-success">Send Email</a>
+                                                    {{-- <a href="{{route('send-mail',['userEmail'=>$user->email])}}" class="btn btn-success">Send Email</a> --}}
                                                 </td>
                                             </tr>
                                             @endforeach       

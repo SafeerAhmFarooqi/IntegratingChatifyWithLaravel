@@ -113,6 +113,7 @@
                                          {{ __('Forgot Your Password?') }}
                                      </a>
                                  @endif
+                                 <a href="register" class="btn btn-link">Register New account?</a>
                      </div>
                    </form><!--Login Form Ends--> </div>
                </div>

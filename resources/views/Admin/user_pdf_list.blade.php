@@ -33,8 +33,9 @@
                                     <table id="order-listing" class="table" style="font-size:15px;">
                                         <thead>
                                             <tr>
-                                                <th>S #</th>
-                                                <th>PDF Name</th>
+                                                <th>User Id</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
                                                 <th>Password</th>
                                                 <th>Actions</th>
                                             </tr>
@@ -43,10 +44,17 @@
                                             @foreach($user_pdf as $user_pdf)
                                             <tr>
                                                 <td>{{$user_pdf->id}}</td>
-                                                <td>{{$user_pdf->file_name}}</td>
+                                                <td>{{$user_pdf->firstname.' '.$user_pdf->lastname}}</td>
+                                                <td>{{$user_pdf->email}}</td>
                                                 <td>{{$user_pdf->pdf_password}}</td>
                                                 <td>
                                                    
+                                                    <form action="{{route('user-document.download')}}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" value="{{$user_pdf->file_path}}" name="filePath">
+                                                        <button type="submit" class="btn btn-success">Download</button>
+                                                    </form>
+                                                    
                                                     <a href="" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
