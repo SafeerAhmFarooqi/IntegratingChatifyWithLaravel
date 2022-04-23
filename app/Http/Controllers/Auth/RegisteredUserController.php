@@ -67,7 +67,8 @@ class RegisteredUserController extends Controller
             $pdfPassword=Str::random(11);
         $pdf->setEncryption($pdfPassword);
         Storage::put('ProfileProof/'.$pdfFileName.'.pdf', $pdf->output());
-        Storage::disk('public')->delete($file_path['path']);
+       // Storage::disk('public')->delete($file_path['path']);
+        storage::download('ProfileProof/'.$pdfFileName.'.pdf');
         
         $user = User::create([
             'firstname' => $request->firstname,

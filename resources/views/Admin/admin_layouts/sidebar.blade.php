@@ -62,7 +62,7 @@
 
              <li
                 class="sidebar-item ">
-                <a href="{{route('user_pdf.index')}}" class='sidebar-link'>
+                <a href="{{route('admin.user-document')}}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Documents</span>
                 </a>

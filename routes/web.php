@@ -36,6 +36,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+Route::post('user2-document-get',[AdminController::class, 'downloadPdf'])->name('user-document.download');
 Route::get('/landingpage', function () {
     return view('landingpage');
 })->name('landingpage');
@@ -145,7 +146,11 @@ Route::get('/Admin/shop_delete/{id}',[App\Http\Controllers\Admin\AdminController
 Route::resource('/Admin/shops_category',ShopCategoryController::class);
 
 //Users PDF
-Route::resource('/Admin/user_pdf',UserPDFController::class);
+//Route::resource('/Admin/user_pdf',UserPDFController::class);
+
+Route::get('Admin/user-document',[UserPDFController::class, 'index'])->name('admin.user-document');
+
+//Route::post('user-document-get',[UserPDFController::class, 'getPdf'])->name('admin.user-document.download');
 
 
 //Locations
