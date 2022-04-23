@@ -59,7 +59,7 @@ class AdminController extends Controller
         $user=user::find($id);
         if(!$user->active_status)
         {
-            $user= User::where('id',$id)->update([
+             User::where('id',$id)->update([
 
                 'active_status'=>1,
             ]);
@@ -76,7 +76,7 @@ class AdminController extends Controller
         $user=user::find($id);
         if($user->active_status)
         {
-            $user= User::where('id',$id)->update([
+            User::where('id',$id)->update([
 
                 'active_status'=>0,
             ]);
