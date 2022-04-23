@@ -20,6 +20,11 @@
         <div class="col-12 col-lg-12">
 
  @include('Admin.admin_layouts.topbar');
+ @if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
 
             <div class="row">
                 <div class="col-12">
@@ -59,7 +64,7 @@
                                                     <a href="user_status/active/{{$user->id}}" class="btn btn-success">Active</a>
                                                     <a href="user_status/de_active/{{$user->id}}" class="btn btn-danger">De-Active</a>
                                                     <a href="user_delete/{{$user->id}}" class="btn btn-danger">Delete</a>
-                                                    <a href="{{route('send-mail')}}" class="btn btn-success">Send Email</a>
+                                                    <a href="{{route('send-mail',['userEmail'=>$user->email])}}" class="btn btn-success">Send Email</a>
                                                 </td>
                                             </tr>
                                             @endforeach       

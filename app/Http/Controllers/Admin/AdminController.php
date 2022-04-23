@@ -54,7 +54,7 @@ class AdminController extends Controller
     {
          $user= User::where('id',$id)->update([
 
-            'status'=>1,
+            'active_status'=>1,
         ]);
         return redirect('Admin/users_list');
     }
@@ -63,7 +63,7 @@ class AdminController extends Controller
     {
          $user= User::where('id',$id)->update([
 
-            'status'=>0,
+            'active_status'=>0,
         ]);
         return redirect('Admin/users_list');
     }

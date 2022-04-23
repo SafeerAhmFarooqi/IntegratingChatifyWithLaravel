@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ItsolutionStuff.com</title>
+    <title>asadsohail.com</title>
 </head>
 <body>
-    <h1>safeer</h1>
-    <p>ahmed</p>
-   
-    <p>Thank you</p>
+    <h1>Dear User your account has been activated please login to your account</h1>
+    <h1>at  https://asadsohail.com/</h1>
+    
 </body>
 </html>
