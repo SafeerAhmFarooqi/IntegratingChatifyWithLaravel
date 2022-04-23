@@ -54,7 +54,7 @@
                                                 <td>{{$user->email}}</td>
                                                 <td>{{$user->phone}}</td>
                                                 <td>
-                                                    @if($user->status == 1)
+                                                    @if($user->active_status == 1)
                                                         Active
                                                     @else
                                                         De-Active    
