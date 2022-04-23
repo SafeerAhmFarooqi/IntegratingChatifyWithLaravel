@@ -17,7 +17,6 @@ use App\Http\Controllers\Admin\UserPDFController;
 use App\Http\Controllers\Auth\ShopAuthController;
 use App\Http\Controllers\Shop\ShopController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Mail;
 use App\Mail\UserAccountActivation;
 use App\Http\Controllers\EmailController;
 
