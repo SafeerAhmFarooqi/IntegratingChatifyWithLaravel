@@ -94,6 +94,20 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-        return redirect(RouteServiceProvider::HOME);
+        if(!Auth::user()->active_status)
+        {
+            Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('in-active');
+        }
+        else
+        {
+            return redirect(RouteServiceProvider::HOME);
+        }
+        
     }
 }

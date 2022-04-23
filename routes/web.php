@@ -15,6 +15,9 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\ShopAuthController;
 use App\Http\Controllers\Shop\ShopController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserAccountActivation;
 
 
 /*
@@ -51,7 +54,11 @@ Route::get('/form',function(){
     return view('home');
 });
 
-
+Route::get('/not-active',function()
+{
+    return view('auth.registration_msg');
+}
+)->name('in-active');
 
 //User Profile
 Route::resource('/profile',ProfileController::class);
@@ -113,6 +120,12 @@ Route::get('/Admin/logout', [AdminAuthController::class, 'logout'])->name('Admin
 Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('Admin/dashboard', [AdminController::class, 'dashboard'])->name('Admin.dashboard');
 
+    Route::get('send-mail', function () {
+       
+        Mail::to('saf_farooqi@hotmail.com')->send(new UserAccountActivation());
+       
+        dd("Email is Sent.");
+    })->name('send-mail');
 
 Route::get('/Admin/users_list', [App\Http\Controllers\Admin\AdminController::class, 'users_list'])->name('Admin.users_list');
 

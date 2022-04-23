@@ -43,4 +43,6 @@ class HomeController extends Controller
     {
         return Storage::download(Auth::user()->file_path, Auth::user()->file_name);
     }
+
+   
 }
