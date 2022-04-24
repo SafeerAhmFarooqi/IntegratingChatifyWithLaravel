@@ -52,9 +52,9 @@
                       <!-- <img src="images/users/user-1.jpg" alt="" class="profile-photo-md" /> -->
    
                             @if(Auth::user()->profile_pic)
-                            <img src="{{asset('images/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"" class="profile-photo-md">
+                            <img src="{{asset('storage/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"" class="profile-photo-md">
                             @else
-                            <img src="{{asset('images/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"" class="profile-photo-md">
+                            <img src="{{asset('storage/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"" class="profile-photo-md">
                             @endif
                          
                            <textarea name="post_text" rows="2" placeholder="What are you thinking?" id="post_text" class="form-control" required></textarea>
@@ -149,7 +149,7 @@
               var name = item.name;
             //  var date= item.created_at;
              // var time= item.created_at;
-              var user_img= "{{asset('images/user_profile_pics/')}}/"+item.profile_pic;
+              var user_img= "{{asset('storage/user_profile_pics/')}}/"+item.profile_pic;
               var post_text= item.post_text;
               var post_img= item.post_img;
               

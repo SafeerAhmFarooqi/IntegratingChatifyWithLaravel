@@ -13,9 +13,9 @@
       
                                             
                       @if(Auth::user()->profile_pic)
-                      <img src="{{asset('images/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
+                      <img src="{{asset('storage/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
                       @else
-                      <img src="{{asset('images/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
+                      <img src="{{asset('storage/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
                       @endif
                    
                   
@@ -62,7 +62,7 @@
           @foreach ($posts as $post)
           <div class="post-content">
             <div class="post-container">
-                <img src="{{$post->user->profile_pic ?asset('images/user_profile_pics/'.$post->user->profile_pic) : asset('images/user_profile_pics/photoicon.jpg') }}" class="profile-photo-md pull-left">
+                <img src="{{$post->user->profile_pic ?asset('storage/user_profile_pics/'.$post->user->profile_pic) : asset('storage/user_profile_pics/photoicon.jpg') }}" class="profile-photo-md pull-left">
                 <div class="post-detail" id="post-data">
                     <div class="user-info"><h5>
                         <a href="" class="profile-link">{{$post->user->firstname.' '.$post->user->lastname}}</a>
@@ -77,7 +77,7 @@
                         </p>
                     </div>
                     @if ($post->post_image)
-                    <img src="{{$post->post_image ?asset('images/user_post_pics/'.$post->post_image) : asset('images/user_profile_pics/photoicon.jpg') }}" style="width: 100%" />    
+                    <img src="{{$post->post_image ?asset('storage/user_post_pics/'.$post->post_image) : asset('storage/user_profile_pics/photoicon.jpg') }}" style="width: 100%" />    
                     @endif
                
 
@@ -100,7 +100,7 @@
   {{-- old commnets starts --}}
 {{-- <div class="post-container">
        
-  <img src="{{$comment->user->profile_pic ?asset('images/user_profile_pics/'.$comment->user->profile_pic) : asset('images/user_profile_pics/photoicon.jpg') }}" alt="" class="img-circle" class="profile-photo-sm" style="height:40px;min-width:40px;max-width:40px;">
+  <img src="{{$comment->user->profile_pic ?asset('storage/user_profile_pics/'.$comment->user->profile_pic) : asset('storage/user_profile_pics/photoicon.jpg') }}" alt="" class="img-circle" class="profile-photo-sm" style="height:40px;min-width:40px;max-width:40px;">
 
       <p><a href="userprofile.php?id= " class="profile-link">&nbsp;{{$comment->user->firstname.' '.$comment->user->lastname}}</a> {{-- <i class="em em-laughing"></i>  </p>
       <div class="container">{{$comment->comment}}</div>  
@@ -118,7 +118,7 @@
 
 <div class="post-content">
   <div class="post-container">
-      <img src="{{$comment->user->profile_pic ?asset('images/user_profile_pics/'.$comment->user->profile_pic) : asset('images/user_profile_pics/photoicon.jpg') }}" class="profile-photo-md pull-left">
+      <img src="{{$comment->user->profile_pic ?asset('storage/user_profile_pics/'.$comment->user->profile_pic) : asset('storage/user_profile_pics/photoicon.jpg') }}" class="profile-photo-md pull-left">
       <div class="post-detail" id="post-data">
           <div class="user-info"><h5>
               <a href="" class="profile-link">{{$comment->user->firstname.' '.$comment->user->lastname}}</a>
