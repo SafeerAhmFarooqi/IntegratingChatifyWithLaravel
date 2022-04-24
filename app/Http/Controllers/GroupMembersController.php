@@ -88,14 +88,14 @@ class GroupMembersController extends Controller
             $arra[] = $a;
             //done oksssss t
         }
-        return $arra;
+        //return $arra;
 
         Group_Member::where('group_id',$id)->update([
 
             'member_id'=>implode(',',$request->members),
         ]);
 
-        return redirect('groups');
+        return back();
     }
 
     /**

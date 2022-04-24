@@ -6,12 +6,13 @@ use Livewire\Component;
 
 use App\Models\Post;
 use App\Models\Comments;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 
-class ShowPosts extends Component
+class GroupChat extends Component
 {
     use WithFileUploads;
 
@@ -20,6 +21,7 @@ class ShowPosts extends Component
     public $commentText='';
     public $currentPostId=0;
     public $currentUserId=0;
+    public $groupId=0;
 
     public function currentId($userId,$postId)
     {
@@ -54,50 +56,28 @@ class ShowPosts extends Component
          $model = new Post();
          $model->post_text=$this->postText;
          $model->user_id=$user;
+         $model->group_id=$this->groupId;
          $model->post_image=$pic;
          $model->save();
          $this->postImage='';
          $this->postText='';
     }
+
+
     public function render()
     {
-        // $posts= Post::leftjoin('users','users.id','=','posts.user_id')
-        // ->orderBy('id','desc')
-        // ->get([
-        //     'posts.*',
-        //     'users.firstname',
-        //     'users.lastname',
-        //     'users.id as userId',
-        //     'users.profile_pic'
-        // ]);
-
         $posts= Post::with(['comments' => function ($query) {
             $query->with('user')
             ->orderBy('id', 'desc');
         }])
         ->with('user')
-        ->where('group_id',0)
+        ->where('group_id',$this->groupId)
         ->orderBy('id','desc')
         ->get();
-
-        return view('livewire.show-posts',[
+        $group=Group::find($this->groupId);
+        return view('livewire.group-chat',[
             'posts'=>$posts,
+            'group'=>$group,
         ]);
-    }
-
-    public function saveComment()
-    {
-        $this->validate([
-            'commentText' => 'required',
-        ]);
-
-        $model=new Comments();
-        $model->user_id=$this->currentUserId; 
-        $model->post_id=$this->currentPostId; 
-        $model->comment=$this->commentText;
-         $model->save();
-         $this->currentUserId=0;
-         $this->currentPostId=0;
-         $this->commentText='';
     }
 }
