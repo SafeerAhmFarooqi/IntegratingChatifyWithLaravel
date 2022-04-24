@@ -21,4 +21,19 @@ class UserPdfDownload extends Controller
           );
         return Response::download(storage_path().'/app'.'/'.$user->file_path, $user->email.'.pdf', $headers);
     }
+
+    public function deletePdf($id)
+    {
+        $user=User::find($id);
+        Storage::delete(storage_path().'/app'.'/'.$user->file_path);
+        $user->update([
+            'file_path'=>'',
+            'pdf_password'=>'',
+        ]);
+        return back();
+       //return storage::download(storage_path().'/app'.'/'.$user->file_path,'MyDocument');
+       //return response()->download(storage_path().'/app'.'/'.$user->file_path);
+        //storage::download(storage_path().'/app'.'/'.$request->filePath,'MyDocument');
+       
+    }
 }

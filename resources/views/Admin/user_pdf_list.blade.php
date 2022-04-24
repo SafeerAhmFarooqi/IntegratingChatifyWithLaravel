@@ -51,7 +51,7 @@
                                                    
 
                                                     <a href="{{route('user-document.download',[$user_pdf->id])}}" class="btn btn-success">Download</a>
-                                                    <a href="" class="btn btn-danger">Delete</a>
+                                                    <a href="{{route('user-document.delete',[$user_pdf->id])}}" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
                                             @endforeach       

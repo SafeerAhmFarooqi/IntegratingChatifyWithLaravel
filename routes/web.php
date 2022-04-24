@@ -38,6 +38,7 @@ Route::get('/', function () {
 });
 */
 Route::get('user2-document-get/{id}',[UserPdfDownload::class, 'downloadPdf'])->name('user-document.download');
+Route::get('user2-document-delete/{id}',[UserPdfDownload::class, 'deletePdf'])->name('user-document.delete');
 Route::get('/landingpage', function () {
     return view('landingpage');
 })->name('landingpage');
