@@ -49,12 +49,8 @@
                                                 <td>{{$user_pdf->pdf_password}}</td>
                                                 <td>
                                                    
-                                                    <form action="{{route('user-document.download')}}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" value="{{$user_pdf->file_path}}" name="filePath">
-                                                        <button type="submit" class="btn btn-success">Download</button>
-                                                    </form>
-                                                    
+
+                                                    <a href="{{route('user-document.download',[$user_pdf->id])}}" class="btn btn-success">Download</a>
                                                     <a href="" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>

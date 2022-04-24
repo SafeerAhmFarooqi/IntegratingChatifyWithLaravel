@@ -131,6 +131,7 @@ class AdminController extends Controller
     
     public function downloadPdf(Request $request)
     {
+        return "safeer";
         storage::download($request->filePath,'MyDocument');
     }
    
