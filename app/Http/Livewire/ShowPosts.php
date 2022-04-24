@@ -40,7 +40,7 @@ class ShowPosts extends Component
             $file=$this->postImage;
             $filename= $file->getClientOriginalName();
             $filename= time(). '.' .$filename;
-            $file->storeAs('user_post_pics',$filename);
+            $file->storeAs('user_post_pics',$filename,'public');
  
              $pic=$filename;
             

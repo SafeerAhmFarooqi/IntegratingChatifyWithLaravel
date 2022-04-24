@@ -42,7 +42,7 @@ class GroupChat extends Component
             $file=$this->postImage;
             $filename= $file->getClientOriginalName();
             $filename= time(). '.' .$filename;
-            $file->storeAs('user_post_pics',$filename);
+            $file->storeAs('user_post_pics',$filename,'public');
  
              $pic=$filename;
             
@@ -79,5 +79,21 @@ class GroupChat extends Component
             'posts'=>$posts,
             'group'=>$group,
         ]);
+    }
+
+    public function saveComment()
+    {
+        $this->validate([
+            'commentText' => 'required',
+        ]);
+
+        $model=new Comments();
+        $model->user_id=$this->currentUserId; 
+        $model->post_id=$this->currentPostId; 
+        $model->comment=$this->commentText;
+         $model->save();
+         $this->currentUserId=0;
+         $this->currentPostId=0;
+         $this->commentText='';
     }
 }
