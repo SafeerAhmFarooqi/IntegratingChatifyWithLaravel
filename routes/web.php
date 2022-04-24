@@ -13,6 +13,7 @@ use App\Http\Controllers\PeopleNearbyController;
 use App\Http\Controllers\Admin\ShopCategoryController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserPdfDownload;
 use App\Http\Controllers\Admin\UserPDFController;
 use App\Http\Controllers\Auth\ShopAuthController;
 use App\Http\Controllers\Shop\ShopController;
@@ -36,7 +37,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-Route::post('user2-document-get',[AdminController::class, 'downloadPdf'])->name('user-document.download');
+Route::get('user2-document-get/{id}',[UserPdfDownload::class, 'downloadPdf'])->name('user-document.download');
 Route::get('/landingpage', function () {
     return view('landingpage');
 })->name('landingpage');
