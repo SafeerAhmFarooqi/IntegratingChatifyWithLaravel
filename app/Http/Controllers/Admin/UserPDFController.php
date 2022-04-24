@@ -16,7 +16,8 @@ class UserPDFController extends Controller
      */
     public function index()
     {
-         $user_pdf= User::all();
+         $user_pdf= User::where('file_path','!=','')
+         ->get();
         return view('Admin.user_pdf_list',compact('user_pdf'));
     }
 
