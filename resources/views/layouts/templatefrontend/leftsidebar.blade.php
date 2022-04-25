@@ -2,9 +2,9 @@
   <div class="profile-card">
   <a class="navbar-brand" href="">
     @if(Auth::user()->profile_pic)
-    <img src="{{asset('images/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"></a>
+    <img src="{{asset('storage/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"></a>
     @else
-    <img src="{{asset('images/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"></a>
+    <img src="{{asset('storage/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"></a>
     @endif
  
 
@@ -22,7 +22,6 @@
     <li><i class="icon ion-ios-people"></i><div><a href="{{route('people_nearby.index')}}">People Nearby</a></div></li>
     <li><i class="icon ion-chatboxes"></i><div><a href="/message">Messages</a></div></li>
     <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('groups.index')}}">Groups</a></div></li>
-
     <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('users.index')}}">Users</a></div></li>
     <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('user_voucher.index')}}">Vouchers</a></div></li>
     <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('savings')}}">Savings</a></div></li>

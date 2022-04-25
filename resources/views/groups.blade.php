@@ -8,6 +8,10 @@
        <!-- Newsfeed Common Side Bar Left
        ================================================= -->
        @include('layouts.templatefrontend.leftsidebar');
+
+
+
+
     <div id="newsfeed">
  
      <div >
@@ -38,6 +42,7 @@
  <label for="sel1">Group Location</label>
  <select class="form-control" name="location">
    <option value="">Select Location</option>
+   <option value="office">office</option>
    @foreach($location as $location)
    <option value="{{$location->location}}">{{$location->location}}</option>
    @endforeach

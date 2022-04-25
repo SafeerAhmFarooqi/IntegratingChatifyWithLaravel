@@ -29,10 +29,21 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $request->authenticate();
+            $request->session()->regenerate();
+            if(!Auth::user()->active_status)
+            {
+               return $this->inActive($request);
+            }
+            else
+            {
+                return redirect()->intended(RouteServiceProvider::HOME);
+            }
+            
+        
+        
+            
 
-        $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        
 
          //  if($query->status == 1){
         
@@ -62,5 +73,16 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function inActive(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('in-active');
     }
 }

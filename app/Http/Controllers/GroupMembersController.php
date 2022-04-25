@@ -87,12 +87,13 @@ class GroupMembersController extends Controller
             $arra.=",".$value;
         }
 
+
         Group_Member::where('group_id',$id)->update([
 
             'member_id'=>$arra,
         ]);
 
-        return redirect('groups');
+        return back();
     }
 
     /**

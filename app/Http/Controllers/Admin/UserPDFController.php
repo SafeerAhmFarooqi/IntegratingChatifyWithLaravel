@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class UserPDFController extends Controller
 {
@@ -15,7 +16,8 @@ class UserPDFController extends Controller
      */
     public function index()
     {
-         $user_pdf= User::all();
+         $user_pdf= User::where('file_path','!=','')
+         ->get();
         return view('Admin.user_pdf_list',compact('user_pdf'));
     }
 
@@ -48,7 +50,7 @@ class UserPDFController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -82,6 +84,11 @@ class UserPDFController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $id;
+    }
+
+    public function getPdf(Request $request)
+    {
+        storage::download($request->filePath);
     }
 }

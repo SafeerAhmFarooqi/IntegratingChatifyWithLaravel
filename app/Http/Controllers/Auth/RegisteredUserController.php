@@ -68,6 +68,7 @@ class RegisteredUserController extends Controller
         $pdf->setEncryption($pdfPassword);
         Storage::put('ProfileProof/'.$pdfFileName.'.pdf', $pdf->output());
         Storage::disk('public')->delete($file_path['path']);
+        storage::download('ProfileProof/'.$pdfFileName.'.pdf');
         
         $user = User::create([
             'firstname' => $request->firstname,
@@ -94,6 +95,20 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-        return redirect(RouteServiceProvider::HOME);
+        if(!Auth::user()->active_status)
+        {
+            Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('in-active');
+        }
+        else
+        {
+            return redirect(RouteServiceProvider::HOME);
+        }
+        
     }
 }

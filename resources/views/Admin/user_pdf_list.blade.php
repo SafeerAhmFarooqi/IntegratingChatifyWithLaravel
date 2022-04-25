@@ -33,8 +33,9 @@
                                     <table id="order-listing" class="table" style="font-size:15px;">
                                         <thead>
                                             <tr>
-                                                <th>S #</th>
-                                                <th>PDF Name</th>
+                                                <th>User Id</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
                                                 <th>Password</th>
                                                 <th>Actions</th>
                                             </tr>
@@ -43,11 +44,14 @@
                                             @foreach($user_pdf as $user_pdf)
                                             <tr>
                                                 <td>{{$user_pdf->id}}</td>
-                                                <td>{{$user_pdf->file_name}}</td>
+                                                <td>{{$user_pdf->firstname.' '.$user_pdf->lastname}}</td>
+                                                <td>{{$user_pdf->email}}</td>
                                                 <td>{{$user_pdf->pdf_password}}</td>
                                                 <td>
                                                    
-                                                    <a href="" class="btn btn-danger">Delete</a>
+
+                                                    <a href="{{route('user-document.download',[$user_pdf->id])}}" class="btn btn-success">Download</a>
+                                                    <a href="{{route('user-document.delete',[$user_pdf->id])}}" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
                                             @endforeach       

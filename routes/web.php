@@ -13,9 +13,13 @@ use App\Http\Controllers\PeopleNearbyController;
 use App\Http\Controllers\Admin\ShopCategoryController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserPdfDownload;
 use App\Http\Controllers\Admin\UserPDFController;
 use App\Http\Controllers\Auth\ShopAuthController;
 use App\Http\Controllers\Shop\ShopController;
+use App\Http\Controllers\HomeController;
+use App\Mail\UserAccountActivation;
+use App\Http\Controllers\EmailController;
 
 
 /*
@@ -33,6 +37,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+Route::get('user2-document-get/{id}',[UserPdfDownload::class, 'downloadPdf'])->name('user-document.download');
+Route::get('user2-document-delete/{id}',[UserPdfDownload::class, 'deletePdf'])->name('user-document.delete');
 Route::get('/landingpage', function () {
     return view('landingpage');
 })->name('landingpage');
@@ -52,7 +58,11 @@ Route::get('/form',function(){
     return view('home');
 });
 
-
+Route::get('/not-active',function()
+{
+    return view('auth.registration_msg');
+}
+)->name('in-active');
 
 //User Profile
 Route::resource('/profile',ProfileController::class);
@@ -114,6 +124,7 @@ Route::get('/Admin/logout', [AdminAuthController::class, 'logout'])->name('Admin
 Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('Admin/dashboard', [AdminController::class, 'dashboard'])->name('Admin.dashboard');
 
+    Route::get('send-mail/{userEmail}', [EmailController::class, 'sendActivationEmail'])->name('send-mail');    
 
 Route::get('/Admin/users_list', [App\Http\Controllers\Admin\AdminController::class, 'users_list'])->name('Admin.users_list');
 
@@ -137,7 +148,11 @@ Route::get('/Admin/shop_delete/{id}',[App\Http\Controllers\Admin\AdminController
 Route::resource('/Admin/shops_category',ShopCategoryController::class);
 
 //Users PDF
-Route::resource('/Admin/user_pdf',UserPDFController::class);
+//Route::resource('/Admin/user_pdf',UserPDFController::class);
+
+Route::get('Admin/user-document',[UserPDFController::class, 'index'])->name('admin.user-document');
+
+//Route::post('user-document-get',[UserPDFController::class, 'getPdf'])->name('admin.user-document.download');
 
 
 //Locations

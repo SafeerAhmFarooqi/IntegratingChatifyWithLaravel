@@ -11,6 +11,10 @@ use App\Models\Shop_Category;
 use App\Models\Location;
 use App\Models\Voucher;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserAccountActivation;
+use App\Mail\UserAccountDeActivation;
 
 class AdminController extends Controller
 {
@@ -58,19 +62,33 @@ class AdminController extends Controller
 
     public function active_status(Request $request,$id)
     {
-         $user= User::where('id',$id)->update([
+        $user=user::find($id);
+        if(!$user->active_status)
+        {
+             User::where('id',$id)->update([
 
-            'status'=>1,
-        ]);
+                'active_status'=>1,
+            ]);
+            Mail::to($user->email)->send(new UserAccountActivation());
+            return back()->with('message', 'Account Activation Email Has Been Sent to '.$user->email );
+        }
+         
         return redirect('Admin/users_list');
     }
 
      public function de_active_status(Request $request,$id)
     {
-         $user= User::where('id',$id)->update([
 
-            'status'=>0,
-        ]);
+        $user=user::find($id);
+        if($user->active_status)
+        {
+            User::where('id',$id)->update([
+
+                'active_status'=>0,
+            ]);
+            Mail::to($user->email)->send(new UserAccountDeActivation());
+            return back()->with('message', 'Account Deactivation Email Has Been Sent to '.$user->email );
+        }
         return redirect('Admin/users_list');
     }
 
@@ -117,7 +135,11 @@ class AdminController extends Controller
     }
 
     
-
+    public function downloadPdf(Request $request)
+    {
+        return "safeer";
+        storage::download($request->filePath,'MyDocument');
+    }
    
 
 

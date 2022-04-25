@@ -12,9 +12,9 @@
 
                                       
                 @if(Auth::user()->profile_pic)
-                <img src="{{asset('images/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"" class="profile-photo-md">
+                <img src="{{asset('storage/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"" class="profile-photo-md">
                 @else
-                <img src="{{asset('images/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"" class="profile-photo-md">
+                <img src="{{asset('storage/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px"" class="profile-photo-md">
                 @endif
              
             
@@ -83,7 +83,7 @@ success: function (response) {
 //var date= item.created_at;
   var date  = new Date(item.created_at);
  // var time= item.created_at;
-  var user_img= "{{asset('images/user_profile_pics/')}}/"+item.profile_pic;
+  var user_img= "{{asset('storage/user_profile_pics/')}}/"+item.profile_pic;
   var post_text= item.post_text;
   var post_img= item.post_image;
   

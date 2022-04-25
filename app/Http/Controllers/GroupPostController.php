@@ -67,9 +67,11 @@ class GroupPostController extends Controller
       public function show_group($id, $name)
     {
     
-         $members=Group_Member::where('group_id',$id)->get();
+       // $members=Group_Member::where('group_id',$id)->get();
 
-         return view('group_post', compact('members','name'));
+        // return view('group_post', compact('members','name'));
+
+        return view('group_post_livewire', compact('id'));
 
     } 
 

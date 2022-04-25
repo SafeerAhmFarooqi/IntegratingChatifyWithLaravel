@@ -1,6 +1,7 @@
 <div>
+    
     <div class="col-md-6">
-
+        <h5>Group Name : {{$group->group_title}}</h5>
         <!-- Post Create Box
         ================================================= -->
         <div class="create-post">
