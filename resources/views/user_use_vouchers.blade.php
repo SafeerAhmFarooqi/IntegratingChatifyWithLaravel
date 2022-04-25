@@ -16,30 +16,31 @@
  <div class="friend-list">
  
  
- <div class="col-md-6 col-sm-6">
- <div class="friend-card">
+
  <h3>Total Savings: {{$t_savings}}</h3>
- <table border="1" width="100%">
-   <tr>
-     <td>Title</td>
-     <td>Code</td>
-     <td>Discount</td>
-     <td>Shop ID</td>
-   </tr>
+
  
-  @foreach($use_vouchers as $use_vouchers) 
-   <tr>
-     <td>{{$use_vouchers->title}}</td>
-     <td>{{$use_vouchers->code}}</td>
-     <td>{{$use_vouchers->discount}}</td>
-     <td>{{$use_vouchers->shop_id}}</td>
-   </tr>
+@foreach($use_vouchers as $use_vouchers) 
+   <div class="col-md-6 col-sm-6">
+ <div class="friend-card">
+ <img src="{{asset('storage/images/shop_vouchers/'.$use_vouchers->image)}}" alt="profile-cover" class="img-responsive cover">
+ <div class="card-info">  
+ <div class="friend-info"> 
+ &nbsp; &nbsp;
+ <h5><a href="#" class="profile-link">{{$use_vouchers->title}} </a>
+
+  <p class="pull-right"> {{$use_vouchers->created_at}}</p>
+ </h5>
+<p>{{$use_vouchers->shop_name}}
+ <a href="#" class="pull-right text-green btn btn-default"> {{$use_vouchers->code}}</a>
+    </p>
+     <br>
+     
+ </div>
+ </div>
+ </div>
+ </div>
   @endforeach
- 
- </table>
- </div>
- </div>
- 
  
  
  </div>

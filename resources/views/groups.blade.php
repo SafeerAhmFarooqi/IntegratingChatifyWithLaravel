@@ -62,7 +62,20 @@
  <div class="row">
  
  @foreach($groups as $group)
+
+ <?php 
+     $g_members= DB::table('group_members')->where('group_id',$group->id)->first();
+     $chech_member=explode(',', $g_members->member_id);
+
+     $current_user=Auth::user()->id;
+
+     foreach ($chech_member as $chech_member) {
+       if($current_user == $chech_member ){
+
    
+
+
+ ?>
  <div class="col-md-6 col-sm-6">
  <div class="friend-card">
  <a href="{{route('show_group',[$group->id,$group->group_title])}}">
@@ -139,6 +152,8 @@ $a=0;
  </div>
  </div>
  </div>
+
+<?php }}?>
  @endforeach
  
  

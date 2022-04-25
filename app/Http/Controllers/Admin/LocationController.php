@@ -9,7 +9,8 @@ use App\Models\Location;
 class LocationController extends Controller
 {
        public function index()
-    {
+    { 
+      
         $location= Location::all();
         return view('Admin.locations_list',compact('location'));
     }

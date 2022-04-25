@@ -14,36 +14,27 @@
  <!-- Friend List
  ================================================= -->
  <div class="friend-list">
- 
- 
- <div class="col-md-6 col-sm-6">
- <div class="friend-card">
- 
- <table border="1" width="100%">
-   <tr>
-     <td>Title</td>
-     <td>Code</td>
-     <td>Discount</td>
-     <td>Shop ID</td>
-   </tr>
- 
+
+  
   @foreach($vouchers as $vouchers) 
-   <tr>
-     <td>{{$vouchers->title}}</td>
-     <td>{{$vouchers->code}}</td>
-     <td>{{$vouchers->discount}}</td>
-     <td>{{$vouchers->shop_id}}</td>
-   </tr>
+  <div class="col-md-6 col-sm-6">
+ <div class="friend-card">
+ <img src="{{asset('storage/images/shop_vouchers/'.$vouchers->image)}}" alt="profile-cover" class="img-responsive cover">
+ <div class="card-info">  
+ <div class="friend-info"> 
+ &nbsp; &nbsp;
+ <h5><a href="#" class="profile-link">{{$vouchers->title}} </a></h5>
+ <a href="#" class="pull-right text-green btn btn-default"> {{$vouchers->code}}</a>
+     <br>
+     
+ </div>
+ </div>
+ </div>
+ </div>
+
   @endforeach
  
- </table>
- </div>
- </div>
- 
- 
- 
- </div>
- </div>
+
  </div>
  </div>  
  
