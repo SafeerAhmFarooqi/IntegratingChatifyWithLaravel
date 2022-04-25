@@ -31,7 +31,7 @@ class VoucherController extends Controller
            $file=$request->file('image');
            $filename= $file->getClientOriginalName();
            $filename= time(). '.' .$filename;
-           $file->storeAs('shop_vouchers',$filename);
+           $file->storeAs('shop_vouchers',$filename,'public');
 
             $image=$filename;
         }else

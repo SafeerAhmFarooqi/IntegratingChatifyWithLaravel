@@ -16,8 +16,9 @@
  <div class="friend-list">
 
   
-  @foreach($vouchers as $vouchers) 
+   
   <div class="col-md-6 col-sm-6">
+    @foreach($vouchers as $vouchers)
  <div class="friend-card">
  <img src="{{asset('storage/shop_vouchers/'.$vouchers->image)}}" alt="profile-cover" class="img-responsive cover">
  <div class="card-info">  
@@ -30,9 +31,11 @@
  </div>
  </div>
  </div>
+
+ @endforeach
  </div>
 
-  @endforeach
+  
  
 
  </div>
