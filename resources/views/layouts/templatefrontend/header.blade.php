@@ -23,6 +23,8 @@
     
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+    {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
+    <script defer src="{{asset('assets/alpine.cdn.min.js')}}"></script>
     <style type="text/css">
   .image-upload > input {
   visibility:hidden;

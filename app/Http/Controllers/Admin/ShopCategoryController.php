@@ -8,6 +8,10 @@ use App\Models\Shop_Category;
 
 class ShopCategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
 	   public function index()
     {
         $shops_cat= Shop_Category::all();

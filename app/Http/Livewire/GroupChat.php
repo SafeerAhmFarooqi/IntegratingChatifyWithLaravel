@@ -22,6 +22,7 @@ class GroupChat extends Component
     public $currentPostId=0;
     public $currentUserId=0;
     public $groupId=0;
+    public $postsPerPage=2;
 
     public function currentId($userId,$postId)
     {
@@ -73,7 +74,7 @@ class GroupChat extends Component
         ->with('user')
         ->where('group_id',$this->groupId)
         ->orderBy('id','desc')
-        ->get();
+        ->paginate($this->postsPerPage);;
         $group=Group::find($this->groupId);
         return view('livewire.group-chat',[
             'posts'=>$posts,
@@ -95,5 +96,10 @@ class GroupChat extends Component
          $this->currentUserId=0;
          $this->currentPostId=0;
          $this->commentText='';
+    }
+
+    public function loadMore()
+    {
+        $this->postsPerPage += 2;
     }
 }

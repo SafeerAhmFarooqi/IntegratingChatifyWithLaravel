@@ -20,6 +20,7 @@ class ShowPosts extends Component
     public $commentText='';
     public $currentPostId=0;
     public $currentUserId=0;
+    public $postsPerPage=2;
 
     public function currentId($userId,$postId)
     {
@@ -78,7 +79,7 @@ class ShowPosts extends Component
         ->with('user')
         ->where('group_id',0)
         ->orderBy('id','desc')
-        ->get();
+        ->paginate($this->postsPerPage);
 
         return view('livewire.show-posts',[
             'posts'=>$posts,
@@ -99,5 +100,10 @@ class ShowPosts extends Component
          $this->currentUserId=0;
          $this->currentPostId=0;
          $this->commentText='';
+    }
+
+    public function loadMore()
+    {
+        $this->postsPerPage += 2;
     }
 }

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Response;
 
 class UserPdfDownload extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     public function downloadPdf($id)
     {
         $user=User::find($id);

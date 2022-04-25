@@ -19,7 +19,7 @@
   @foreach($vouchers as $vouchers) 
   <div class="col-md-6 col-sm-6">
  <div class="friend-card">
- <img src="{{asset('storage/images/shop_vouchers/'.$vouchers->image)}}" alt="profile-cover" class="img-responsive cover">
+ <img src="{{asset('storage/shop_vouchers/'.$vouchers->image)}}" alt="profile-cover" class="img-responsive cover">
  <div class="card-info">  
  <div class="friend-info"> 
  &nbsp; &nbsp;
