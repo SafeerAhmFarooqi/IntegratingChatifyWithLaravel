@@ -43,9 +43,9 @@
  <div class="card-info">
  
  @if($user->profile_pic)    
- <img src="{{asset('storage/images/user_profile_pics/'.$user->profile_pic)}}" class="profile-photo-lg">
+ <img src="{{asset('storage/user_profile_pics/'.$user->profile_pic)}}" class="profile-photo-lg">
  @else
- <img src="{{asset('storage/images/user_profile_pics/photoicon.jpg')}}" class="profile-photo-lg">
+ <img src="{{asset('storage/user_profile_pics/photoicon.jpg')}}" class="profile-photo-lg">
  @endif
  
  <div class="friend-info">
