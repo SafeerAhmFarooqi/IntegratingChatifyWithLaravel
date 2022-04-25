@@ -128,13 +128,13 @@ class AdminController extends Controller
 
        public function active_users()
     {
-         $users= User::where('status',1)->get();
+         $users= User::where('active_status',1)->get();
         return view('Admin.active_users',compact('users'));
     }
 
        public function block_users()
     {
-         $users= User::where('status',0)->get();
+         $users= User::where('active_status',0)->get();
         return view('Admin.block_users',compact('users'));
     }
 

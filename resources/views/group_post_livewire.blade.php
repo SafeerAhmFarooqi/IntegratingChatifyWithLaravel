@@ -11,6 +11,52 @@
      <div id="newsfeed">
      {{-- @include('layouts.templatefrontend.home'); --}}
      <livewire:group-chat :groupId="$id" />
+
+
+
+    <div class="col-md-2 static">
+      <div class="suggestions" id="sticky-sidebar">
+        <h4 class="grey">Group Member Names</h4>
+        @foreach ($members as $value)
+        <div class="follow-user">
+          <img src="{{$value->profile_pic ?asset('storage/user_profile_pics/'.$value->profile_pic) : asset('storage/user_profile_pics/photoicon.jpg') }}" alt="" class="profile-photo-sm pull-left" />
+          <div>
+            <h5><a href="{{route('users.show',$value->id)}}">{{$value->firstname.' '.$value->lastname}}</a></h5>
+            <h5><a href="{{route('users.show',$value->id)}}">{{$value->email}}</a></h5>
+          </div>
+        </div>
+        @endforeach
+        
+        
+       
+       
+      
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        </div>
   
         <!-- Newsfeed Common Side Bar Right
