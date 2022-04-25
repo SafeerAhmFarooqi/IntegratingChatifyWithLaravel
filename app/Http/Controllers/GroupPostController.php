@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Group_Member;
 use App\Models\Group_Post;
+use App\Models\Group;
+use App\Models\User;
 
 
 class GroupPostController extends Controller
@@ -75,8 +77,14 @@ class GroupPostController extends Controller
        // $members=Group_Member::where('group_id',$id)->get();
 
         // return view('group_post', compact('members','name'));
-
-        return view('group_post_livewire', compact('id'));
+        $group=Group_Member::where('group_id',$id)->first();
+        $membersId=explode(',',$group->member_id);
+        $members=[];
+       // return print_r($membersId);
+        foreach ($membersId as $value) {
+            array_push($members,User::where('id',$value)->first());
+        }
+        return view('group_post_livewire', compact('id','members'));
 
     } 
 

@@ -33,7 +33,7 @@
                                     <table id="order-listing" class="table" style="font-size:15px;">
                                         <thead>
                                             <tr>
-                                                <th>S #</th>
+                                                <th>Id #</th>
                                                 <th>User Name</th>
                                                 <th>Email</th>
                                                 <th>Phone</th>

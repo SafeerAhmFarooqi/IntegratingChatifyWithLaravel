@@ -1,7 +1,7 @@
-<div>
+<div wire:poll.10ms>
     
     <div class="col-md-6">
-        <h5>Group Name : {{$group->group_title}}</h5>
+        <h4 class="grey">Group Name : {{$group->group_title}}</h4>
         <!-- Post Create Box
         ================================================= -->
         <div class="create-post">

@@ -97,7 +97,7 @@
 </div>
 <div class="form-group col-xs-6">
 <label for="date-to" class="">Last Name</label>
-<input id="date-to" class="form-control input-group-lg" type="text" name="last_name" placeholder="Asad" value="{{$data->lastname}}">
+<input id="date-to" class="form-control input-group-lg" type="text" name="lastname" placeholder="Asad" value="{{$data->lastname}}">
 </div>
 </div>
 <div class="row">
