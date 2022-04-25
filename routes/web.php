@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\GroupsController;
-use App\Http\Controllers\LocationController;
+use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserVoucherController;

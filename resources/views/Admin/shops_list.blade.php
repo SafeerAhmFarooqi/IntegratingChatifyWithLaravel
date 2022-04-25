@@ -38,6 +38,7 @@
                                                 <th>Address</th>
                                                 <th>Category</th>
                                                 <th>Phone</th>
+                                                <th>Current Status</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -49,6 +50,13 @@
                                                 <td>{{$shop->address}}</td>
                                                 <td>{{$shop->shop_category}}</td>
                                                 <td>{{$shop->phone}}</td>
+                                                <td>
+                                                    @if($shop->shop_status == 1)
+                                                        Active
+                                                    @else
+                                                        De-Active    
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <a href="shop_status/active/{{$shop->id}}" class="btn btn-success">Active</a>
                                                     <a href="shop_status/de_active/{{$shop->id}}" class="btn btn-danger">De-Active</a>

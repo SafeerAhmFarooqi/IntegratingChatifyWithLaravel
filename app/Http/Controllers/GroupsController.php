@@ -21,10 +21,10 @@ class GroupsController extends Controller
     {
         $login_user=Auth::user()->id;
         $location=Location::all();
-        $users= User::all();
+        $users= User::where('id', '!=',$login_user)->get();
 
 
-        $groups= Group::where('created_by',$login_user)->get();
+        $groups= Group::get();
 
          $group_members= Group_Member::all();
 

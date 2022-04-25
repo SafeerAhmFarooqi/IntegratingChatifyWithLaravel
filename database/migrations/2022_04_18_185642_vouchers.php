@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('code')->nullable();
+            $table->string('code')->unique();
             $table->string('image')->nullable();
             $table->string('discount')->nullable();
             $table->string('shop_id')->nullable();

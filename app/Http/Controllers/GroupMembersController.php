@@ -78,21 +78,19 @@ class GroupMembersController extends Controller
     public function update(Request $request, $id)
     {
          $login_user=Auth::user()->id;
-         $arra= array();
+         $arra= "";
+
+         $arra=$login_user;
 
         foreach ($request->members as $value) {
-            $a = array();
-            $a[] = $value;
-            $a[]= $login_user;
-
-            $arra[] = $a;
-            //done oksssss t
+            
+            $arra.=",".$value;
         }
-        //return $arra;
+
 
         Group_Member::where('group_id',$id)->update([
 
-            'member_id'=>implode(',',$request->members),
+            'member_id'=>$arra,
         ]);
 
         return back();

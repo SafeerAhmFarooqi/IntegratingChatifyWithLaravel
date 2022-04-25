@@ -42,7 +42,7 @@
                                             @foreach($user_posts as $user_posts)
                                             <tr>
                                                 <td>{{$user_posts->id}}</td>
-                                                <td>{{$user_posts->user_id}}</td>
+                                                <td>{{$user_posts->firstname}}</td>
                                                 <td>{{$user_posts->post_text}}</td>
                                                 
                                             </tr>

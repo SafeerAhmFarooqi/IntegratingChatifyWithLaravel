@@ -39,11 +39,13 @@ class VoucherController extends Controller
             $image='null';
         }
 
+        $code=time();
+
 
       	$voucher= new Voucher;
 
       	$voucher->title=$request->title;
-      	$voucher->code=$request->code;
+      	$voucher->code=$code;
       	$voucher->image=$image;
       	$voucher->discount=$request->discount;
         $voucher->shop_id=$shop_id;

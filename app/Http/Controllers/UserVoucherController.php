@@ -92,7 +92,12 @@ class UserVoucherController extends Controller
 
         $t_savings=UseVoucher::where('user_email',$login)->sum('discount');
 
-         $use_vouchers= UseVoucher::where('user_email',$login)->get();
+         $use_vouchers= UseVoucher::leftjoin('shops','shops.id','=','use_vouchers.shop_id')
+         ->where('user_email',$login)
+         ->get([
+            'use_vouchers.*',
+            'shops.shop_name'
+         ]);
 
          return view('user_use_vouchers', compact('use_vouchers','t_savings'));
     }
