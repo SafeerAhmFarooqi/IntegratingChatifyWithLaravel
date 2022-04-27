@@ -44,7 +44,8 @@ class PeopleNearbyController extends Controller
            //      $data.=$users;
 
 
-        return view('people_nearby', compact('users'));
+       // return view('people_nearby', compact('users'));
+       return view('people-nearby-livewire');
     }
 
     /**

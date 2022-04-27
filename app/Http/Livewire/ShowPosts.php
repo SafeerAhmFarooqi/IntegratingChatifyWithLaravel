@@ -106,4 +106,9 @@ class ShowPosts extends Component
     {
         $this->postsPerPage += 2;
     }
+
+//     public function dehydrate()
+// {
+//     $this->dispatchBrowserEvent('initSomething');
+// }
 }
