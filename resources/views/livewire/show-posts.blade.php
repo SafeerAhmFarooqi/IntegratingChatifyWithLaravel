@@ -1,4 +1,4 @@
-<div wire:poll.10ms>
+<div wire:poll.100ms>
   <div class="col-md-6">
 
       <!-- Post Create Box
@@ -196,4 +196,13 @@
 
   </div>
     </div>
+    {{-- <div>
+      <script>
+        window.addEventListener('initSomething', event => {
+          //alert("Hello! I am an alert box!");
+          
+})
+      </script>
+
+    </div> --}}
   </div>

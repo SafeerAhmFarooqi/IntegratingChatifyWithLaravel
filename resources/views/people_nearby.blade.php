@@ -16,7 +16,7 @@
  <div class="friend-list">
  
  
- <!--  <div class="create-post">
+ <div class="create-post">
                <form  id="postform"  enctype="multipart/form-data">
                @csrf
                <div class="row">
@@ -31,9 +31,9 @@
              </form>
              <div class="alert alert-success" id="message" style="display:none">
    <strong>Success!</strong> Post Submitted Successfully ! 
- </div> -->
+ </div>
 
-<!--  <a href="{{route('people_nearby.show',1)}}">Test</a> -->
+ <a href="{{route('people_nearby.show',1)}}">Test</a>
 
 
  @foreach($users as $user)
@@ -107,6 +107,31 @@ ini_set('display_errors', 0);
       </div>
    </div>
  </div>
+
+ {{-- <div>
+  <p>Click the button to get your coordinates.</p>
+
+  <button onclick="getLocation()">Try It</button>
+  
+  <p id="demo">saf</p>
+  
+  <script>
+  var x = document.getElementById("demo");
+  
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+  
+  function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+  }
+  </script>
+ </div> --}}
  
  
  
