@@ -11,7 +11,7 @@
                   <span class="fs-20 pr-16">{{$user->firstname.' '.$user->lastname}}</span>
                 </div>
                 {{-- <small class="fs-16 fw-300 ls-1"><i class="fa fa-map-marker pr-1"></i> Islamabad , Pakistan </small><Br> --}}
-                <small class="fs-16 fw-300 ls-1" style="font-size:12px !important;font-weight: bold;"><i class="fa fa-map-marker pr-1" style="color:#27aae1"></i> {{$this->getKmAway($user->long,$user->lat)}} KM Away</small>
+                <small class="fs-16 fw-300 ls-1" style="font-size:12px !important;font-weight: bold;"><i class="fa fa-map-marker pr-1" style="color:#27aae1"></i> {{$this->getKmAway($user->longitude,$user->latitude)}} KM Away</small>
               </div>
               <div class="col-sm-6 text-right">
                 <p class="fs-14 text-fade mb-12"> <i class="fa fa-calendar pr-1"></i> {{\Carbon\Carbon::parse($user->dob)->format('F d, Y')}}</p>

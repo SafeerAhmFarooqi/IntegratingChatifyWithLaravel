@@ -64,10 +64,10 @@ class PeopleNearby extends Component
     public function updateCurrentUserLocation()
     {
         $user=User::find(Auth::user()->id);
-        if(Auth::user()->long!=$this->currentUserLongitude || Auth::user()->lat!=$this->currentUserLatiitude)
+        if(Auth::user()->longitude!=$this->currentUserLongitude || Auth::user()->latitude!=$this->currentUserLatiitude)
         {
-               $user->long=$this->currentUserLongitude;
-               $user->lat=$this->currentUserLatiitude;
+               $user->longitude=$this->currentUserLongitude;
+               $user->latitude=$this->currentUserLatiitude;
                $user->update();
         }
         
