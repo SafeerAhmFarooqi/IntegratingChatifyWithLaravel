@@ -21,8 +21,8 @@ class PeopleNearbyController extends Controller
 
     public function index()
     {       
-            $login_user=Auth::user()->id;
-            $users=User::where('id','!=',$login_user)->get();
+            // $login_user=Auth::user()->id;
+            // $users=User::where('id','!=',$login_user)->get();
 
 
 
