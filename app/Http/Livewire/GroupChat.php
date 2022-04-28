@@ -23,6 +23,8 @@ class GroupChat extends Component
     public $currentUserId=0;
     public $groupId=0;
     public $postsPerPage=2;
+    public $selectedPostId=0;
+    public $selectedCommentId=0;
 
     public function currentId($userId,$postId)
     {
@@ -101,5 +103,30 @@ class GroupChat extends Component
     public function loadMore()
     {
         $this->postsPerPage += 2;
+    }
+
+    public function selectPostId($id)
+    {
+        $this->selectedPostId=$id;
+    }
+
+    public function selectCommentId($id)
+    {
+        $this->selectedCommentId=$id;
+    }
+
+    public function deletePost()
+    {
+        $post=Post::find($this->selectedPostId);
+        storage::disk('public')->delete('user_post_pics/'.$post->post_image);
+        $post->delete();
+        Comments::where('post_id',$this->selectedPostId)->delete();
+        $this->selectedPostId=0;
+    }
+
+    public function deleteComment()
+    {
+            Comments::find($this->selectedCommentId)->delete();
+            $this->selectedCommentId=0;
     }
 }

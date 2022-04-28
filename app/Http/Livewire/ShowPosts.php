@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ShowPosts extends Component
 {
@@ -21,6 +22,8 @@ class ShowPosts extends Component
     public $currentPostId=0;
     public $currentUserId=0;
     public $postsPerPage=2;
+    public $selectedPostId=0;
+    public $selectedCommentId=0;
 
     public function currentId($userId,$postId)
     {
@@ -32,16 +35,15 @@ class ShowPosts extends Component
     public function submit()
     {
         $this->validate([
-            'postImage' => 'image|max:1024', // 1MB Max
+            'postImage' => 'image|max:5024', // 1MB Max
             'postText' => 'required',
         ]);
 
         if($this->postImage)
         {
             $file=$this->postImage;
-            $filename= $file->getClientOriginalName();
-            $filename= time(). '.' .$filename;
-            $file->storeAs('user_post_pics',$filename,'public');
+            $filename= $file->hashName();
+            $file->store('user_post_pics/','public');
  
              $pic=$filename;
             
@@ -105,6 +107,31 @@ class ShowPosts extends Component
     public function loadMore()
     {
         $this->postsPerPage += 2;
+    }
+
+    public function selectPostId($id)
+    {
+        $this->selectedPostId=$id;
+    }
+
+    public function selectCommentId($id)
+    {
+        $this->selectedCommentId=$id;
+    }
+
+    public function deletePost()
+    {
+        $post=Post::find($this->selectedPostId);
+        storage::disk('public')->delete('user_post_pics/'.$post->post_image);
+        $post->delete();
+        Comments::where('post_id',$this->selectedPostId)->delete();
+        $this->selectedPostId=0;
+    }
+
+    public function deleteComment()
+    {
+            Comments::find($this->selectedCommentId)->delete();
+            $this->selectedCommentId=0;
     }
 
 //     public function dehydrate()
