@@ -13,9 +13,9 @@
 <div class="profile-info">
 <!-- <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo"> -->
 @if($shop_profile->profile_pic)
-<img src="{{asset('images/user_profile_pics/'.$shop_profile->profile_pic)}}" class="img-responsive profile-photo">
+<img src="{{asset('storage/user_profile_pics/'.$shop_profile->profile_pic)}}" class="img-responsive profile-photo">
 @else
-<img src="{{asset('images/user_profile_pics/photoicon.jpg')}}" class="img-responsive profile-photo">
+<img src="{{asset('storage/user_profile_pics/photoicon.jpg')}}" class="img-responsive profile-photo">
 @endif
 
 <h3 style="font-weight: bold !important">{{$shop_profile->shop_name}}</h3>
