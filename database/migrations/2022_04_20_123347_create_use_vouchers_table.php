@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('discount')->nullable();
             $table->string('shop_id')->nullable();
-            $table->string('user_email')->nullable();
+            $table->string('user_email');
             $table->timestamps();
         });
     }
