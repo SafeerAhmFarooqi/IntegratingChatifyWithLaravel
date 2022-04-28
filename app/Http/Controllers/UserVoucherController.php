@@ -21,7 +21,13 @@ class UserVoucherController extends Controller
     }
     public function index()
     {
-        $vouchers=Voucher::all();
+        //$vouchers=Voucher::all();
+
+        $vouchers=Voucher::leftjoin('shops','shops.id','=','vouchers.shop_id')
+        ->get([
+            'vouchers.*',
+            'shops.shop_name'
+        ]);
 
         return view('vouchers_list',compact('vouchers'));
     }
@@ -55,7 +61,9 @@ class UserVoucherController extends Controller
      */
     public function show($id)
     {
-        //
+        $shop_profile= Shop::where('id',$id)->first();
+
+        return view('shop_profile',compact('shop_profile'));
     }
 
     /**

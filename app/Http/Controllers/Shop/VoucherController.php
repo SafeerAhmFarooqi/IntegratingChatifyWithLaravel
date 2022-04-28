@@ -12,7 +12,8 @@ class VoucherController extends Controller
 {
     public function vouchers()
     {
-    	$vouchers=Voucher::all();
+      $login= Auth::user()->id;
+    	$vouchers=Voucher::where('shop_id',$login)->get();
 
       	return view('Shop.vouchers',compact('vouchers'));
     }
@@ -31,7 +32,7 @@ class VoucherController extends Controller
            $file=$request->file('image');
            $filename= $file->getClientOriginalName();
            $filename= time(). '.' .$filename;
-           $file->storeAs('shop_vouchers',$filename,'public');
+           $file->storeAs('shop_vouchers',$filename);
 
             $image=$filename;
         }else
@@ -57,7 +58,8 @@ class VoucherController extends Controller
 
      public function use_vouchers()
     {
-      $use_vouchers= UseVoucher::all();
+       $login= Auth::user()->id;
+      $use_vouchers= UseVoucher::where('shop_id',$login)->get();
 
         return view('Shop.use_vouchers', compact('use_vouchers'));
     }

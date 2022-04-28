@@ -1,4 +1,4 @@
- @include('Admin.admin_layouts.header');
+@include('Admin.admin_layouts.header');
 
 </head>
 
@@ -30,7 +30,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 table-responsive">
-                                    <table id="order-listing" class="table" style="font-size:15px;">
+                                    <table id="example" class="display" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>S #</th>
@@ -68,3 +68,19 @@
 </div>
 
  @include('Admin.admin_layouts.footer'); 
+
+  <script type="text/javascript">
+    
+
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+</script>>
