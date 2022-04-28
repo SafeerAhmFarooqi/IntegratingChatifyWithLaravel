@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Voucher;
+use App\Models\Shop;
 use Auth;
 use App\Models\UseVoucher;
 
