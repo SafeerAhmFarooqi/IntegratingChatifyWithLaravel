@@ -71,10 +71,14 @@
                       </p>
                   </h5>
               </div>
-              <div class="post-text">
-                  <p>{{$post->post_text}}
-                      </p>
-                  </div>
+              <div class="row">
+                
+                    {{$post->post_text}}
+                    @if (Auth::user()->id==$post->user_id)
+                    <a href="javascript:;" wire:click="selectPostId({{$post->id}})" style="float: right" data-toggle="modal" data-target="#fullHeightModalRight"><i class="icon ion-ios-trash-outline"></i></a>    
+                    @endif    
+              </div>
+              
                   @if ($post->post_image)
                   <img src="{{$post->post_image ?asset('storage/user_post_pics/'.$post->post_image) : asset('storage/user_profile_pics/photoicon.jpg') }}" style="width: 100%" />    
                   @endif
@@ -125,8 +129,13 @@
         </h5>
     </div>
     <div class="post-text">
-        <p>{{$comment->comment}}
+        <p>{{$comment->comment}} 
+          @if (Auth::user()->id==$comment->user_id)
+          <a href="javascript:;" wire:click="selectCommentId({{$comment->id}})" style="float: right" data-toggle="modal" data-target="#fullHeightModalRightComments"><i class="icon ion-ios-trash-outline"></i></a>    
+          @endif
+          
             </p>
+            
         </div>
 </div>          
 </div>
@@ -205,4 +214,53 @@
       </script>
 
     </div> --}}
+    <div>
+      <div class="modal fade" id="fullHeightModalRight" tabindex="-1"  aria-hidden="true" wire:ignore.self>
+ <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+ <div class="modal-dialog modal-full-height modal-right" role="document">
+ <div class="modal-content">
+ <div class="modal-header">
+ <h4 class="modal-title w-100" id="myModalLabel">Delete Post</h4>
+ <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+ <span aria-hidden="true">×</span>
+ </button>
+ </div>
+ <div class="modal-body">
+ <h5>Are you sure you want to delete this post?</h5>
+ 
+ </div>
+ <div class="modal-footer justify-content-center">
+ <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+ <button type="button" class="btn btn-primary" wire:click="deletePost" data-dismiss="modal">Delete</button>
+ </div>
+ 
+ </div>
+ </div>
+ </div>
+    </div>
+
+    <div>
+      <div class="modal fade" id="fullHeightModalRightComments" tabindex="-1"  aria-hidden="true" wire:ignore.self>
+        <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+        <div class="modal-dialog modal-full-height modal-right" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel">Delete Comment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <h5>Are you sure you want to delete this comment?</h5>
+        
+        </div>
+        <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" wire:click="deleteComment" data-dismiss="modal">Delete</button>
+        </div>
+        
+        </div>
+        </div>
+        </div>
+    </div>
   </div>
