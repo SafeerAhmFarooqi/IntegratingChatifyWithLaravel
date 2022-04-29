@@ -37,7 +37,7 @@
                                    <table id="example" class="display" style="width:100%">
                                        <thead>
                                            <tr>
-                                               <th>S #</th>
+                                               <th>Id #</th>
                                                <th>User Name</th>
                                                <th>Email</th>
                                                <th>Phone</th>
@@ -49,19 +49,18 @@
                                            @foreach($users as $user)
                                            <tr>
                                                <td>{{$user->id}}</td>
-                                               <td>{{$user->firstname}}</td>
+                                               <td>{{$user->firstname.' '.$user->lastname}}</td>
                                                <td>{{$user->email}}</td>
                                                <td>{{$user->phone}}</td>
                                                <td>
-                                                   @if($user->status == 1)
+                                                   @if($user->active_status == 1)
                                                        Active
                                                    @else
                                                        De-Active    
                                                    @endif
                                                </td>
                                                <td>
-                                                   <a href="user_status/active/{{$user->id}}" class="btn btn-success">Active</a>
-                                                   <a href="user_status/de_active/{{$user->id}}" class="btn btn-danger">De-Active</a>
+                                                   
                                                    <a href="user_delete/{{$user->id}}" class="btn btn-danger">Delete</a>
                                                </td>
                                            </tr>

@@ -65,7 +65,7 @@
                 <img src="{{$post->user->profile_pic ?asset('storage/user_profile_pics/'.$post->user->profile_pic) : asset('storage/user_profile_pics/photoicon.jpg') }}" class="profile-photo-md pull-left">
                 <div class="post-detail" id="post-data">
                     <div class="user-info"><h5>
-                        <a href="" class="profile-link">{{$post->user->firstname.' '.$post->user->lastname}}</a>
+                        <a href="{{$post->user->id==Auth::user()->id?route('profile.index') : route('users.show',$post->user->id)}}" class="profile-link">{{$post->user->firstname.' '.$post->user->lastname}}</a>
                         <p style="float:right;">
                             <i class="icon ion-ios-calendar-outline"></i> {{ \Carbon\Carbon::parse($post->created_at)->format('F d, Y') }} &nbsp; 
                             <i class="icon ion-ios-clock-outline"></i> {{ \Carbon\Carbon::parse($post->created_at)->format('h:i:s') }}

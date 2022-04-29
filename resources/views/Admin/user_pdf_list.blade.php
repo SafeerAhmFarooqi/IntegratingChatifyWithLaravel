@@ -33,24 +33,33 @@
                                     <table id="example" class="display" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>S #</th>
-                                                <th>PDF Name</th>
+                                                <th>User Id #</th>
+                                                <th>User Name</th>
+                                                <th>Email</th>
+                                                <th>PDF Status</th>
                                                 <th>Password</th>
+                                                <th>User Status</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($user_pdf as $user_pdf)
+                                            @foreach($users as $user)
                                             <tr>
-                                                <td>{{$user_pdf->id}}</td>
-                                                <td>{{$user_pdf->firstname.' '.$user_pdf->lastname}}</td>
-                                                <td>{{$user_pdf->email}}</td>
-                                                <td>{{$user_pdf->pdf_password}}</td>
+                                                <td>{{$user->id}}</td>
+                                                <td>{{$user->firstname.' '.$user->lastname}}</td>
+                                                <td>{{$user->email}}</td>
+                                                <td>{{$user->file_path?'Present': 'Deleted'}}</td>
+                                                <td>{{$user->file_path?$user->pdf_password: 'Deleted'}}</td>
+                                                <td>{{$user->active_status?'Active' : 'De-active'}}</td>
                                                 <td>
                                                    
-
-                                                    <a href="{{route('user-document.download',[$user_pdf->id])}}" class="btn btn-success">Download</a>
-                                                    <a href="{{route('user-document.delete',[$user_pdf->id])}}" class="btn btn-danger">Delete</a>
+                                                    <a href="user_status/active/{{$user->id}}" class="btn btn-success">Active</a>
+                                                    <a href="user_status/de_active/{{$user->id}}" class="btn btn-danger">De-Active</a>
+                                                    @if ($user->file_path)
+                                                    <a href="{{route('user-document.download',[$user->id])}}" class="btn btn-success">Download Pdf</a>
+                                                    <a href="{{route('user-document.delete',[$user->id])}}" class="btn btn-danger">Delete Pdf</a>    
+                                                    @endif
+                                                    
                                                 </td>
                                             </tr>
                                             @endforeach       
