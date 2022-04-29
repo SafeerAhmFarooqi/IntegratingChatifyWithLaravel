@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Shop;
+use App\Models\Voucher;
 
 class UsersController extends Controller
 {
@@ -18,7 +20,7 @@ class UsersController extends Controller
     }
     public function index()
     {
-        $users= User::all();
+        $users= User::where('active_status',1)->get();
         return view('users',compact('users'));
     }
 
@@ -104,10 +106,45 @@ class UsersController extends Controller
         $search=$request->search_user;
 
         $users = User::query()
-        ->where('firstname', 'LIKE', "%{$search}%")
+        ->where('active_status',1)
+        ->orwhere('firstname', 'LIKE', "%{$search}%")
         ->orWhere('lastname', 'LIKE', "%{$search}%")
+
         ->get();
 
         return view('search_user' ,compact('users'));
+    }
+
+    public function voucher_search(Request $request)
+    {
+
+        $location=$request->location;
+        $shop_category=$request->shop_category;
+        $sub_category=$request->sub_category;
+
+        $where=array();
+
+        if($request->location)
+        {
+            $where['vouchers.location']=$request->location;
+        
+        }
+        if($request->shop_category)
+        {
+            $where['vouchers.shop_category']=$request->shop_category;
+        }
+        if($request->sub_category)
+        {
+            $where['vouchers.sub_category']=$request->sub_category;
+        }
+
+        $vouchers = Voucher::join('shops','shops.id','=','vouchers.shop_id')
+        ->where($where)
+        ->get([
+            'vouchers.*',
+            'shops.shop_name'
+        ]);
+
+        return view('search_vouchers' ,compact('vouchers'));
     }
 }

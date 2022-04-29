@@ -27,6 +27,9 @@ class VoucherController extends Controller
      public function store_voucher(Request $request)
     {
        $shop_id= Auth::guard('shop')->user()->id;
+       $location= Auth::guard('shop')->user()->location;
+       $shop_category= Auth::guard('shop')->user()->shop_category;
+       $sub_category= Auth::guard('shop')->user()->sub_category;
 
     	 if($request->hasFile('image')){ 
            $file=$request->file('image');
@@ -50,6 +53,9 @@ class VoucherController extends Controller
       	$voucher->image=$image;
       	$voucher->discount=$request->discount;
         $voucher->shop_id=$shop_id;
+        $voucher->location=$location;
+        $voucher->shop_category=$shop_category;
+        $voucher->sub_category=$sub_category;
 
       	$voucher->save();
 
@@ -80,6 +86,9 @@ class VoucherController extends Controller
         $use_voucher->image=$query->image;
         $use_voucher->discount=$query->discount;
         $use_voucher->shop_id=$query->shop_id;
+        $use_voucher->location=$query->location;
+        $use_voucher->shop_category=$query->shop_category;
+        $use_voucher->sub_category=$query->sub_category;
         $use_voucher->user_email=$request->user_email;
 
         $use_voucher->save();

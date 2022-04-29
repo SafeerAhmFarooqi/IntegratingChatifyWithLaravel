@@ -288,7 +288,8 @@
          
        </div>
          <div class="col-sm-6 text-right">
-         <p class="fs-14 text-fade mb-12"> <i class="fa fa-trash pr-1"></i>  </p>
+
+         <p class="fs-14 text-fade mb-12"> <a href="group_delete/{{$group->id}}"> <i class="fa fa-trash pr-1"></i> </a> </p>
           
        </div>
      </div>

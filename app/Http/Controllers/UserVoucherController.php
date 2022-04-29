@@ -7,6 +7,9 @@ use App\Models\Voucher;
 use App\Models\Shop;
 use Auth;
 use App\Models\UseVoucher;
+use App\Models\Location;
+use App\Models\Shop_Category;
+use App\Models\Sub_Category;
 
 class UserVoucherController extends Controller
 {
@@ -22,15 +25,19 @@ class UserVoucherController extends Controller
     }
     public function index()
     {
-        //$vouchers=Voucher::all();
+        $category=Shop_Category::all();
+        $location=Location::all();
+        $sub_category=Sub_Category::all();
 
-        $vouchers=Voucher::leftjoin('shops','shops.id','=','vouchers.shop_id')
+        $vouchers=Voucher::join('shops','shops.id','=','vouchers.shop_id')
         ->get([
             'vouchers.*',
             'shops.shop_name'
         ]);
 
-        return view('vouchers_list',compact('vouchers'));
+
+
+        return view('vouchers_list',compact('vouchers','category','location','sub_category'));
     }
 
     /**

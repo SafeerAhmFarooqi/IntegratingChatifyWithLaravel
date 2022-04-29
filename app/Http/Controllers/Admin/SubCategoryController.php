@@ -1,42 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Location;
-use App\Models\Group;
-use App\Models\User;
-use App\Models\Group_Member;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Shop_Category;
+use App\Models\Sub_Category;
 
-
-class GroupsController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+
      */
-    public function __construct()
+
+     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
+        
     public function index()
     {
-        $login_user=Auth::user()->id;
-        $location=Location::all();
-        $users= User::where('id', '!=',$login_user)->get();
-
-
-        $groups= Group::where('status',1)->get();
-
-         $group_members= Group_Member::all();
-
-         
-
-
-
-        return view('groups',compact('location','groups','users'));
+        $sub_cat= Sub_Category::all();
+        return view('Admin.sub_category',compact('sub_cat'));
     }
 
     /**
@@ -46,7 +34,9 @@ class GroupsController extends Controller
      */
     public function create()
     {
-        //
+        $shop_category= Shop_Category::all();
+        $sub_category= Sub_Category::all();
+        return view('Admin.add_sub_category',compact('shop_category','sub_category'));
     }
 
     /**
@@ -57,22 +47,13 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        $group=new Group;
+            $sub_cat= new Sub_Category;
 
-        $group->group_title=$request->group_title;
-        $group->location=$request->location;
-        $group->created_by=Auth::user()->id;
+        $sub_cat->shop_category_id=$request->shop_category;
+        $sub_cat->sub_category=$request->sub_category;
+        $sub_cat->save();
 
-        $group->save();
-
-        Group_Member::insert([
-
-            'group_id'=>$group->id,
-            'member_id'=>$group->created_by,
-        ]);
-
-        return redirect('groups');
-
+        return redirect('Admin/sub_category');
     }
 
     /**
@@ -83,7 +64,7 @@ class GroupsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -94,7 +75,9 @@ class GroupsController extends Controller
      */
     public function edit($id)
     {
-        //
+         $shop_category= Shop_Category::all();
+        $sub_category= Sub_Category::where('id',$id)->first();
+        return view('Admin/edit_sub_category',compact('shop_category','sub_category'));
     }
 
     /**
@@ -106,7 +89,11 @@ class GroupsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $sub_cat=Sub_Category::where('id',$id)->update([
+            'shop_category_id'=>$request->shop_category,
+            'sub_category'=>$request->sub_category,
+        ]);
+        return redirect('Admin/sub_category');
     }
 
     /**
@@ -117,14 +104,7 @@ class GroupsController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-     public function group_delete($id)
-    {
-         $group= Group::where('id',$id)->update([
-            'status'=>0,
-         ]);
-        return redirect('groups');
+         $sub = Sub_Category::where('id',$id)->delete();
+        return redirect('Admin/sub_category');
     }
 }

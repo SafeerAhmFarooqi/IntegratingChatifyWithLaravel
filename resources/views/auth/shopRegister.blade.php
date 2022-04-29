@@ -51,6 +51,17 @@
                     </div>
                 </div>
                 <div class="form-group position-relative has-icon-left mb-4">
+                    <select class="form-control form-control-xl" name="sub_category" >
+                        <option value="">Select Sub Category</option>
+                        @foreach($sub_category as $sub_category)
+                        <option value="{{$sub_category->sub_category}}">{{$sub_category->sub_category}}</option>
+                        @endforeach
+                    </select>
+                    <div class="form-control-icon">
+                        <i class="bi bi-person"></i>
+                    </div>
+                </div>
+                <div class="form-group position-relative has-icon-left mb-4">
                     <input type="text" class="form-control form-control-xl" placeholder="Phone" name="phone">
                     <div class="form-control-icon">
                         <i class="bi bi-person"></i>

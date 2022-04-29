@@ -96,6 +96,37 @@ class AdminController extends Controller
         return redirect('Admin/users_list');
     }
 
+    public function group_active_status(Request $request,$id)
+    {
+        $group=Group::find($id);
+        if(!$group->status)
+        {
+             Group::where('id',$id)->update([
+
+                'status'=>1,
+            ]);
+            
+        }
+         
+        return redirect('Admin/groups_list');
+    }
+
+     public function group_de_active_status(Request $request,$id)
+    {
+
+        $group=Group::find($id);
+        if($group->status)
+        {
+            Group::where('id',$id)->update([
+
+                'status'=>0,
+            ]);
+           
+        }
+        return redirect('Admin/groups_list');
+    }
+
+
       public function user_delete(Request $request,$id)
     {
          $user= User::where('id',$id)->delete();

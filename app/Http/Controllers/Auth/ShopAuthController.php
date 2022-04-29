@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Auth;
 use App\Models\Location;
 use App\Models\Shop_Category;
+use App\Models\Sub_Category;
 use App\Models\Shop;
 use Hash;
 
@@ -43,8 +44,9 @@ class ShopAuthController extends Controller
     public function showRegisterForm(Request $request)
     {
         $category=Shop_Category::all();
+        $sub_category=Sub_Category::all();
      	$location= Location::all();
-        return view('auth.shopRegister', compact('category','location'));
+        return view('auth.shopRegister', compact('category','location','sub_category'));
     }
 
      public function register(Request $request)
@@ -53,6 +55,7 @@ class ShopAuthController extends Controller
         	'shop_name'=>$request['shop_name'],
         	'address'=>$request['address'],
         	'shop_category'=>$request['shop_category'],
+            'sub_category'=>$request['sub_category'],
         	'phone'=>$request['phone'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
