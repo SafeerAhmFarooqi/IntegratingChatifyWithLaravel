@@ -14,6 +14,7 @@ class Shop extends Authenticatable
         'shop_name',
         'address',
         'shop_category',
+        'sub_category',
         'phone',
         'email',
         'password',

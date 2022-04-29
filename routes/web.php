@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserPdfDownload;
 use App\Http\Controllers\Admin\UserPDFController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Auth\ShopAuthController;
 use App\Http\Controllers\Shop\ShopController;
 use App\Http\Controllers\HomeController;
@@ -91,6 +92,9 @@ Route::resource('/user_voucher',UserVoucherController::class);
 //User Search
 Route::post('/user_search', [UsersController::class, 'user_search'])->name('user_search');
 
+//Voucher Search
+Route::post('/voucher_search', [UsersController::class, 'voucher_search'])->name('voucher_search');
+
 //User Use Vouchers
 Route::get('/savings', [UserVoucherController::class, 'savings'])->name('savings');
 
@@ -104,6 +108,9 @@ Route::resource('/people_nearby',PeopleNearbyController::class);
 Route::resource('/group_posts',GroupPostController::class);
 
 Route::get('/show_group/{id}/{name}', [GroupPostController::class, 'show_group'])->name('show_group');
+
+//Group Delete
+Route::get('/group_delete/{id}', [GroupsController::class,'group_delete'])->name('group_delete');
 
 
 
@@ -144,6 +151,10 @@ Route::get('/Admin/shop_status/de_active/{id}',[App\Http\Controllers\Admin\Admin
 
 Route::get('/Admin/shop_delete/{id}',[App\Http\Controllers\Admin\AdminController::class, 'shop_delete']);
 
+ Route::get('/Admin/group_status/active/{id}',[App\Http\Controllers\Admin\AdminController::class, 'group_active_status']);
+
+Route::get('/Admin/group_status/de_active/{id}',[App\Http\Controllers\Admin\AdminController::class, 'group_de_active_status']);
+
 //Shops Category
 Route::resource('/Admin/shops_category',ShopCategoryController::class);
 
@@ -170,6 +181,9 @@ Route::get('Admin/active_users', [App\Http\Controllers\Admin\AdminController::cl
 
 //Block Users
 Route::get('Admin/block_users', [App\Http\Controllers\Admin\AdminController::class, 'block_users'])->name('Admin.block_users');
+
+//Sub Categories
+Route::resource('/Admin/sub_category',SubCategoryController::class);
 
 
 });

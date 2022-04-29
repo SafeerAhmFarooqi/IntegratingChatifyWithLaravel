@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('shop_name')->nullable();
             $table->string('address')->nullable();
             $table->string('shop_category')->nullable();
+            $table->string('sub_category')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('password')->nullable();

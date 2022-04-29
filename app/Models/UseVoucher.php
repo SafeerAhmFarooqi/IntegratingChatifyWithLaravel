@@ -17,6 +17,9 @@ class UseVoucher extends Model
         'image',
         'discount',
         'shop_id',
+        'location',
+        'shop_category',
+        'sub_category',
         'user_id',
     ];
 }

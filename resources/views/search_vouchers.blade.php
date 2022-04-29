@@ -182,48 +182,6 @@
   ================================================= -->
   <div class="friend-list">
 
- <form class="navbar-form navbar-right hidden-sm" action="{{route('voucher_search')}}" method="post">
-              @csrf
- <div class="form-group col-sm-3">
-   <label for="sel1">Select City :</label>
-   <select class="form-control" id="sel1" name="location">
-     <option value="">Select</option>
-     @foreach($location as $location)
-     <option value="{{$location->location}}">{{$location->location}}</option> 
-     @endforeach
-   </select>
- </div>
- 
- 
- <div class="form-group col-sm-3">
-   <label for="sel1">Select Category :</label>
-   <select class="form-control" id="sel1" name="shop_category">
-     <option value="">Select</option> 
-     @foreach($category as $category)
-     <option value="{{$category->category}}">{{$category->category}}</option> 
-     @endforeach
-   </select>
- </div>
- 
- 
- <div class="form-group col-sm-3">
-   <label for="sel1">Select Sub Category :</label>
-   <select class="form-control" id="sel1" name="sub_category">
-     <option value="">Select</option> 
-     @foreach($sub_category as $sub_category)
-     <option value="{{$sub_category->sub_category}}">{{$sub_category->sub_category}}</option> 
-     @endforeach
-   </select>
- </div>
-
-
- 
- <div class="form-group col-sm-3" style="margin-top:30px">
-   <input type="submit" value="search" class="form-control btn btn-primary" style="background: #27aae1;color:#fff">
- </div>
-
- </form>
- 
    <section class="col-sm-12 " style="margin-top:50px">
      <h1>Vouchers List </h1>
      <div class="row">

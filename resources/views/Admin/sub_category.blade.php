@@ -25,39 +25,39 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Groups List</h4>
+                            <h4>Sub Categories</h4>
                         </div>
                         <div class="card-body">
+                            <div class="col-2">
+                                    <h3><a href="{{route('sub_category.create')}}" class="btn btn-primary">Add</a></h3>
+                            </div>
                             <div class="row">
                                 <div class="col-12 table-responsive">
-                                    <table id="example" class="display" style="width:100%">
+                                    <table  id="example" class="display" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>S #</th>
-                                                <th>Title</th>
-                                                <th>Location</th>
-                                                <th>Current Status</th>
+                                                <th>Category</th>
+                                                <th>Sub Category</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($groups as $group)
+                                            @foreach($sub_cat as $sub_cat)
                                             <tr>
-                                                <td>{{$group->id}}</td>
-                                                <td>{{$group->group_title}}</td>
-                                                <td>{{$group->location}}</td>
+                                                <td>{{$sub_cat->id}}</td>
+                                                <td>{{$sub_cat->shop_category_id}}</td>
+                                                <td>{{$sub_cat->sub_category}}</td>
                                                 <td>
-                                                     @if($group->status == 1)
-                                                       Active
-                                                   @else
-                                                       De-Active    
-                                                   @endif
-                                                </td>
-                                                <td>
-                                                    <a href="" class="btn btn-success">Group Members</a>
-                                                    <a href="group_status/active/{{$group->id}}" class="btn btn-success">Active</a>
-                                                   <a href="group_status/de_active/{{$group->id}}" class="btn btn-danger">De-Active</a>
-                                                 
+                                                    <a href="{{route('sub_category.edit',$sub_cat->id)}}" class="btn btn-secondary">Edit</a>
+                                                    <form method="POST" action="{{route('sub_category.destroy',$sub_cat->id)}}">
+                                                    @csrf
+                                                    @method('delete')
+                                                
+                                                   <button class="btn btn-danger">Delete</button>
+                                                  </form>
+                                                   
+                                                                                                         
                                                 </td>
                                             </tr>
                                             @endforeach       
@@ -78,6 +78,7 @@
 </div>
 
  @include('Admin.admin_layouts.footer'); 
+
 
   <script type="text/javascript">
     
