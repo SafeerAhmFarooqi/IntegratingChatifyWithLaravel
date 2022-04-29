@@ -107,7 +107,7 @@ class UsersController extends Controller
 
         $users = User::query()
         ->where('active_status',1)
-        ->orwhere('firstname', 'LIKE', "%{$search}%")
+        ->where('firstname', 'LIKE', "%{$search}%")
         ->orWhere('lastname', 'LIKE', "%{$search}%")
 
         ->get();
