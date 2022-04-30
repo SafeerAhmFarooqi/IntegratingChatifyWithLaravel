@@ -14,7 +14,8 @@
   <script src="{{asset('user_frontend/js/jquery-3.1.1.min.js')}}"></script>
   {{-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> --}}
   {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> --}}
-  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script> 
 
 </head>
@@ -107,8 +108,8 @@
         @method('PUT')
     <div class="row">
     <div class="form-group col-xs-6">
-    <label for="date-from">Username</label>
-    <input id="date-from" class="form-control input-group-lg" type="text" name="email" placeholder="asad6351" value="{{$data->email}}">
+    <label for="date-from">Email</label>
+    <input id="date-from" class="form-control input-group-lg" type="text" placeholder="asad6351" value="{{$data->email}}" disabled>
     </div>
     </div>
     <div class="row">
@@ -123,9 +124,14 @@
     </div>
     <div class="row">
     <div class="form-group col-xs-12">
-    <label for="school">Geburtsdatum</label>
-    <input id="school" class="form-control input-group-lg" type="text" name="dob" placeholder="12-10-2012" value="{{$data->dob}}">
+    <label for="school">Date of Birth</label>
+    <input id="school" class="form-control input-group-lg" type="text" name="dob" placeholder="12-10-2012" value="{{ \Carbon\Carbon::parse($data->dob)->format('F d, Y') }}">
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+         $('#school').datepicker(); 
+        });
+        </script>
     </div>
     <div class="row">
     <div class="form-group col-xs-12">
@@ -174,7 +180,7 @@
     </div>
     </div>
     </div>
-    @include('layouts.templatefrontend.footer')
+    {{-- @include('layouts.templatefrontend.footer') --}}
 </body>
 
 </html>
