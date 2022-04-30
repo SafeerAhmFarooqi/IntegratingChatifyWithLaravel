@@ -54,5 +54,5 @@
    </div>
  </div>
  
- @include('layouts.templatefrontend.footer');
+ @include('layouts.templatefrontend.footer')
  

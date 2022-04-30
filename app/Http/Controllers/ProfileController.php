@@ -24,7 +24,7 @@ class ProfileController extends Controller
 
         $data= User::where('id',$user)->first();
 
-        return view('profile', compact('data'));
+        return view('profile2', compact('data'));
     }
 
     /**
@@ -34,7 +34,11 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        $user= Auth::user()->id;
+
+        $data= User::where('id',$user)->first();
+
+        return view('profile2', compact('data'));
     }
 
     /**
