@@ -28,7 +28,7 @@ class GroupsController extends Controller
         $users= User::where('id', '!=',$login_user)->get();
 
 
-        $groups= Group::where('status',1)->get();
+        $groups= Group::all();
 
          $group_members= Group_Member::all();
 
@@ -62,6 +62,7 @@ class GroupsController extends Controller
         $group->group_title=$request->group_title;
         $group->location=$request->location;
         $group->created_by=Auth::user()->id;
+        $group->owner_id=Auth::user()->id;
 
         $group->save();
 
@@ -122,9 +123,9 @@ class GroupsController extends Controller
 
      public function group_delete($id)
     {
-         $group= Group::where('id',$id)->update([
-            'status'=>0,
-         ]);
-        return redirect('groups');
+        //  $group= Group::where('id',$id)->update([
+        //     'status'=>0,
+        //  ]);
+         return redirect('groups');
     }
 }

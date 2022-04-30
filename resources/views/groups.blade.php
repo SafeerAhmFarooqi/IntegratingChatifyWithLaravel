@@ -261,7 +261,7 @@
       $current_user=Auth::user()->id;
  
       foreach ($chech_member as $chech_member) {
-        if($current_user == $chech_member ){
+        if($current_user == $chech_member && $current_user == $group->created_by){
  
    
   ?>
@@ -285,6 +285,7 @@
  ?>
  
          <small class="fs-16 fw-300 ls-1"><i class="fa fa-user pr-1"></i> {{$a}}  </small><Br>
+          <strong>Status :</strong> <span>{{$group->status?'Active' : 'Non-active'}}</span>
          
        </div>
          <div class="col-sm-6 text-right">
@@ -297,10 +298,13 @@
        <div>
          <strong>Created on:</strong> <span>{{$group->created_at}}</span>
        </div>
+       @if ($group->status==1)
        <div class="card-hover-show">
           <a class="btn btn-xs fs-10 btn-bold btn-default"   href="#" data-toggle="modal" data-target="#groupMembers-{{$group->id}}">    Add Group Members</a> 
           <a class="btn btn-xs fs-10 btn-bold btn-warning"   href="{{route('show_group',[$group->id,$group->group_title])}}">   Enter Group</a> 
-       </div>
+       </div>    
+       @endif
+       
  
        <!-- Full Height Modal Right -->
   <div class="modal fade right" id="groupMembers-{{$group->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -363,7 +367,7 @@
  
   
  
-   <h2 style="background:#333;color:#fff;border:none;margin:15px;border-radius: 0;width:100%" type="button" class="btn btn-primary my-example-model"> Groups You Invited </h2>
+   <h2 style="background:#333;color:#fff;border:none;margin:15px;border-radius: 0;width:100%" type="button" class="btn btn-primary my-example-model"> Groups You Are Member Of </h2>
  
  @foreach($groups as $group)
  
@@ -399,6 +403,7 @@
  ?>
  
          <small class="fs-16 fw-300 ls-1"><i class="fa fa-user pr-1"></i> {{$a}} </small><Br>
+            <strong>Status :</strong> <span>{{$group->status?'Active' : 'Non-active'}}</span>
          
        </div>
         
@@ -407,9 +412,12 @@
        <div>
          <strong>Created on:</strong> <span>{{$group->created_at}}</span>
        </div>
+       @if ($group->status==1)
        <div class="card-hover-show"> 
-          <a class="btn btn-xs fs-10 btn-bold btn-warning"   href="{{route('show_group',[$group->id,$group->group_title])}}">   Enter Group</a> 
-       </div>
+        <a class="btn btn-xs fs-10 btn-bold btn-warning"   href="{{route('show_group',[$group->id,$group->group_title])}}">   Enter Group</a> 
+     </div>    
+       @endif
+       
      </footer>
    </div>
  </div>
