@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('group_title')->nullable();
             $table->string('location')->nullable();
-            $table->integer('status')->default(1);
+            $table->longtext('owner_id');
+            $table->integer('status')->default(0);
             $table->integer('created_by')->nullable();
             $table->timestamps();
         });
