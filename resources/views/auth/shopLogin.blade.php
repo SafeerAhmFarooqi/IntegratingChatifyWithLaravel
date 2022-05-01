@@ -27,7 +27,7 @@
             <form action="{{route('Shop.login')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="text" class="form-control form-control-xl" placeholder="Username" name="email">
+                    <input type="text" class="form-control form-control-xl" placeholder="Email" name="email">
                     <div class="form-control-icon">
                         <i class="bi bi-person"></i>
                     </div>

@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserAccountActivation;
 use App\Mail\UserAccountDeActivation;
+use App\Mail\ShopAccountActivation;
+use App\Mail\ShopAccountDeactivation;
 
 class AdminController extends Controller
 {
@@ -80,6 +82,42 @@ class AdminController extends Controller
         return redirect('Admin/users_list');
     }
 
+    public function shop_status_active(Request $request,$id)
+    {
+        $shop=Shop::find($id);
+        if(!$shop->shop_status)
+        {
+            Shop::where('id',$id)->update([
+
+                'shop_status'=>1,
+            ]);
+            Mail::to($shop->email)->send(new ShopAccountActivation());
+            return back()->with('message', 'Shop Account Activation Email Has Been Sent to '.$user->email );
+        }
+        else
+        {
+            return back()->with('message', 'This account is either already Active or does not exist' );
+        }
+    }
+
+    public function shop_status_deactive(Request $request,$id)
+    {
+        $shop=Shop::find($id);
+        if($shop->shop_status)
+        {
+            Shop::where('id',$id)->update([
+
+                'shop_status'=>0,
+            ]);
+            Mail::to($shop->email)->send(new ShopAccountDeactivation());
+            return back()->with('message', 'Shop Account Deactivation Email Has Been Sent to '.$user->email );
+        }
+        else
+        {
+            return back()->with('message', 'This account is either already Deactive or does not exist' );
+        }
+    }
+
      public function de_active_status(Request $request,$id)
     {
 
@@ -129,32 +167,37 @@ class AdminController extends Controller
 
       public function user_delete(Request $request,$id)
     {
-         $user= User::where('id',$id)->delete();
-        return redirect('Admin/users_list');
+        $user=User::find($id);
+        $email=$user->email;
+         $result= User::where('id',$id)->delete();
+         if($result)
+         {
+            return back()->with('message', 'User'.' '.$email.' has been deleted Successfully' );
+         }
+         else
+         {
+            return back()->with('message', 'Unable to delete User'.' '.$email );
+         }
+         
     }
 
-     public function shop_status_active(Request $request,$id)
-    {
-         $user= Shop::where('id',$id)->update([
+    
 
-            'shop_status'=>1,
-        ]);
-        return redirect('Admin/shops_list');
-    }
-
-     public function shop_status_deactive(Request $request,$id)
-    {
-         $user= Shop::where('id',$id)->update([
-
-            'shop_status'=>0,
-        ]);
-        return redirect('Admin/shops_list');
-    }
+     
 
       public function shop_delete(Request $request,$id)
     {
-         $user= Shop::where('id',$id)->delete();
-        return redirect('Admin/shops_list');
+        $shop=Shop::find($id);
+        $email=$shop->email;
+         $result= Shop::where('id',$id)->delete();
+         if($result)
+         {
+            return back()->with('message', 'Shop'.' '.$email.' has been deleted Successfully' );
+         }
+         else
+         {
+            return back()->with('message', 'Unable to delete Shop'.' '.$email );
+         }
     }
 
        public function active_users()
