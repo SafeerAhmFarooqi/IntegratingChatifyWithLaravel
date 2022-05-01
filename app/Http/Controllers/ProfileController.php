@@ -96,7 +96,6 @@ class ProfileController extends Controller
             'address'=>$request->address,
             'phone'=>$request->phone,
             'about'=>$request->about,
-            'email'=>$request->email,
         ]);
 
         return redirect('home');

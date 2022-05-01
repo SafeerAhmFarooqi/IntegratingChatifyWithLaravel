@@ -23,7 +23,7 @@
  
  <div class="row">
    <div class="form-group col-xs-6">
-     <label for="date-from">Username</label>
+     <label for="date-from">Email</label>
      <input id="date-from" class="form-control input-group-lg" type="text" name="username"  value="{{$user->email}}" disabled="">
    </div>
  </div>
@@ -41,7 +41,7 @@
  
  <div class="row">
    <div class="form-group col-xs-12">
-     <label for="school">Geburtsdatum</label>
+     <label for="school">Date of Birth</label>
      @if($user->dob_status==1)
      <input id="school" class="form-control input-group-lg" type="text" name="dateofbirth" value="Private" disabled="">
      @else

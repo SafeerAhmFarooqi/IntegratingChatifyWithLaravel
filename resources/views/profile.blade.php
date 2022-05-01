@@ -102,7 +102,7 @@
 </div>
 <div class="row">
 <div class="form-group col-xs-12">
-<label for="school">Geburtsdatum</label>
+<label for="school">Date of Birth</label>
 <input id="school" class="form-control input-group-lg" type="text" name="dob" placeholder="12-10-2012" value="{{$data->dob}}">
 </div>
 </div>

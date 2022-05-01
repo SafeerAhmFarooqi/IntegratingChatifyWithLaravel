@@ -250,8 +250,7 @@
        </article>
        <div class="clearfix"></div>
      @endforeach 
-     </div>
-   </section>
+     
  
  
  
