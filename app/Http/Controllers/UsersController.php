@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Shop;
 use App\Models\Voucher;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -20,7 +21,9 @@ class UsersController extends Controller
     }
     public function index()
     {
-        $users= User::where('active_status',1)->get();
+        $users= User::where('active_status',1)
+        ->where('id','!=',Auth::user()->id)
+        ->get();
         return view('users',compact('users'));
     }
 

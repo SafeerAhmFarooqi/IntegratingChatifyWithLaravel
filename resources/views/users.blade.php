@@ -31,8 +31,12 @@
  <a href="{{route('users.show',$user->id)}}" class="pull-right text-green btn btn-default">Profile</a>
  &nbsp; &nbsp;
  <a href="{{config('chatify.routes.prefix')}}/{{$user->id}}" class="pull-right text-green btn btn-default"> <i class="icon ion-chatboxes"></i> Chat</a>
- <h5><a href="timeline.html" class="profile-link">{{$user->firstname}}</a></h5>
- <p> army,</p>
+ <h5><a href="{{route('users.show',$user->id)}}" class="profile-link">{{$user->firstname.' '.$user->lastname}}</a></h5>
+ <p> 
+   @foreach ($user->options as $option)
+       {{$option.','}}
+   @endforeach
+ </p>
  </div>
  </div>
  </div>

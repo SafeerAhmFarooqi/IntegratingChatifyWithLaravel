@@ -86,10 +86,10 @@
 	@csrf
 	@method('PUT')
 
-<div class="row">
+{{-- <div class="row">
 	<div class="form-group col-xs-6">
-		<label for="date-from">Username</label>
-		<input id="date-from" class="form-control input-group-lg" type="text" name="email" placeholder="asad6351" value="{{$data->email}}">
+		<label for="date-from">Email</label>
+		<input id="date-from" class="form-control input-group-lg" type="text" name="email" placeholder="asad6351" value="{{$data->email}}" disabled>
 	</div>
 </div>
 
@@ -102,11 +102,11 @@
 		<label for="date-to" class="">Last Name</label>
 		<input id="date-to" class="form-control input-group-lg" type="text" name="last_name" placeholder="Asad" value="{{$data->lastname}}">
 	</div>
-</div>
+</div> --}}
 
 <div class="row">
 	<div class="form-group col-xs-12">
-		<label for="school">Geburtsdatum ( {{ $data->dob }} )</label>
+		<label for="school">Date of Birth ( {{ \Carbon\Carbon::parse($data->dob)->format('F d, Y') }} )</label>
 		<select id="school" class="form-control input-group-lg" name="dob_status">
 			<option value="0">Public</option>
 			<option value="1">Private</option>
