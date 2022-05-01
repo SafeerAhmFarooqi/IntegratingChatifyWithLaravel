@@ -92,7 +92,7 @@ class AdminController extends Controller
                 'shop_status'=>1,
             ]);
             Mail::to($shop->email)->send(new ShopAccountActivation());
-            return back()->with('message', 'Shop Account Activation Email Has Been Sent to '.$user->email );
+            return back()->with('message', 'Shop Account Activation Email Has Been Sent to '.$shop->email );
         }
         else
         {
@@ -110,7 +110,7 @@ class AdminController extends Controller
                 'shop_status'=>0,
             ]);
             Mail::to($shop->email)->send(new ShopAccountDeactivation());
-            return back()->with('message', 'Shop Account Deactivation Email Has Been Sent to '.$user->email );
+            return back()->with('message', 'Shop Account Deactivation Email Has Been Sent to '.$shop->email );
         }
         else
         {
