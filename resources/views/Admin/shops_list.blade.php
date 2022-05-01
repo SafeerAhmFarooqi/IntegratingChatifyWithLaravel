@@ -20,7 +20,13 @@
         <div class="col-12 col-lg-12">
 
  @include('Admin.admin_layouts.topbar');
-
+ <div class="row">
+    @if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+   @endif
+</div>
             <div class="row">
                 <div class="col-12">
                     <div class="card">

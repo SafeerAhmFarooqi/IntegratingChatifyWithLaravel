@@ -11,6 +11,7 @@ use App\Models\Shop_Category;
 use App\Models\Sub_Category;
 use App\Models\Shop;
 use Hash;
+use Illuminate\Validation\Rules;
 
 class ShopAuthController extends Controller
 {
@@ -33,7 +34,7 @@ class ShopAuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ])) {
-            $user = auth()->user();
+           $user = auth()->user();
             return redirect('/Shop/dashboard');
         } else {
             return redirect()->back()->withError('username or email doesn\'t match.');
@@ -51,6 +52,16 @@ class ShopAuthController extends Controller
 
      public function register(Request $request)
     {
+        $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:shops'],
+            'password' => ['required', Rules\Password::defaults()],
+            'shop_name' => ['required'],
+            'address' => ['required'],
+            'shop_category' => ['required'],
+            'sub_category' => ['required'],
+            'phone' => ['required'],
+            'location' => ['required'],
+        ]);
         $shop = Shop::create([
         	'shop_name'=>$request['shop_name'],
         	'address'=>$request['address'],
@@ -61,8 +72,16 @@ class ShopAuthController extends Controller
             'password' => Hash::make($request['password']),
             'location'=>$request['location'],
         ]);
+        if(!$shop->shop_status)
+        {
+            return redirect()->route('in-active-shop');
+        }
+        else
+        {
+            return redirect('Shop/login');
+        }
 
-        return redirect('Shop/login');
+        
     }
 
 
@@ -75,6 +94,11 @@ class ShopAuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function inActive()
+    {
+
     }
 
 

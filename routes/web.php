@@ -65,6 +65,12 @@ Route::get('/not-active',function()
 }
 )->name('in-active');
 
+Route::get('/not-active',function()
+{
+    return view('auth.registration_msg_shop');
+}
+)->name('in-active-shop');
+
 //User Profile
 Route::resource('/profile',ProfileController::class);
 
