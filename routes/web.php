@@ -65,7 +65,7 @@ Route::get('/not-active',function()
 }
 )->name('in-active');
 
-Route::get('/not-active',function()
+Route::get('/not-active-shop',function()
 {
     return view('auth.registration_msg_shop');
 }
