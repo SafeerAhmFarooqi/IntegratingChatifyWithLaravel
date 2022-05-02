@@ -126,16 +126,18 @@ Route::get('/group_delete/{id}', [GroupsController::class,'group_delete'])->name
 
 // //Admin Section 
 Route::get('/Admin/login', [AdminAuthController::class, 'showLoginForm'])->name('Admin.login');
-Route::get('/Admin/register', [AdminAuthController::class, 'showRegisterForm'])->name('Admin.register');
+//Route::get('/Admin/register', [AdminAuthController::class, 'showRegisterForm'])->name('Admin.register');
 
-Route::post('/Admin/register', [AdminAuthController::class, 'register'])->name('Admin.register');
+//Route::post('/Admin/register', [AdminAuthController::class, 'register'])->name('Admin.register');
 
 Route::post('/Admin/login', [AdminAuthController::class, 'login'])->name('Admin.login');
 
-Route::get('/Admin/logout', [AdminAuthController::class, 'logout'])->name('Admin.logout');
+
 
 Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('Admin/dashboard', [AdminController::class, 'dashboard'])->name('Admin.dashboard');
+
+    Route::get('/Admin/logout', [AdminAuthController::class, 'logout'])->name('Admin.logout');
 
     Route::get('send-mail/{userEmail}', [EmailController::class, 'sendActivationEmail'])->name('send-mail');    
 

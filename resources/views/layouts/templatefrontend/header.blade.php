@@ -55,7 +55,7 @@
   to { background-position:right;}
 }
     </style>
-    
+    @yield('style')
     <script src="{{asset('user_frontend/js/jquery-3.1.1.min.js')}}"></script>
     @livewireStyles
 	</head>

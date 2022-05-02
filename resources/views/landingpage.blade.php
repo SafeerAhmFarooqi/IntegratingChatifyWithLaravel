@@ -50,7 +50,6 @@
                     </div>
 
                     <a href="{{route('Shop.login')}}"> Shop login </a> <br>
-                   <a href="{{route('Admin.login')}}">Admin Login</a>
                 </div><!-- Sign Up Form End -->
 
         <svg class="arrows hidden-xs hidden-sm">
