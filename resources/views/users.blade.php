@@ -59,4 +59,10 @@
  </div>
  
  @include('layouts.templatefrontend.footer')
+
+ @section('style')
+     <style>
+  
+     </style>
+ @endsection
  
