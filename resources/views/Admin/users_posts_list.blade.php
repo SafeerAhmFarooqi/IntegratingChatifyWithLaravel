@@ -33,18 +33,21 @@
                                     <table  id="example" class="display" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>S #</th>
+                                                <th>Id #</th>
                                                 <th>User Name</th>
-                                                <th>Post</th>
+                                                <th>Email</th>
+                                                <th>Post Text</th>
+                                                <th>No of Comments</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($user_posts as $user_posts)
                                             <tr>
                                                 <td>{{$user_posts->id}}</td>
-                                                <td>{{$user_posts->firstname}}</td>
-                                                <td>{{$user_posts->post_text}}</td>
-                                                
+                                                <td>{{$user_posts->user->firstname.' '.$user_posts->user->lastname}}</td>
+                                                <td>{{$user_posts->user->email}}</td>
+                                                <td>{{substr($user_posts->post_text,0,20)."..."}}</td>
+                                                <td>{{$user_posts->comments_count}}</td>
                                             </tr>
                                             @endforeach       
                                         </tbody>
