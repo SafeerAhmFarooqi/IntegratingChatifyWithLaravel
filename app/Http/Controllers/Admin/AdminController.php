@@ -58,11 +58,16 @@ class AdminController extends Controller
     {
         //$user_posts= Post::all();
 
-        $user_posts=Post::leftjoin('users','users.id','=','posts.user_id')
-                ->get([
-                    'posts.*',
-                    'users.firstname'
-                ]);
+        // $user_posts=Post::leftjoin('users','users.id','=','posts.user_id')
+        //         ->get([
+        //             'posts.*',
+        //             'users.firstname',
+        //             'users.lastname',
+        //             'users.email',
+        //         ]);
+        $user_posts=Post::with('user')
+        ->withCount('comments')
+        ->get();
         return view('Admin.users_posts_list',compact('user_posts'));
     }
 
