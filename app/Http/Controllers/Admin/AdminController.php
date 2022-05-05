@@ -11,12 +11,14 @@ use App\Models\Shop_Category;
 use App\Models\Location;
 use App\Models\Voucher;
 use App\Models\Post;
+use App\Models\Comments;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserAccountActivation;
 use App\Mail\UserAccountDeActivation;
 use App\Mail\ShopAccountActivation;
 use App\Mail\ShopAccountDeactivation;
+use Illuminate\Support\Facades\Response;
 
 class AdminController extends Controller
 {
@@ -69,6 +71,46 @@ class AdminController extends Controller
         ->withCount('comments')
         ->get();
         return view('Admin.users_posts_list',compact('user_posts'));
+    }
+
+public function userPostDelete($id)
+{
+    //return $id;
+    $post=Post::find($id);
+
+   // storage::delete(storage_path().'/app/public'.'/user_post_pics'.'/'.$post->post_image);
+   // return Response::download(storage_path().'/app/public'.'/user_post_pics'.'/'.$post->post_image);
+
+    //return Response::download(storage_path().'/app/public'.'/user_post_pics'.'/'.$post->post_image);
+    if($post->post_image)
+   {
+    unlink(storage_path().'/app/public'.'/user_post_pics'.'/'.$post->post_image);    
+   }
+   $post->delete();
+   Comments::where('post_id',$id)->delete();
+   return back()->with('message', 'Post Deleted Successfully' );
+}
+
+    public function userPostView($id)
+    {
+        $post=Post::where('id',$id)
+        ->with('user')
+        ->with(['comments' => function ($query) {
+            $query->with('user')
+            ->get();
+        }])
+        ->first();
+        return view('Admin.user-post-view',['post'=>$post]);
+    }
+
+    public function userCommentDelete($id)
+    {
+        $result=Comments::find($id)->delete();
+        if ($result) {
+            return back()->with('message', 'Comment Deleted Successfully' );
+        } else {
+            return back()->with('message', 'Unable to delete Comment' );
+        }
     }
 
     public function active_status(Request $request,$id)
