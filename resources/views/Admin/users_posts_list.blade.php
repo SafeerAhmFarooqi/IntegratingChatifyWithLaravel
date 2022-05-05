@@ -20,7 +20,13 @@
         <div class="col-12 col-lg-12">
 
  @include('Admin.admin_layouts.topbar');
-
+ <div class="row">
+    @if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+   @endif
+</div>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -38,6 +44,7 @@
                                                 <th>Email</th>
                                                 <th>Post Text</th>
                                                 <th>No of Comments</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -48,6 +55,14 @@
                                                 <td>{{$user_posts->user->email}}</td>
                                                 <td>{{substr($user_posts->post_text,0,20)."..."}}</td>
                                                 <td>{{$user_posts->comments_count}}</td>
+                                                <td>
+                                                   
+                                                    <a href="{{route('Admin.user-post.view',$user_posts->id)}}" class="btn btn-success">View Post</a>
+                                                    <a href="{{route('Admin.user-post.delete',$user_posts->id)}}" class="btn btn-danger">Delete Post</a>
+
+                                                    
+                                                    
+                                                </td>
                                             </tr>
                                             @endforeach       
                                         </tbody>

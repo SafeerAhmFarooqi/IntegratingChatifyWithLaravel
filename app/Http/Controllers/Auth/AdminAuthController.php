@@ -43,7 +43,7 @@ class AdminAuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ])) {
-            $user = auth()->user();
+            $user = auth()->guard('admin')->user();
 
             return redirect('Admin/dashboard');
         } else {

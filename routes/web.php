@@ -184,6 +184,15 @@ Route::get('/Admin/vouchers_list', [App\Http\Controllers\Admin\AdminController::
 //Users posts
 Route::get('Admin/users_posts', [App\Http\Controllers\Admin\AdminController::class, 'users_posts'])->name('Admin.users_posts');
 
+//User post view
+Route::get('Admin/user-post/{id}', [App\Http\Controllers\Admin\AdminController::class, 'userPostView'])->name('Admin.user-post.view');
+
+//User Comment Delete
+Route::get('Admin/user-comment-delete/{id}', [App\Http\Controllers\Admin\AdminController::class, 'userCommentDelete'])->name('Admin.user-comment.delete');
+
+//User Post Delete
+Route::get('Admin/user-post-delete/{id}', [App\Http\Controllers\Admin\AdminController::class, 'userPostDelete'])->name('Admin.user-post.delete');
+
 //Active Users
 Route::get('Admin/active_users', [App\Http\Controllers\Admin\AdminController::class, 'active_users'])->name('Admin.active_users');
 
