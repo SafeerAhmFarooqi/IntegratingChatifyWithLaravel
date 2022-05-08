@@ -51,7 +51,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/download', [App\Http\Controllers\HomeController::class, 'downloadPdf'])->name('download.pdf');
 
 Route::post('/form_submit',[PostController::class,'form_submit']);
-
+Route::get('/chat/{id}',[App\Http\Controllers\HomeController::class, 'chat'])->name('chat');
 Route::get('/profile',[PostController::class,'profile'])->name('profile');
 Route::Put('/profile_update/{id}',[PostController::class,'profile_update'])->name('profile_update');
 
