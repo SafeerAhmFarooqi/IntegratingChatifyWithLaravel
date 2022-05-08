@@ -47,7 +47,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/download', [App\Http\Controllers\HomeController::class, 'downloadPdf'])->name('download.pdf');
 
 Route::post('/form_submit',[PostController::class,'form_submit']);
@@ -125,7 +125,7 @@ Route::get('/group_delete/{id}', [GroupsController::class,'group_delete'])->name
 
 
 // //Admin Section 
-Route::get('/Admin/login', [AdminAuthController::class, 'showLoginForm'])->name('Admin.login');
+Route::get('/Admin/login', [AdminAuthController::class, 'showLoginForm']);
 //Route::get('/Admin/register', [AdminAuthController::class, 'showRegisterForm'])->name('Admin.register');
 
 //Route::post('/Admin/register', [AdminAuthController::class, 'register'])->name('Admin.register');
@@ -210,7 +210,7 @@ Route::resource('/Admin/sub_category',SubCategoryController::class);
 
 //Shop Section
 
-Route::get('Shop/register',[ShopAuthController::class, 'showRegisterForm'])->name('Shop.register');
+Route::get('Shop/register',[ShopAuthController::class, 'showRegisterForm'])->name('Shop.register.form');
 Route::post('Shop/register',[ShopAuthController::class, 'register'])->name('Shop.register');
 
 //Route::get('/Shop/login', [ShopAuthController::class, 'showLoginForm'])->name('Shop.login');
