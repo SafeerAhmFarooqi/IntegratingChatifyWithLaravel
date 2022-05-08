@@ -44,5 +44,9 @@ class HomeController extends Controller
         return Storage::download(Auth::user()->file_path, Auth::user()->file_name);
     }
 
+    public function chat($id)
+    {
+        return redirect(url('').'/'.config('chatify.routes.prefix').'/'.$id);
+    }
    
 }
