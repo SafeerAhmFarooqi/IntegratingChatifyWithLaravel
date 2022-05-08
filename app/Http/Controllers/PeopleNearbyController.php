@@ -45,6 +45,7 @@ class PeopleNearbyController extends Controller
 
 
        // return view('people_nearby', compact('users'));
+       return config('app.url');
        return view('people-nearby-livewire');
     }
 
