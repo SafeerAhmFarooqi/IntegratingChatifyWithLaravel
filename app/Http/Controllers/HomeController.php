@@ -36,6 +36,7 @@ class HomeController extends Controller
                     'users.firstname',
                     'users.profile_pic'
                 ]);
+                
             return view('home', compact('posts'));
     }
     public function downloadPdf()
