@@ -46,8 +46,8 @@
 
  <div class="chat-popup" id="myForm_{{$user->id}}">
   <div style="height: 100%;">
-    <iframe style="height: 100%;" src="{{config('app.url').'/'.config('chatify.routes.prefix').'/'.$user->id}}" title="YouTube video" allowfullscreen></iframe>
-    
+    {{-- <iframe style="height: 100%;" src="{{!! config('app.url').'/'.config('chatify.routes.prefix').'/'.$user->id !!}}" title="YouTube video" allowfullscreen></iframe> --}}
+    <iframe style="height: 100%;" src="{{'https://asadsohail.com/message/'.$user->id}}" title="YouTube video" allowfullscreen></iframe>
   </div>
   <a href="#" class="btn btn-primary" style="margin: 10px 20px;" onclick="closeForm({{$user->id}})">Close Chat</a>
 </div>
