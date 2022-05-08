@@ -892,9 +892,9 @@ div.loadingPlaceholder-date {
     border-radius: 0px;
   }
 }
-@media (min-width: 680px) {
+@media (min-width: 1px) {
   .messenger-listView {
-    display: unset;
+    display: none;
   }
 }
 @media only screen and (max-width: 700px) {
