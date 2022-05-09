@@ -6,10 +6,10 @@
       <div class="create-post">
         <div>
           <form  wire:submit.prevent="submit" id="postform"  enctype="multipart/form-data">
-            @if ($postImage)
+            {{-- @if ($postImage)
             Photo Preview:
             <img src="{{ $postImage->temporaryUrl() }}" style="width: 100%">
-        @endif
+        @endif --}}
             <div class="row">
               <div class="col-md-8">
                 <div class="form-group" style="width:100%">
@@ -36,12 +36,11 @@
                   <ul class="publishing-tools list-inline">
         
         <div class="image-upload">
-        {{-- <label for="file-input" >
+        <label for="file-input" >
         <img src="{{asset('assets/upload.png')}}" style="pointer-events: none;width:30px">
-        </label> --}}
-        <label for="file-input">Upload</label>
+        </label>
         <input  type="file" id="file-input" wire:model="postImage">
-        <div wire:loading wire:target="postImage">Uploading...</div>
+        
         
         </div>
         
@@ -51,9 +50,44 @@
                   </ul>
                   
         
-                   <button type="submit" class="btn btn-primary pull-right">Publish</button>
+                   <button type="submit" class="btn btn-primary pull-right"  id="publish">Publish</button>
                    @error('postImage') <span class="error" style="color: red">{{ $message }}</span> @enderror
                 </div>
+                
+                <div>
+                  <script>
+                      // $(document).ready(function(){
+                      //     @this.name="Farooqi";
+                      // });
+              
+                    
+              
+              
+                   window.addEventListener('livewire-upload-start', event => {
+                       // alert("Upload Started");
+                       document.getElementById("publish").disabled = true;
+                   
+              })
+              </script>     
+                  </div>  
+
+                  <div>
+                    <script>
+                        // $(document).ready(function(){
+                        //     @this.name="Farooqi";
+                        // });
+                
+                      
+                
+                
+                     window.addEventListener('livewire-upload-finish', event => {
+                         // alert("Upload Finished");
+                         document.getElementById("publish").disabled = false;
+                     
+                })
+                </script>     
+                    </div>  
+
               </div>
             </div>
           </form>
@@ -61,8 +95,12 @@
       <div class="alert alert-success" id="message" style="display:none">
     <strong>Success!</strong> Post Submitted Successfully ! 
     </div>
+    <div class="row">
+      <div wire:loading wire:target="postImage">  <h5>Image Uploading...</h5></div>
+    </div>
     <br><br><br>
   </div>
+  
     <div id="post-list">
         @foreach ($posts as $post)
         <div class="post-content">
