@@ -66,6 +66,7 @@
                    window.addEventListener('livewire-upload-start', event => {
                        // alert("Upload Started");
                        document.getElementById("publish").disabled = true;
+                       document.getElementById("publish").style.display = "none";
                    
               })
               </script>     
@@ -83,6 +84,7 @@
                      window.addEventListener('livewire-upload-finish', event => {
                          // alert("Upload Finished");
                          document.getElementById("publish").disabled = false;
+                         document.getElementById("publish").style.display = "block";
                      
                 })
                 </script>     
