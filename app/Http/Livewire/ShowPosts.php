@@ -16,7 +16,7 @@ class ShowPosts extends Component
 {
     use WithFileUploads;
 
-    public $postImage='';
+    public $postImage;
     public $postText='';
     public $commentText='';
     public $currentPostId=0;
@@ -59,7 +59,7 @@ class ShowPosts extends Component
          $model->user_id=$user;
          $model->post_image=$pic;
          $model->save();
-         $this->postImage='';
+         $this->postImage=null;
          $this->postText='';
     }
     public function render()
