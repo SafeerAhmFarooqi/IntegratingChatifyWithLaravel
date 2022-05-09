@@ -35,7 +35,7 @@ class ShowPosts extends Component
     public function submit()
     {
         $this->validate([
-            'postImage' => 'image|max:5024', // 1MB Max
+            'postImage' => 'image|mimes:png,jpeg,gif,bmp|max:9024', // 9MB Max
             'postText' => 'required',
         ]);
 
