@@ -1,4 +1,4 @@
-<div wire:poll.100ms>
+<div>
   <div class="col-md-6">
 
       <!-- Post Create Box
@@ -32,17 +32,16 @@
                   <ul class="publishing-tools list-inline">
         
         <div class="image-upload">
-        <label for="file-input" >
+        {{-- <label for="file-input" >
         <img src="{{asset('assets/upload.png')}}" style="pointer-events: none;width:30px">
-        </label>
-        
-        <input  type="file" id="file-input" wire:model.defer="postImage">
+        </label> --}}
+        <label for="file-input">Upload</label>
+        <input  type="file" id="file-input" wire:model="postImage">
         
         </div>
         
         
-        <input type="hidden" name="category" value="police">
-        <input type="hidden" name="privacy" value="public">
+        
                     
                   </ul>
                   
