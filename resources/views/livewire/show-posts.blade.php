@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.100ms>
   <div class="col-md-6">
 
       <!-- Post Create Box
@@ -6,6 +6,10 @@
       <div class="create-post">
         <div>
           <form  wire:submit.prevent="submit" id="postform"  enctype="multipart/form-data">
+            @if ($postImage)
+            Photo Preview:
+            <img src="{{ $postImage->temporaryUrl() }}" style="width: 100%">
+        @endif
             <div class="row">
               <div class="col-md-8">
                 <div class="form-group" style="width:100%">
@@ -37,6 +41,7 @@
         </label> --}}
         <label for="file-input">Upload</label>
         <input  type="file" id="file-input" wire:model="postImage">
+        <div wire:loading wire:target="postImage">Uploading...</div>
         
         </div>
         
