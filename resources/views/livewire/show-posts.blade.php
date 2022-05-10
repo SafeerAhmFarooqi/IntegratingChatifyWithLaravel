@@ -39,7 +39,7 @@
         <label for="file-input" >
         <img src="{{asset('assets/upload.png')}}" style="pointer-events: none;width:30px">
         </label>
-        <input  type="file" id="file-input" wire:model="postImage">
+        <input  type="file" id="file-input" wire:model="postImage" accept="image/*">
         
         
         </div>
@@ -53,7 +53,79 @@
                    <button type="submit" class="btn btn-primary pull-right"  id="publish">Publish</button>
                    @error('postImage') <span class="error" style="color: red">{{ $message }}</span> @enderror
                 </div>
+                <style>
+                  
+                  
+                  /* The Modal (background) */
+                  .modal {
+                    display: none; /* Hidden by default */
+                    position: fixed; /* Stay in place */
+                    z-index: 1; /* Sit on top */
+                    padding-top: 100px; /* Location of the box */
+                    left: 0;
+                    top: 0;
+                    width: 100%; /* Full width */
+                    height: 100%; /* Full height */
+                    overflow: auto; /* Enable scroll if needed */
+                    background-color: rgb(0,0,0); /* Fallback color */
+                    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                  }
+                  
+                  /* Modal Content */
+                  .modal-content {
+                    background-color: #fefefe;
+                    margin: auto;
+                    padding: 20px;
+                    border: 1px solid #888;
+                    width: 80%;
+                  }
+                  
+                  /* The Close Button */
+                  .close {
+                    color: #aaaaaa;
+                    float: right;
+                    font-size: 28px;
+                    font-weight: bold;
+                  }
+                  
+                  .close:hover,
+                  .close:focus {
+                    color: #000;
+                    text-decoration: none;
+                    cursor: pointer;
+                  }
+                  </style>
+                <div id="myModal" class="modal" wire:ignore.self>
+
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <span class="close" wire:click="cancelUpload()">&times;</span>
+                    <h4>Photo Preview:</h4>
+                    @if ($postImage)
+                    @php
+                         $extension = pathinfo($postImage->getFilename(), PATHINFO_EXTENSION);
+    if (!in_array($extension, ['png', 'jpeg', 'bmp', 'gif', 'jpg'])) {
+      $postImage='';
+    }
+                    @endphp
+                    
+                    @if ($postImage)
+                    <img src="{{ $postImage->temporaryUrl() }}" style="width: 50%; height: 50%">    
+                    @else
+                    {{'Please Select Valid Image File'}}    
+                    @endif
+            
+        @endif
+        <div class="row">
+          @if ($postImage)
+          <a class="btn btn-primary" style="margin-top: 2%;" onclick="document.getElementById('myModal').style.display='none'">Upload</a>    
+          @endif
+          
+          <a class="btn btn-danger" style="margin-left: 2%;margin-top: 2%;" id="cancel" wire:click="cancelUpload()" onclick="document.getElementById('myModal').style.display='none'">{{$postImage?'Cancel' : 'Back'}}</a>
+        </div>
+                  </div>
                 
+                </div>
                 <div>
                   <script>
                       // $(document).ready(function(){
@@ -65,10 +137,23 @@
               
                    window.addEventListener('livewire-upload-start', event => {
                        // alert("Upload Started");
-                       document.getElementById("publish").disabled = true;
+                      // document.getElementById("publish").disabled = true;
+                      // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
                        document.getElementById("publish").style.display = "none";
+                       modal.style.display = "block";
+                       span.onclick = function() {
+  modal.style.display = "none";
+}
                    
               })
+              
               </script>     
                   </div>  
 
@@ -83,11 +168,26 @@
                 
                      window.addEventListener('livewire-upload-finish', event => {
                          // alert("Upload Finished");
-                         document.getElementById("publish").disabled = false;
+                       //  document.getElementById("publish").disabled = false;
                          document.getElementById("publish").style.display = "block";
                      
                 })
-                </script>     
+                </script>  
+                <script>
+                  // $(document).ready(function(){
+                  //     @this.name="Farooqi";
+                  // });
+          
+                
+          
+          
+               window.addEventListener('livewire-upload-error', event => {
+                    alert("Error Uploading Image");
+                 //  document.getElementById("publish").disabled = false;
+                  // document.getElementById("publish").style.display = "block";
+               
+          })
+          </script>   
                     </div>  
 
               </div>
