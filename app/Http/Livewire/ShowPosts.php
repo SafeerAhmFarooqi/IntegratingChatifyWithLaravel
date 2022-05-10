@@ -25,6 +25,10 @@ class ShowPosts extends Component
     public $selectedPostId=0;
     public $selectedCommentId=0;
 
+    protected $rules = [
+        'postImage' => 'image|mimes:png,jpeg,gif,bmp|max:9024',
+    ];
+
     public function currentId($userId,$postId)
     {
         $this->currentUserId=$userId;
@@ -34,11 +38,12 @@ class ShowPosts extends Component
 
     public function submit()
     {
+       
         $this->validate([
             'postImage' => 'image|mimes:png,jpeg,gif,bmp|max:9024', // 9MB Max
             'postText' => 'required',
         ]);
-
+        
         if($this->postImage)
         {
             $file=$this->postImage;
@@ -132,6 +137,11 @@ class ShowPosts extends Component
     {
             Comments::find($this->selectedCommentId)->delete();
             $this->selectedCommentId=0;
+    }
+
+    public function cancelUpload()
+    {
+        $this->postImage='';
     }
 
 //     public function dehydrate()
