@@ -57,9 +57,19 @@ class MessagesController extends Controller
         $type = in_array($routeName, ['user','group'])
             ? $routeName
             : 'user';
+            $userName='';
+            if(isset($id))
+            {
+                if($id)
+                {
+                    $user=User::find($id);
+                    $userName=$user->firstname.' '.$user->lastname;
+                }
+            }
 
         return view('Chatify::pages.app', [
             'id' => $id ?? 0,
+            'userName' => $userName ?? '',
             'type' => $type ?? 'user',
             'messengerColor' => Auth::user()->messenger_color ?? $this->messengerFallbackColor,
             'dark_mode' => Auth::user()->dark_mode < 1 ? 'light' : 'dark',
