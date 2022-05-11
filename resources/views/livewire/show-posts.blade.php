@@ -100,6 +100,7 @@
                   <!-- Modal content -->
                   <div class="modal-content">
                     <span class="close" wire:click="cancelUpload()">&times;</span>
+                    <h6>Allowed Image Size 1 Mb</h6>
                     <h4>Photo Preview:</h4>
                     <div wire:loading wire:target="postImage">  <h5>Image Uploading...</h5></div>
                     @if ($postImage)

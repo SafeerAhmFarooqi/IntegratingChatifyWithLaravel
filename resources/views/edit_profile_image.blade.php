@@ -83,7 +83,7 @@
 @if($user->profile_pic)	
 <img src="{{asset('storage/user_profile_pics/'.$user->profile_pic)}}" class="img-responsive">
 @else
-<img src="{{asset('storage/user_profile_pics/user-4.jpg')}}" class="img-responsive">
+<img src="{{asset('storage/user_profile_pics/photoicon.jpg')}}" style="width: 40%; height: 40%;" class="img-responsive">
 @endif
 
  <form method="POST" action="{{route('edit_p_pic',$user->id)}}" class="form-sample" enctype="multipart/form-data">
