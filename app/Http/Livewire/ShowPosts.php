@@ -141,7 +141,8 @@ class ShowPosts extends Component
 
     public function cancelUpload()
     {
-        $this->postImage='';
+        return redirect('/');
+        //$this->postImage='';
     }
 
 //     public function dehydrate()
