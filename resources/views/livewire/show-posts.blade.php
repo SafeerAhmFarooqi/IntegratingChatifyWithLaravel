@@ -101,18 +101,27 @@
                   <div class="modal-content">
                     <span class="close" wire:click="cancelUpload()">&times;</span>
                     <h4>Photo Preview:</h4>
+                    <div wire:loading wire:target="postImage">  <h5>Image Uploading...</h5></div>
                     @if ($postImage)
+                    <h4>File Size : {{$postImage->getSize()/1000000}} Mb</h4>
                     @php
+                    $imageError='';
                          $extension = pathinfo($postImage->getFilename(), PATHINFO_EXTENSION);
     if (!in_array($extension, ['png', 'jpeg', 'bmp', 'gif', 'jpg'])) {
       $postImage='';
+      $imageError='extension';
+    }
+    if($postImage->getSize()>8900000)
+    {
+      $postImage='';
+      $imageError='size';
     }
                     @endphp
                     
                     @if ($postImage)
                     <img src="{{ $postImage->temporaryUrl() }}" style="width: 50%; height: 50%">    
                     @else
-                    {{'Please Select Valid Image File'}}    
+                    {{$imageError=='extension'?'Please Select Valid Image File' : 'Incorrect File Size'}}    
                     @endif
             
         @endif
@@ -198,7 +207,7 @@ var span = document.getElementsByClassName("close")[0];
     <strong>Success!</strong> Post Submitted Successfully ! 
     </div>
     <div class="row">
-      <div wire:loading wire:target="postImage">  <h5>Image Uploading...</h5></div>
+      
     </div>
     <br><br><br>
   </div>
