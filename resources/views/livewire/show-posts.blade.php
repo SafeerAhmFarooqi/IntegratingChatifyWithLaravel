@@ -111,7 +111,7 @@
       $postImage='';
       $imageError='extension';
     }
-    if($postImage->getSize()>8900000)
+    if($postImage->getSize()>1200000)
     {
       $postImage='';
       $imageError='size';
