@@ -96,6 +96,13 @@
     ================================================= -->
     <div class="edit-profile-container">
     <div class="block-title">
+        <div class="row">
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+           @endif
+        </div>
     <h4 class="grey"><i class="icon ion-ios-book-outline"></i>My Information</h4>
     <div class="line"></div>
     <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate</p> -->

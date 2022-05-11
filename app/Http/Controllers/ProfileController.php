@@ -98,7 +98,7 @@ class ProfileController extends Controller
             'about'=>$request->about,
         ]);
 
-        return redirect('home');
+        return back()->with('message', 'Profile Updated Successfully' );
     }
 
     /**
@@ -145,7 +145,7 @@ class ProfileController extends Controller
             'about_status'=> $request->about_status,
         ]);
 
-        return redirect('home');
+        return redirect('/');
    
     }
 
