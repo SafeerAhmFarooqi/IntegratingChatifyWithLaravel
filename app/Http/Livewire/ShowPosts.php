@@ -40,7 +40,7 @@ class ShowPosts extends Component
     {
        
         $this->validate([
-            'postImage' => 'image|mimes:png,jpeg,gif,bmp|max:9024', // 9MB Max
+            'postImage' => 'image|mimes:png,jpeg,gif,bmp|max:1024', // 1MB Max
             'postText' => 'required',
         ]);
         
