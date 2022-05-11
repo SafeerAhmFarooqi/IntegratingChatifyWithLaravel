@@ -103,7 +103,7 @@
                     <h4>Photo Preview:</h4>
                     <div wire:loading wire:target="postImage">  <h5>Image Uploading...</h5></div>
                     @if ($postImage)
-                    <h4>File Size : {{$postImage->getSize()/1000000}} Mb</h4>
+                    <h4>File Size : {{$postImage!=''?$postImage->getSize()/1000000 : ''}} Mb</h4>
                     @php
                     $imageError='';
                          $extension = pathinfo($postImage->getFilename(), PATHINFO_EXTENSION);
@@ -111,11 +111,15 @@
       $postImage='';
       $imageError='extension';
     }
-    if($postImage->getSize()>1200000)
+    if($postImage!='')
+    {
+      if($postImage->getSize()>1200000)
     {
       $postImage='';
       $imageError='size';
     }
+    }
+    
                     @endphp
                     
                     @if ($postImage)
