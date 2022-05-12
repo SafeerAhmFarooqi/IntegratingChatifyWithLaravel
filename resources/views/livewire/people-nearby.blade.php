@@ -26,15 +26,50 @@
                 <strong>Created on:</strong> <span>{{\Carbon\Carbon::parse($user->created_at)->format('F d, Y')}}</span>
               </div>
               <div class="card-hover-show">
-                 <a class="btn btn-xs fs-10 btn-bold btn-primary"   href="{{config('chatify.routes.prefix')}}/{{$user->id}}"> <i class="fa fa-comments-o pr-1"></i>  Chat</a> 
+                 <a class="btn btn-xs fs-10 btn-bold btn-primary"   href="#" onclick="openForm({{$user->id}})"> <i class="fa fa-comments-o pr-1"></i>  Chat</a> 
               </div>
             </footer>
-          </div>        
+          </div>     
+          
+            <div class="chat-popup" id="myForm_{{$user->id}}" wire:ignore.self>
+              <div style="height: 100%;">
+                {{-- <iframe style="height: 100%;" src="{{!! config('app.url').'/'.config('chatify.routes.prefix').'/'.$user->id !!}}" title="YouTube video" allowfullscreen></iframe> --}}
+                
+                <iframe style="height: 100%;" src="{{config('app.url').'/'.config('chatify.routes.prefix').'/'.$user->id}}" title="YouTube video" allowfullscreen></iframe>
+              </div>
+              <a href="#" class="btn btn-primary" style="margin: 10px 20px;" onclick="closeForm({{$user->id}})">Close Chat</a>
+            </div>  
+          
+          <script>
+            function openForm(id) {
+              polls = document.querySelectorAll('[id ^= "myForm_"]');
+              Array.prototype.forEach.call(polls, callback);
+              function callback(element, iterator) {
+                document.getElementById(element.id).style.display = "none";
+          }
+              // if(document.getElementByClassName("chat-popup").style.display = "none")
+              // {
+              //   alert('open');
+              // }
+              if(document.getElementById('myForm_'+id).style.display = "none")
+              {
+                document.getElementById('myForm_'+id).style.display = "block";
+              }
+              else
+              {
+                document.getElementById('myForm_'+id).style.display = "none";
+              }
+            }
+            
+            function closeForm(id) {
+              document.getElementById('myForm_'+id).style.display = "none";
+            }
+            </script>  
         @endforeach
     </div>   
     <div>
     </div> 
-
+    
 
 
 
@@ -91,3 +126,28 @@ function showPosition(position) {
 </script>     
     </div>  
 </div>
+
+<style>
+  .chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 50px;
+  right: 25px;
+  border: 3px solid #f1f1f1;
+  height: 50%;
+  z-index: 9;
+}
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+     </style>

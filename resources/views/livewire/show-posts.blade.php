@@ -57,7 +57,7 @@
                   
                   
                   /* The Modal (background) */
-                  .modal {
+                  .modal-2 {
                     display: none; /* Hidden by default */
                     position: fixed; /* Stay in place */
                     z-index: 1; /* Sit on top */
@@ -72,7 +72,7 @@
                   }
                   
                   /* Modal Content */
-                  .modal-content {
+                  .modal-content-2 {
                     background-color: #fefefe;
                     margin: auto;
                     padding: 20px;
@@ -95,10 +95,10 @@
                     cursor: pointer;
                   }
                   </style>
-                <div id="myModal" class="modal" wire:ignore.self>
+                <div id="myModal" class="modal-2" wire:ignore.self>
 
                   <!-- Modal content -->
-                  <div class="modal-content">
+                  <div class="modal-content-2">
                     <span class="close" wire:click="cancelUpload()">&times;</span>
                     <h6>Allowed Image Size 1 Mb</h6>
                     <h4>Photo Preview:</h4>
