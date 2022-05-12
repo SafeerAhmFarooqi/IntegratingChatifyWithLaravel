@@ -53,6 +53,12 @@ class MessagesController extends Controller
      */
     public function index( $id = null)
     {
+       $leftBar=false;
+        if($id==-1)
+        {
+            $leftBar=true;
+            $id=null;
+        }
         $routeName= FacadesRequest::route()->getName();
         $type = in_array($routeName, ['user','group'])
             ? $routeName
@@ -70,6 +76,7 @@ class MessagesController extends Controller
         return view('Chatify::pages.app', [
             'id' => $id ?? 0,
             'userName' => $userName ?? '',
+            'leftBar' => $leftBar,
             'type' => $type ?? 'user',
             'messengerColor' => Auth::user()->messenger_color ?? $this->messengerFallbackColor,
             'dark_mode' => Auth::user()->dark_mode < 1 ? 'light' : 'dark',

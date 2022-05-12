@@ -1,6 +1,67 @@
 @include('Chatify::layouts.headLinks')
 <div class="messenger">
     {{-- ----------------------Users/Groups lists side---------------------- --}}
+    @if ($leftBar)
+    <div class="messenger-listView">
+        {{-- Header and search bar --}}
+        <div class="m-header">
+            <nav>
+                <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a>
+                {{-- header buttons --}}
+               {{--  <nav class="m-header-right">
+                    <a href="#"><i class="fas fa-cog settings-btn"></i></a>
+                    <a href="#" class="listView-x"><i class="fas fa-times"></i></a>
+                </nav> --}}
+            </nav>
+            {{-- Search input --}}
+            <input type="text" class="messenger-search" placeholder="Search" />
+            {{-- Tabs --}}
+            <div class="messenger-listView-tabs">
+                <a href="#" @if($type == 'user') class="active-tab" @endif data-view="users">
+                    <span class="far fa-user"></span> People</a>
+               {{-- <a href="#" @if($type == 'group') class="active-tab" @endif data-view="groups">
+                    <span class="fas fa-users"></span> Groups</a> --}}
+            </div>
+        </div>
+        {{-- tabs and lists --}}
+        <div class="m-body contacts-container">
+           {{-- Lists [Users/Group] --}}
+           {{-- ---------------- [ User Tab ] ---------------- --}}
+           <div class="@if($type == 'user') show @endif messenger-tab users-tab app-scroll" data-view="users">
+
+               {{-- Favorites --}}
+               <div class="favorites-section">
+                <p class="messenger-title">Favorites</p>
+                <div class="messenger-favorites app-scroll-thin"></div>
+               </div>
+
+               {{-- Saved Messages --}}
+               {!! view('Chatify::layouts.listItem', ['get' => 'saved']) !!}
+
+               {{-- Contact --}}
+               <div class="listOfContacts" style="width: 100%;height: calc(100% - 200px);position: relative;"></div>
+
+           </div>
+
+           {{-- ---------------- [ Group Tab ] ---------------- --}}
+           <div class="@if($type == 'group') show @endif messenger-tab groups-tab app-scroll" data-view="groups">
+                {{-- items --}}
+                <p style="text-align: center;color:grey;margin-top:30px">
+                    <a target="_blank" style="color:{{$messengerColor}};" href="https://chatify.munafio.com/notes#groups-feature">Click here</a> for more info!
+                </p>
+             </div>
+
+             {{-- ---------------- [ Search Tab ] ---------------- --}}
+           <div class="messenger-tab search-tab app-scroll"app-scroll" data-view="search">
+                {{-- items --}}
+                <p class="messenger-title">Search</p>
+                <div class="search-records">
+                    <p class="message-hint center-el"><span>Type to search..</span></p>
+                </div>
+             </div>
+        </div>
+    </div>
+    @else
     <div style="display: none">
         <div class="messenger-listView">
             {{-- Header and search bar --}}
@@ -62,6 +123,8 @@
             </div>
         </div>
     </div>
+    @endif
+    
 
     {{-- ----------------------Messaging side---------------------- --}}
     <div class="messenger-messagingView">
@@ -77,9 +140,14 @@
                 </div>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
-                    {{-- <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a>
-                    <a href="/"><i class="fas fa-home"></i></a>
-                    <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a> --}}
+                    {{-- <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a> --}}
+                    @if ($leftBar)
+                    <a href="/"><i class="fas fa-home"></i></a>    
+                    @else
+                    {{-- <a href="/"><i class="fas fa-home"></i></a> --}}
+                    @endif
+                    
+                    {{-- <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a> --}}
                 </nav>
             </nav>
         </div>
