@@ -16,7 +16,9 @@ class PeopleNearby extends Component
 
     public function render()
     {
-        $users=User::where('id','!=',Auth::user()->id)->get();
+        $users=User::where('id','!=',Auth::user()->id)
+        ->orderBy('created_at','desc')
+        ->get();
         $this->updateCurrentUserLocation();
         return view('livewire.people-nearby',[
             'users'=>$users,
