@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Voucher;
 use App\Models\UseVoucher;
 use Auth;
+use Illuminate\Support\Str;
 
 class VoucherController extends Controller
 {
@@ -43,7 +44,18 @@ class VoucherController extends Controller
             $image='null';
         }
 
-        $code=time();
+        $code=mt_rand(1000000000, 9999999999);
+        while (true) {
+          $voucher=Voucher::where('code',$code)->first();
+          if(Voucher::where('code',$code)->first())
+          {
+            $code=mt_rand(1000000000, 9999999999);
+          }
+          else
+          {
+            break;
+          }
+        }
 
 
       	$voucher= new Voucher;
@@ -73,37 +85,43 @@ class VoucherController extends Controller
 
      public function check_voucher(Request $request)
     {
-
         $query=Voucher::where('code',$request->code)->first();
+        if ($query) {
+          if($query->status == 1){
 
-        if($query->status == 1){
 
-
-        $use_voucher= new UseVoucher;
-
-        $use_voucher->title=$query->title;
-        $use_voucher->code=$query->code;
-        $use_voucher->image=$query->image;
-        $use_voucher->discount=$query->discount;
-        $use_voucher->shop_id=$query->shop_id;
-        $use_voucher->location=$query->location;
-        $use_voucher->shop_category=$query->shop_category;
-        $use_voucher->sub_category=$query->sub_category;
-        $use_voucher->user_email=$request->user_email;
-
-        $use_voucher->save();
-
-        Voucher::where('code',$query->code)->update([
-
-            'status'=> 0,
-        ]);
-
-        return redirect('Shop/dashboard');
-
-        }else{
-
-          return "already use this voucher";
-        }
+            $use_voucher= new UseVoucher;
+    
+            $use_voucher->title=$query->title;
+            $use_voucher->code=$query->code;
+            $use_voucher->image=$query->image;
+            $use_voucher->discount=$query->discount;
+            $use_voucher->shop_id=$query->shop_id;
+            $use_voucher->location=$query->location;
+            $use_voucher->shop_category=$query->shop_category;
+            $use_voucher->sub_category=$query->sub_category;
+            $use_voucher->user_email=$request->user_email;
+    
+            $use_voucher->save();
+    
+            Voucher::where('code',$query->code)->update([
+    
+                'status'=> 0,
+            ]);
+    
+            return back()->with('message','Voucher Verified Successfully');
+    
+            }
+            else
+            {
+              return back()->with('message','Voucher Already Used');
+            }
+}
+else
+{
+  return back()->with('message','Wrong Voucher Code');
+}
+        
 
     
     }
