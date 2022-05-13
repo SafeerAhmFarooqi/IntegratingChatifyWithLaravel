@@ -231,6 +231,8 @@ Route::group(['middleware' => ['auth:shop']], function () {
 //Shop Vouchers
 Route::get('Shop/vouchers',[App\Http\Controllers\Shop\VoucherController::class, 'vouchers']);
 
+Route::post('Shop/vouchers/delete/{id}',[App\Http\Controllers\Shop\VoucherController::class, 'voucherDelete'])->name('voucher.delete');
+
 Route::get('Shop/create_vouchers',[App\Http\Controllers\Shop\VoucherController::class, 'create_vouchers']);
 
 Route::post('Shop/store_voucher',[App\Http\Controllers\Shop\VoucherController::class, 'store_voucher']);
