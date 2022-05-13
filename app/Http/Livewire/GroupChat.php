@@ -36,17 +36,17 @@ class GroupChat extends Component
 
     public function submit()
     {
+       
         $this->validate([
-            'postImage' => 'image|max:1024', // 1MB Max
+            'postImage' => 'image|mimes:png,jpeg,gif,bmp|max:1024', // 1MB Max
             'postText' => 'required',
         ]);
-
+        
         if($this->postImage)
         {
             $file=$this->postImage;
-            $filename= $file->getClientOriginalName();
-            $filename= time(). '.' .$filename;
-            $file->storeAs('user_post_pics',$filename,'public');
+            $filename= $file->hashName();
+            $file->store('user_post_pics/','public');
  
              $pic=$filename;
             
@@ -67,7 +67,7 @@ class GroupChat extends Component
          $this->postText='';
     }
 
-
+    
     public function render()
     {
         $posts= Post::with(['comments' => function ($query) {
