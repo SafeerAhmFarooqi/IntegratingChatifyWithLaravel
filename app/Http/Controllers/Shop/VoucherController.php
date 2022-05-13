@@ -108,5 +108,18 @@ class VoucherController extends Controller
     
     }
 
+    public function voucherDelete($id)
+    {
+      //return $id;
+
+      $result=Voucher::find($id)->delete();
+      if ($result) {
+        return back()->with('message', 'Voucher Deleted Successfully' );
+      } else {
+        return back()->with('message', 'Error Deleting Voucher' );
+      }
+            
+    }
+
     
 }

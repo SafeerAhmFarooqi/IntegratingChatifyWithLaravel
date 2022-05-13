@@ -20,7 +20,14 @@
         <div class="col-12 col-lg-12">
 
  @include('Shop.shop_layouts.topbar');
-
+ <div class="row">
+    @if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+   @endif
+ </div>
+ 
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -51,8 +58,10 @@
                                                 <td>{{$voucher->code}}</td>
                                                 <td>{{$voucher->discount}}</td>
                                                 <td>
-                                                    
-                                                    <a href="" class="btn btn-danger">Delete</a>
+                                                    <form action="{{route('voucher.delete',$voucher->id)}}" method="post">
+                                                    @csrf
+                                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             @endforeach       
