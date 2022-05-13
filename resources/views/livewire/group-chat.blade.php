@@ -5,56 +5,215 @@
         <!-- Post Create Box
         ================================================= -->
         <div class="create-post">
-          <form  wire:submit.prevent="submit" id="postform"  enctype="multipart/form-data">
-          <div class="row">
-            <div class="col-md-8">
-              <div class="form-group" style="width:100%">
-                <!-- <img src="images/users/user-1.jpg" alt="" class="profile-photo-md" /> -->
-      
-                                            
-                      @if(Auth::user()->profile_pic)
-                      <img src="{{asset('storage/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
-                      @else
-                      <img src="{{asset('storage/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
-                      @endif
-                   
-                  
-                <textarea wire:model.defer="postText" rows="2" placeholder="What are you thinking?" id="post_text" class="form-control"></textarea>
+          <div>
+            <form  wire:submit.prevent="submit" id="postform"  enctype="multipart/form-data">
+              {{-- @if ($postImage)
+              Photo Preview:
+              <img src="{{ $postImage->temporaryUrl() }}" style="width: 100%">
+          @endif --}}
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group" style="width:100%">
+                    <!-- <img src="images/users/user-1.jpg" alt="" class="profile-photo-md" /> -->
+          
+                                                
+                          @if(Auth::user()->profile_pic)
+                          <img src="{{asset('storage/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
+                          @else
+                          <img src="{{asset('storage/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
+                          @endif
+                       
+                      
+                    <textarea wire:model.defer="postText" rows="2" placeholder="What are you thinking?" id="post_text" class="form-control"></textarea>
+                    
+                </div>
                 
-            </div>
-            
-                @error('postText') <span class="error" style="color: red">{{ $message }}</span> @enderror
-            
-            
-            </div>
-            <div class="col-md-4">
-              <div class="tools">
-                <ul class="publishing-tools list-inline">
-      
-      <div class="image-upload">
-      <label for="file-input" >
-      <img src="https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-13.png" style="pointer-events: none;width:30px">
-      </label>
-      
-      <input  type="file" id="file-input" wire:model.defer="postImage" accept="image/png, image/jpeg">
-      
-      </div>
-      
-      
-      <input type="hidden" name="category" value="police">
-      <input type="hidden" name="privacy" value="public">
-                  
-                </ul>
+                    @error('postText') <span class="error" style="color: red">{{ $message }}</span> @enderror
                 
-      
-                 <button type="submit" class="btn btn-primary pull-right">Publish</button>
-                 @error('postImage') <span class="error" style="color: red">{{ $message }}</span> @enderror
-              </div>
-            </div>
+                
+                </div>
+                <div class="col-md-4">
+                  <div class="tools">
+                    <ul class="publishing-tools list-inline">
+          
+          <div class="image-upload">
+          <label for="file-input" >
+          <img src="{{asset('assets/upload.png')}}" style="pointer-events: none;width:30px">
+          </label>
+          <input  type="file" id="file-input" wire:model="postImage" accept="image/*">
+          
+          
           </div>
-        </form>
+          
+          
+          
+                      
+                    </ul>
+                    
+          
+                     <button type="submit" class="btn btn-primary pull-right"  id="publish">Publish</button>
+                     @error('postImage') <span class="error" style="color: red">{{ $message }}</span> @enderror
+                  </div>
+                  <style>
+                    
+                    
+                    /* The Modal (background) */
+                    .modal-2 {
+                      display: none; /* Hidden by default */
+                      position: fixed; /* Stay in place */
+                      z-index: 1; /* Sit on top */
+                      padding-top: 100px; /* Location of the box */
+                      left: 0;
+                      top: 0;
+                      width: 100%; /* Full width */
+                      height: 100%; /* Full height */
+                      overflow: auto; /* Enable scroll if needed */
+                      background-color: rgb(0,0,0); /* Fallback color */
+                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                    }
+                    
+                    /* Modal Content */
+                    .modal-content-2 {
+                      background-color: #fefefe;
+                      margin: auto;
+                      padding: 20px;
+                      border: 1px solid #888;
+                      width: 80%;
+                    }
+                    
+                    /* The Close Button */
+                    .close {
+                      color: #aaaaaa;
+                      float: right;
+                      font-size: 28px;
+                      font-weight: bold;
+                    }
+                    
+                    .close:hover,
+                    .close:focus {
+                      color: #000;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+                    </style>
+                  <div id="myModal" class="modal-2" wire:ignore.self>
+  
+                    <!-- Modal content -->
+                    <div class="modal-content-2">
+                      <span class="close" wire:click="cancelUpload()">&times;</span>
+                      <h6>Allowed Image Size 1 Mb</h6>
+                      <h4>Photo Preview:</h4>
+                      <div wire:loading wire:target="postImage">  <h5>Image Uploading...</h5></div>
+                      @if ($postImage)
+                      <h4>File Size : {{$postImage!=''?$postImage->getSize()/1000000 : ''}} Mb</h4>
+                      @php
+                      $imageError='';
+                           $extension = pathinfo($postImage->getFilename(), PATHINFO_EXTENSION);
+      if (!in_array($extension, ['png', 'jpeg', 'bmp', 'gif', 'jpg'])) {
+        $postImage='';
+        $imageError='extension';
+      }
+      if($postImage!='')
+      {
+        if($postImage->getSize()>1200000)
+      {
+        $postImage='';
+        $imageError='size';
+      }
+      }
+      
+                      @endphp
+                      
+                      @if ($postImage)
+                      <img src="{{ $postImage->temporaryUrl() }}" style="width: 50%; height: 50%">    
+                      @else
+                      {{$imageError=='extension'?'Please Select Valid Image File' : 'Incorrect File Size'}}    
+                      @endif
+              
+          @endif
+          <div class="row">
+            @if ($postImage)
+            <a class="btn btn-primary" style="margin-top: 2%;" onclick="document.getElementById('myModal').style.display='none'">Upload</a>    
+            @endif
+            
+            <a class="btn btn-danger" style="margin-left: 2%;margin-top: 2%;" id="cancel" wire:click="cancelUpload()" onclick="document.getElementById('myModal').style.display='none'">{{$postImage?'Cancel' : 'Back'}}</a>
+          </div>
+                    </div>
+                  
+                  </div>
+                  <div>
+                    <script>
+                        // $(document).ready(function(){
+                        //     @this.name="Farooqi";
+                        // });
+                
+                      
+                
+                
+                     window.addEventListener('livewire-upload-start', event => {
+                         // alert("Upload Started");
+                        // document.getElementById("publish").disabled = true;
+                        // Get the modal
+  var modal = document.getElementById("myModal");
+  
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+  
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+                         document.getElementById("publish").style.display = "none";
+                         modal.style.display = "block";
+                         span.onclick = function() {
+    modal.style.display = "none";
+  }
+                     
+                })
+                
+                </script>     
+                    </div>  
+  
+                    <div>
+                      <script>
+                          // $(document).ready(function(){
+                          //     @this.name="Farooqi";
+                          // });
+                  
+                        
+                  
+                  
+                       window.addEventListener('livewire-upload-finish', event => {
+                           // alert("Upload Finished");
+                         //  document.getElementById("publish").disabled = false;
+                           document.getElementById("publish").style.display = "block";
+                       
+                  })
+                  </script>  
+                  <script>
+                    // $(document).ready(function(){
+                    //     @this.name="Farooqi";
+                    // });
+            
+                  
+            
+            
+                 window.addEventListener('livewire-upload-error', event => {
+                      alert("Error Uploading Image");
+                   //  document.getElementById("publish").disabled = false;
+                    // document.getElementById("publish").style.display = "block";
+                 
+            })
+            </script>   
+                      </div>  
+  
+                </div>
+              </div>
+            </form>
+          </div>
         <div class="alert alert-success" id="message" style="display:none">
       <strong>Success!</strong> Post Submitted Successfully ! 
+      </div>
+      <div class="row">
+        
       </div>
       <br><br><br>
     </div>
