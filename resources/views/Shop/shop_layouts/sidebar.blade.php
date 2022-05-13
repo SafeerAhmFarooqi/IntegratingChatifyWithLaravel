@@ -66,7 +66,7 @@
                 class="sidebar-item ">
                 <a href="check" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
-                    <span>Chech Voucher</span>
+                    <span>Check Voucher</span>
                 </a>
             </li>
 
