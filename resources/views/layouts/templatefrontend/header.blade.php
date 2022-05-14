@@ -83,7 +83,7 @@
             <ul class="nav navbar-nav navbar-right main-menu">
                
               <li class="dropdown">
-                <a href="index.php"  role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->email }}  </a>
+                <a href="/"  role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->email }}  </a>
                    
               </li>
               <li class="dropdown">

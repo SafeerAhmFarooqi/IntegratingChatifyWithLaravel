@@ -34,7 +34,7 @@
         <!-- Sign Up Form
         ================================================= -->
         <div class="sign-up-form">
-                    <a href="index.html" class="logo"><img src="{{asset('user_frontend/images/logo.png')}}" alt="Friend Finder"/></a>
+                    <a href="/" class="logo"><img src="{{asset('user_frontend/images/logo.png')}}" alt="Friend Finder"/></a>
                     <h2 class="text-white">Find My Friends</h2>
                     <div class="line-divider"></div>
                     <div class="form-wrapper">
