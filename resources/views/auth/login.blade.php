@@ -42,7 +42,7 @@
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
              </button>
-             <a class="navbar-brand" href="index.php"><img src="{{asset('user_frontend/images/logo.png')}}" alt="logo" /></a>
+             <a class="navbar-brand" href="/"><img src="{{asset('user_frontend/images/logo.png')}}" alt="logo" /></a>
            </div>
   
          </div><!-- /.container -->
