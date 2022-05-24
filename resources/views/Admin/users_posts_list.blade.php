@@ -57,8 +57,8 @@
                                                 <td>{{$user_posts->comments_count}}</td>
                                                 <td>
                                                    
-                                                    <a href="{{route('Admin.user-post.view',$user_posts->id)}}" class="btn btn-success">View Post</a>
-                                                    <a href="{{route('Admin.user-post.delete',$user_posts->id)}}" class="btn btn-danger">Delete Post</a>
+                                                    <a href="{{route('Admin.user-post.view',$user_posts->id)}}" class="btn btn-success smallbtn">View Post</a>
+                                                    <a href="{{route('Admin.user-post.delete',$user_posts->id)}}" class="btn btn-danger smallbtn">Delete Post</a>
 
                                                     
                                                     

@@ -27,6 +27,7 @@
                         <div class="card-header">
                             <h4>Sub Categories</h4>
                         </div>
+                        <br><br>
                         <div class="card-body">
                             <div class="col-2">
                                     <h3><a href="{{route('sub_category.create')}}" class="btn btn-primary">Add</a></h3>

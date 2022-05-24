@@ -35,6 +35,7 @@
                         <div class="card-header">
                             <h4>User PDF List</h4>
                         </div>
+                        <br><br>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 table-responsive">
@@ -61,11 +62,11 @@
                                                 <td>{{$user->active_status?'Active' : 'De-active'}}</td>
                                                 <td>
                                                    
-                                                    <a href="user_status/active/{{$user->id}}" class="btn btn-success">Active</a>
-                                                    <a href="user_status/de_active/{{$user->id}}" class="btn btn-danger">De-Active</a>
+                                                    <a href="user_status/active/{{$user->id}}" class="btn btn-success smallbtn">Active</a>
+                                                    <a href="user_status/de_active/{{$user->id}}" class="btn btn-danger smallbtn">De-Active</a>
                                                     @if ($user->file_path)
-                                                    <a href="{{route('user-document.download',[$user->id])}}" class="btn btn-success">Download Pdf</a>
-                                                    <a href="{{route('user-document.delete',[$user->id])}}" class="btn btn-danger">Delete Pdf</a>    
+                                                    <a href="{{route('user-document.download',[$user->id])}}" class="btn btn-success smallbtn">Download Pdf</a>
+                                                    <a href="{{route('user-document.delete',[$user->id])}}" class="btn btn-danger smallbtn">Delete Pdf</a>    
                                                     @endif
                                                     
                                                 </td>

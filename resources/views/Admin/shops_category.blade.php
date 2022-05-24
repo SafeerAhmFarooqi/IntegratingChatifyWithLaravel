@@ -27,6 +27,7 @@
                         <div class="card-header">
                             <h4>Categories</h4>
                         </div>
+                        <br><br>
                         <div class="card-body">
                             <div class="col-2">
                                     <h3><a href="{{route('shops_category.create')}}" class="btn btn-primary">Add</a></h3>
@@ -47,12 +48,12 @@
                                                 <td>{{$shops_cat->id}}</td>
                                                 <td>{{$shops_cat->category}}</td>
                                                 <td>
-                                                    <a href="{{route('shops_category.edit',$shops_cat->id)}}" class="btn btn-secondary">Edit</a>
+                                                    <a href="{{route('shops_category.edit',$shops_cat->id)}}" class="btn btn-secondary smallbtn" style="float:left">Edit</a>
                                                     <form method="POST" action="{{route('shops_category.destroy',$shops_cat->id)}}">
                                                     @csrf
                                                     @method('delete')
                                                 
-                                                   <button class="btn btn-danger">Delete</button>
+                                                   <button class="btn btn-danger smallbtn">Delete</button>
                                                   </form>
                                                    
                                                                                                          

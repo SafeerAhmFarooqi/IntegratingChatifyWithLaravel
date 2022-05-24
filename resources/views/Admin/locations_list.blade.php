@@ -27,6 +27,7 @@
                         <div class="card-header">
                             <h4>Locations</h4>
                         </div>
+                        <br><br>
                         <div class="card-body">
                             <div class="col-2">
                                     <a href="{{route('locations.create')}}" class="btn btn-primary">Add</a>
@@ -47,13 +48,13 @@
                                                 <td>{{$location->id}}</td>
                                                 <td>{{$location->location}}</td>
                                                 <td>
-                                                    <a href="{{route('locations.edit',$location->id)}}" class="btn btn-secondary">Edit</a>
+                                                    <a href="{{route('locations.edit',$location->id)}}" class="btn btn-secondary smallbtn" style="float:left">Edit</a>
 
                                                     <form method="POST" action="{{route('locations.destroy',$location->id)}}">
                                                     @csrf
                                                     @method('delete')
                                                 
-                                                   <button class="btn btn-danger">Delete</button>
+                                                   <button class="btn btn-danger smallbtn">Delete</button>
                                                   </form>
 
                                                 </td>

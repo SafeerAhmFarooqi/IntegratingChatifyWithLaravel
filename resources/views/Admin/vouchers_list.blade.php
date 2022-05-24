@@ -27,6 +27,7 @@
                         <div class="card-header">
                             <h4>Vouchers List</h4>
                         </div>
+                        <br><br>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 table-responsive">
@@ -37,6 +38,7 @@
                                                 <th>Title</th>
                                                 <th>Code</th>
                                                 <th>Discount</th>
+                                                <th>Shop</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -45,7 +47,8 @@
                                                 <td>{{$vouchers->id}}</td>
                                                 <td>{{$vouchers->title}}</td>
                                                 <td>{{$vouchers->code}}</td>
-                                                <td>{{$vouchers->discount}}</td>
+                                                <td>{{$vouchers->discount}} €</td>
+                                                <td>shop emal id here</td>
                                                 
                                             </tr>
                                             @endforeach       
