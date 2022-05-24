@@ -8,6 +8,8 @@ use App\Models\Location;
 use App\Models\Shop_Category;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Voucher;
+use App\Models\UseVoucher;
 
 class ShopController extends Controller
 {
@@ -20,7 +22,17 @@ class ShopController extends Controller
       }
       else
       {
-        return view('Shop.dashboard');
+        $voucherCount=Voucher::all()->count();
+        $vouchers=UseVoucher::where('shop_id',Auth::user()->id)->pluck('discount');
+        $totalSpend=0;
+        foreach ($vouchers as $voucher) {
+          
+          $totalSpend+=$voucher;
+        } 
+        return view('Shop.dashboard',[
+          'voucherCount'=>$voucherCount,
+          'totalSpend'=>$totalSpend,
+        ]);
       }
         
     }
