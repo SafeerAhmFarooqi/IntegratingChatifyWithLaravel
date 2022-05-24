@@ -23,11 +23,11 @@ class ShopController extends Controller
       else
       {
         $voucherCount=Voucher::all()->count();
-        $vouchers=UseVoucher::where('shop_id',Auth::user()->id)->pluck('discount');
+        $vouchersDiscount=UseVoucher::where('shop_id',Auth::user()->id)->pluck('discount');
         $totalSpend=0;
-        foreach ($vouchers as $voucher) {
+        foreach ($vouchersDiscount as $discount) {
           
-          $totalSpend+=$voucher;
+          $totalSpend+=$discount;
         } 
         return view('Shop.dashboard',[
           'voucherCount'=>$voucherCount,
