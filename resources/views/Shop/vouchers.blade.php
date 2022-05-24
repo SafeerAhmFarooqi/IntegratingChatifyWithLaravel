@@ -1,4 +1,4 @@
- @include('Shop.shop_layouts.header');
+@include('Shop.shop_layouts.header');
 
 </head>
 
@@ -32,12 +32,14 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Graphical Views</h4>
+                            <h4>Vouchers List</h4>
                         </div>
                         <div class="card-body">
-                            <div class="col-2">
-                                    <a href="create_vouchers" class="btn btn-primary">Create</a>
+                            <div class="col-4">
+                                    <a href="create_vouchers" class="btn btn-primary btn-xs">Create New Voucher</a>
                             </div>
+
+                            <br><br><br>
                             <div class="row">
                                 <div class="col-12 table-responsive">
                                     <table id="order-listing" class="table" style="font-size:15px;">
@@ -56,11 +58,11 @@
                                                 <td>{{$voucher->id}}</td>
                                                 <td>{{$voucher->title}}</td>
                                                 <td>{{$voucher->code}}</td>
-                                                <td>{{$voucher->discount}}</td>
+                                                <td>{{$voucher->discount}}  €</td>
                                                 <td>
                                                     <form action="{{route('voucher.delete',$voucher->id)}}" method="post">
                                                     @csrf
-                                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                                        <button class="btn btn-danger btn-xs btnsmall" type="submit">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>
