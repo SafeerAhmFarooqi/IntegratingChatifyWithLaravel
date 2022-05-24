@@ -134,13 +134,13 @@
                 </a>
             </li>
 
-             <li
+             {{-- <li
                 class="sidebar-item ">
                 <a href="#" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span> Groups Posts</span>
                 </a>
-            </li>
+            </li> --}}
 
              <li
                 class="sidebar-item ">
