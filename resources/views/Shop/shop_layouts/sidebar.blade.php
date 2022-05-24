@@ -2,7 +2,7 @@
     <div class="sidebar-header">
         <div class="d-flex justify-content-between">
             <div class="logo" >
-                <a href="/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5uP5R1Nl8JEsI0ncCLnXWnRtkGtgk7BU4FMfnh55BQqI5dYEs1gC1DAJ5D4ACiAzf37A&usqp=CAU" alt="Logo" style="height:50%"></a>
+                <a href="/"><img src="{{asset('assets/logo1.png')}}" alt="Logo" style="height:50%"></a>
             </div>
             <div class="toggler">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
