@@ -15,11 +15,11 @@
                 <div class="form-group" style="width:100%">
                   <!-- <img src="images/users/user-1.jpg" alt="" class="profile-photo-md" /> -->
         
-                                              
+                                              <h1 style="height: " ></h1>
                         @if(Auth::user()->profile_pic)
-                        <img src="{{asset('storage/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
+                        <img src="{{asset('storage/user_profile_pics/'.Auth::user()->profile_pic)}}" alt="logo" style="width:60px;height:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
                         @else
-                        <img src="{{asset('storage/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
+                        <img src="{{asset('storage/user_profile_pics/photoicon.jpg')}}" alt="logo" style="width:60px;height:60px;border-radius:50%;margin-top:-10px" class="profile-photo-md">
                         @endif
                      
                     
