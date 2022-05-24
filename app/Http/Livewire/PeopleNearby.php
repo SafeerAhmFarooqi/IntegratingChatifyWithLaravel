@@ -17,6 +17,7 @@ class PeopleNearby extends Component
     public function render()
     {
         $users=User::where('id','!=',Auth::user()->id)
+        ->where('active_status',true)
         ->orderBy('created_at','desc')
         ->get();
         $this->updateCurrentUserLocation();
