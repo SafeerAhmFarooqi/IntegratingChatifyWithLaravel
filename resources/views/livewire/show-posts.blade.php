@@ -219,124 +219,74 @@ var span = document.getElementsByClassName("close")[0];
   
     <div id="post-list">
         @foreach ($posts as $post)
-        <div class="post-content">
-          <div class="post-container">
-              <img src="{{$post->user->profile_pic ?asset('storage/user_profile_pics/'.$post->user->profile_pic) : asset('storage/user_profile_pics/photoicon.jpg') }}" class="profile-photo-md pull-left">
-              <div class="post-detail" id="post-data">
-                  <div class="user-info"><h5>
-                      <a href="{{$post->user->id==Auth::user()->id?route('profile.index') : route('users.show',$post->user->id)}}" class="profile-link">{{$post->user->firstname.' '.$post->user->lastname}}</a>
-                      <p style="float:right;">
-                          <i class="icon ion-ios-calendar-outline"></i> {{ \Carbon\Carbon::parse($post->created_at)->format('F d, Y') }} &nbsp; 
-                          <i class="icon ion-ios-clock-outline"></i> {{ \Carbon\Carbon::parse($post->created_at)->format('h:i:s') }}
-                      </p>
-                  </h5>
-              </div>
-              <div class="row">
-                
-                    {{$post->post_text}}
-                    @if (Auth::user()->id==$post->user_id)
-                    <a href="javascript:;" wire:click="selectPostId({{$post->id}})" style="float: right" data-toggle="modal" data-target="#fullHeightModalRight"><i class="icon ion-ios-trash-outline"></i></a>    
-                    @endif    
-              </div>
-              
-                  @if ($post->post_image)
-                  <img src="{{$post->post_image ?asset('storage/user_post_pics/'.$post->post_image) : asset('storage/user_profile_pics/photoicon.jpg') }}" style="width: 100%" />    
-                  @endif
-             
 
-                  <br>  <br> 
-                       <form  wire:submit.prevent="saveComment"   class="form_statusinput">
-                  <textarea class="form-control comment" wire:model.defer="commentText" placeholder="write a comment..." rows="2"></textarea>
-                  <br>
+        <div class="post-content">
+              <img src="{{$post->post_image ?asset('storage/user_post_pics/'.$post->post_image) : asset('storage/user_profile_pics/photoicon.jpg') }}" alt="post-image" class="img-responsive post-image">
+              <div class="post-container">
+                <img src="{{$post->user->profile_pic ?asset('storage/user_profile_pics/'.$post->user->profile_pic) : asset('storage/user_profile_pics/photoicon.jpg') }}" alt="user" class="profile-photo-md pull-left">
+                <div class="post-detail">
+                  <div class="user-info">
+                    <h5><a href="timeline.html" class="profile-link">{{$post->user->firstname.' '.$post->user->lastname}}</a>  </h5>
+                    <p class="text-muted">Published a Post {{ \Carbon\Carbon::parse($post->created_at)->format('F d, Y') }} {{ \Carbon\Carbon::parse($post->created_at)->format('h:i:s') }} </p>
+                  </div>
+                  <div class="reaction">
+                     
+                   
+ @if (Auth::user()->id==$post->user_id)
+  <a href="javascript:;" wire:click="selectPostId({{$post->id}})" class="btn text-red"><i class="icon ion-ios-trash-outline" data-toggle="modal" data-target="#fullHeightModalRight"></i> 
+                    </a>    
+                    @endif  
+
+
+                    </a>
+                  </div>
+                  <div class="line-divider"></div>
+                  <div class="post-text">
+                    <p>{{$post->post_text}}  </p>
+                  </div>
+                  <div class="line-divider"></div>
+
+
+@foreach ($post->comments as $comment)
+                  <div class="post-comment">
+                    <img src="{{$comment->user->profile_pic ?asset('storage/user_profile_pics/'.$comment->user->profile_pic) : asset('storage/user_profile_pics/photoicon.jpg') }}" alt="" class="profile-photo-sm">
+
+                    <p><a href="timeline.html" class="profile-link">{{$comment->user->firstname.' '.$comment->user->lastname}}</a> 
+                       @if (Auth::user()->id==$comment->user_id)
+                    
+                    <a href="javascript:;" wire:click="selectCommentId({{$comment->id}})" style="float: right" data-toggle="modal" data-target="#fullHeightModalRightComments"><i class="icon ion-ios-trash-outline"></i></a>    
+                    @endif
+
+                    <br> {{$comment->comment}} 
+
+                     </p>
+
+                  </div>
+     
+  @endforeach             
+                  <div class="post-comment">
+                <form  wire:submit.prevent="saveComment" class="col-sm-12">
+                  <textarea class="col-sm-9" wire:model.defer="commentText" placeholder="write a comment..." rows="1"></textarea>
+                   
                   
                    
-                  <input type="submit"  class="btn btn-info pull-right" wire:click="currentId({{$post->user->id}},{{$post->id}})">
+                  <input type="submit"  class="btn btn-info profile-photo-sm col-sm-3" wire:click="currentId({{$post->user->id}},{{$post->id}})" value="Comment">
 
               </form>
 
 
-<div class="clearfix"></div>
-            
+ 
+                  </div>
+                </div>
+              </div>
+            </div>
 
-  
-@foreach ($post->comments as $comment)
-{{-- old commnets starts --}}
-{{-- <div class="post-container">
+
+
+
+
+
      
-<img src="{{$comment->user->profile_pic ?asset('storage/user_profile_pics/'.$comment->user->profile_pic) : asset('storage/user_profile_pics/photoicon.jpg') }}" alt="" class="img-circle" class="profile-photo-sm" style="height:40px;min-width:40px;max-width:40px;">
-
-    <p><a href="userprofile.php?id= " class="profile-link">&nbsp;{{$comment->user->firstname.' '.$comment->user->lastname}}</a> {{-- <i class="em em-laughing"></i>  </p>
-    <div class="container">{{$comment->comment}}</div>  
-    
-
-    
-    
-    
-    
-  </div>  --}}
-{{-- oold comments end --}}
-
-
-{{-- new comments start --}}
-
-<div class="post-content">
-<div class="post-container">
-    <img src="{{$comment->user->profile_pic ?asset('storage/user_profile_pics/'.$comment->user->profile_pic) : asset('storage/user_profile_pics/photoicon.jpg') }}" class="profile-photo-md pull-left">
-    <div class="post-detail" id="post-data">
-        <div class="user-info"><h5>
-            <a href="" class="profile-link">{{$comment->user->firstname.' '.$comment->user->lastname}}</a>
-            
-        </h5>
-    </div>
-    <div class="post-text">
-        <p>{{$comment->comment}} 
-          @if (Auth::user()->id==$comment->user_id)
-          <a href="javascript:;" wire:click="selectCommentId({{$comment->id}})" style="float: right" data-toggle="modal" data-target="#fullHeightModalRightComments"><i class="icon ion-ios-trash-outline"></i></a>    
-          @endif
-          
-            </p>
-            
-        </div>
-</div>          
-</div>
-</div> 
-
-
-
-{{-- new comments end --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  @endforeach
-
-
-
-
-          </div>          
-      </div>
-    </div> 
         @endforeach
         <div
   x-data="{
