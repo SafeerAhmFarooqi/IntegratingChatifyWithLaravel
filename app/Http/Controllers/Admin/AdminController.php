@@ -28,7 +28,24 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        return view('Admin.dashboard');
+        $userCount=User::all()->count();
+        $documentCount=User::where('file_path','!=','')->count();
+        $activeUserCount=User::where('active_status',true)->count();
+        $blockUserCount=User::where('active_status',false)->count();
+        $groupCount=Group::all()->count();
+        $shopCount=Shop::all()->count();
+        $locationCount=Location::all()->count();
+        $voucherCount=Voucher::all()->count();
+        return view('Admin.dashboard',[
+            'userCount'=>$userCount,
+            'documentCount'=>$documentCount,
+            'activeUserCount'=>$activeUserCount,
+            'blockUserCount'=>$blockUserCount,
+            'groupCount'=>$groupCount,
+            'shopCount'=>$shopCount,
+            'locationCount'=>$locationCount,
+            'voucherCount'=>$voucherCount,
+        ]);
     }
 
 
