@@ -91,7 +91,7 @@
              </div>
              <div class="ms-3 name">
                  <h5 class="font-bold">Vouchers</h5>
-                 <h6 class="text-muted mb-0"><a href="#">111</a></h6>
+                 <h6 class="text-muted mb-0"><a href="#">{{$voucherCount}}</a></h6>
              </div>
          </div>
      </div>
@@ -106,7 +106,7 @@
              </div>
              <div class="ms-3 name">
                  <h5 class="font-bold">Spend</h5>
-                 <h6 class="text-muted mb-0"><a href="{{route('Shop.logout')}}">55  €</a></h6>
+                 <h6 class="text-muted mb-0"><a href="{{route('Shop.logout')}}">{{$totalSpend}}  €</a></h6>
              </div>
          </div>
      </div>
