@@ -37,7 +37,8 @@
                    <div class="card">
                        <div class="card-header">
                            <h4>Users List</h4>
-                       </div>
+
+                       </div><br><br>
                        <div class="card-body">
                            <div class="row">
                                <div class="col-12 table-responsive">
@@ -56,8 +57,8 @@
                                            @foreach($users as $user)
                                            <tr>
                                                <td>{{$user->id}}</td>
-                                               <td> <a href="{{route('Admin.user.all-posts',$user->id)}}">{{$user->firstname.' '.$user->lastname}}</a>  </td>
-                                               <td> <a href="{{route('Admin.user.all-posts',$user->id)}}">{{$user->email}}</a>  </td>
+                                               <td>{{$user->firstname.' '.$user->lastname}}</td>
+                                               <td>{{$user->email}}</td>
                                                <td>{{$user->phone}}</td>
                                                <td>
                                                    @if($user->active_status == 1)
@@ -68,7 +69,7 @@
                                                </td>
                                                <td>
                                                    
-                                                   <a href="user_delete/{{$user->id}}" class="btn btn-danger">Delete</a>
+                                                   <a href="user_delete/{{$user->id}}" class="btn btn-danger smallbtn">Delete</a>
                                                </td>
                                            </tr>
                                            @endforeach       
@@ -81,29 +82,10 @@
 
 
 
-                   <div class="card">
-                       <div class="card-header">
-                           <h4>Graphical Views Center 2</h4>
-                       </div>
-                       <div class="card-body">
-                           <div style="margin-top:50px" class="col-sm-12">
-                               <canvas id="myChart1" style="width:100%; "></canvas>
-                           </div> 
-                       </div>
-                   </div>
+                  
 
 
-
-                   <div class="card">
-                       <div class="card-header">
-                           <h4>Graphical Views Center 3</h4>
-                       </div>
-                       <div class="card-body">
-                           <div style="margin-top:50px" class="col-sm-12">
-                               <canvas id="myChart2" style="width:100%; "></canvas>
-                           </div> 
-                       </div>
-                   </div>
+                  
 
                </div>
            </div>

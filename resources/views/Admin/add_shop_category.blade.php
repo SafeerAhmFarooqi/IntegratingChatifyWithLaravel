@@ -1,4 +1,4 @@
- @include('Admin.admin_layouts.header');
+@include('Admin.admin_layouts.header');
 </head>
 
 <body>

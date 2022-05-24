@@ -45,6 +45,10 @@
     body{
         font-size: 11px;
     }
+    .smallbtn
+    {
+        font-size: 10px;
+    }
 </style>
 
  

@@ -27,6 +27,7 @@
                         <div class="card-header">
                             <h4>Groups List</h4>
                         </div>
+                        <br><br>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 table-responsive">
@@ -54,9 +55,9 @@
                                                    @endif
                                                 </td>
                                                 <td>
-                                                    <a href="" class="btn btn-success">Group Members</a>
-                                                    <a href="group_status/active/{{$group->id}}" class="btn btn-success">Active</a>
-                                                   <a href="group_status/de_active/{{$group->id}}" class="btn btn-danger">De-Active</a>
+                                                    <a href="" class="btn btn-success smallbtn">Group Members</a>
+                                                    <a href="group_status/active/{{$group->id}}" class="btn btn-success smallbtn">Active</a>
+                                                   <a href="group_status/de_active/{{$group->id}}" class="btn btn-danger smallbtn">De-Active</a>
                                                  
                                                 </td>
                                             </tr>

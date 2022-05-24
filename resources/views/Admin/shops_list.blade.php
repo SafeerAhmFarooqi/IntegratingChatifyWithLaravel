@@ -33,6 +33,7 @@
                         <div class="card-header">
                             <h4>Shops List</h4>
                         </div>
+                        <Br><br>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 table-responsive">
@@ -64,9 +65,9 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="shop_status/active/{{$shop->id}}" class="btn btn-success">Active</a>
-                                                    <a href="shop_status/de_active/{{$shop->id}}" class="btn btn-danger">De-Active</a>
-                                                    <a href="shop_delete/{{$shop->id}}" class="btn btn-danger">Delete</a>
+                                                    <a href="shop_status/active/{{$shop->id}}" class="btn btn-success smallbtn">Active</a>
+                                                    <a href="shop_status/de_active/{{$shop->id}}" class="btn btn-danger smallbtn">De-Active</a>
+                                                    <a href="shop_delete/{{$shop->id}}" class="btn btn-danger smallbtn">Delete</a>
                                                 </td>
                                             </tr>
                                             @endforeach       
