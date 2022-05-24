@@ -15,14 +15,33 @@ class VoucherController extends Controller
     {
       $login= Auth::user()->id;
     	$vouchers=Voucher::where('shop_id',$login)->get();
-
-      	return view('Shop.vouchers',compact('vouchers'));
+      $voucherCount=Voucher::all()->count();
+      $vouchersDiscount=UseVoucher::where('shop_id',Auth::user()->id)->pluck('discount');
+      $totalSpend=0;
+      foreach ($vouchersDiscount as $discount) {
+        
+        $totalSpend+=$discount;
+      } 
+      	return view('Shop.vouchers',[
+          'voucherCount'=>$voucherCount,
+          'totalSpend'=>$totalSpend,
+          'vouchers'=>$vouchers,
+        ]);
     }
 
     public function create_vouchers()
     {
-
-      	return view('Shop.create_vouchers');
+      $voucherCount=Voucher::all()->count();
+      $vouchersDiscount=UseVoucher::where('shop_id',Auth::user()->id)->pluck('discount');
+      $totalSpend=0;
+      foreach ($vouchersDiscount as $discount) {
+        
+        $totalSpend+=$discount;
+      } 
+      	return view('Shop.create_vouchers',[
+          'voucherCount'=>$voucherCount,
+          'totalSpend'=>$totalSpend,
+        ]);
     }
 
      public function store_voucher(Request $request)
@@ -78,8 +97,18 @@ class VoucherController extends Controller
     {
        $login= Auth::user()->id;
       $use_vouchers= UseVoucher::where('shop_id',$login)->get();
-
-        return view('Shop.use_vouchers', compact('use_vouchers'));
+      $voucherCount=Voucher::all()->count();
+      $vouchersDiscount=UseVoucher::where('shop_id',Auth::user()->id)->pluck('discount');
+      $totalSpend=0;
+      foreach ($vouchersDiscount as $discount) {
+        
+        $totalSpend+=$discount;
+      } 
+        return view('Shop.use_vouchers', [
+          'voucherCount'=>$voucherCount,
+          'totalSpend'=>$totalSpend,
+          'use_vouchers'=>$use_vouchers,
+        ]);
     }
 
 
@@ -136,6 +165,22 @@ else
       } else {
         return back()->with('message', 'Error Deleting Voucher' );
       }
+            
+    }
+
+    public function checkVoucher()
+    {
+      $voucherCount=Voucher::all()->count();
+      $vouchersDiscount=UseVoucher::where('shop_id',Auth::user()->id)->pluck('discount');
+      $totalSpend=0;
+      foreach ($vouchersDiscount as $discount) {
+        
+        $totalSpend+=$discount;
+      } 
+      return view('Shop.chech_voucher',[
+        'voucherCount'=>$voucherCount,
+          'totalSpend'=>$totalSpend,
+      ]);
             
     }
 

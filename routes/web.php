@@ -240,9 +240,7 @@ Route::post('Shop/store_voucher',[App\Http\Controllers\Shop\VoucherController::c
 
 Route::get('Shop/use_vouchers',[App\Http\Controllers\Shop\VoucherController::class, 'use_vouchers'])->name('Shop.use_vouchers');
 
-Route::get('/Shop/check',function(){
-     return view('Shop.chech_voucher');
- });
+Route::get('/Shop/check',[App\Http\Controllers\Shop\VoucherController::class, 'checkVoucher']);
 
 Route::post('Shop/check_voucher',[App\Http\Controllers\Shop\VoucherController::class, 'check_voucher']);
 
