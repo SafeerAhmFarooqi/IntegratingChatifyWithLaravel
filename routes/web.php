@@ -202,6 +202,7 @@ Route::get('Admin/block_users', [App\Http\Controllers\Admin\AdminController::cla
 //Sub Categories
 Route::resource('/Admin/sub_category',SubCategoryController::class);
 
+Route::get('Admin/users-posts/{id}', [App\Http\Controllers\Admin\AdminController::class, 'userAllPosts'])->name('Admin.user.all-posts');
 
 });
 

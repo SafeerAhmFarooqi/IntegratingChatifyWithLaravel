@@ -1,4 +1,4 @@
- @include('Shop.shop_layouts.header');
+@include('Shop.shop_layouts.header');
 
 </head>
 
@@ -21,7 +21,7 @@
 
  @include('Shop.shop_layouts.topbar');
 
-            <div class="row">
+           <!--  <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
@@ -62,7 +62,7 @@
 
                 </div>
             </div>
-         
+          -->
         </div>
    <?php //@include('rightside.php');?>   
     </section>

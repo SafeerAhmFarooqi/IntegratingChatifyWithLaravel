@@ -266,7 +266,18 @@ public function userPostDelete($id)
         storage::download($request->filePath,'MyDocument');
     }
    
-
+    public function userAllPosts($id)
+    {
+        $posts=Post::where('user_id',$id)
+        ->with('user')
+        ->with('comments')
+        ->get();
+        $user=User::find($id);
+        return view('Admin.users-all-posts',[
+            'posts'=>$posts,
+            'user'=>$user,
+        ]);
+    }
 
 
 
