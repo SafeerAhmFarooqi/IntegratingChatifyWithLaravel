@@ -77,10 +77,10 @@
                  <!--Login-->
                  <div class="tab-pane" id="login">
                    <h3>Login</h3>
-                   <p class="text-muted">Log into your account</p>
+                   <p class="text-muted" >Log into your account</p>
                    
                    <!--Login Form-->
-                   <form  method="POST" action="{{ route('login') }}">
+                   <form  method="POST" action="{{ route('login') }}" style="margin-top:50px">
                    @csrf
                       <div class="row">
                        <div class="form-group col-xs-12">
@@ -96,7 +96,7 @@
                      <div class="row">
                        <div class="form-group col-xs-12">
                          <label for="my-password" class="sr-only">Password</label>
-                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" />
+                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Your Password"/>
                          @error('password')
                                      <span class="invalid-feedback" role="alert">
                                          <strong>{{ $message }}</strong>
@@ -105,15 +105,15 @@
                      </div>
                          <br><br>
  
-                         <button type="submit" class="btn btn-primary" value="Login Account" class="btn btn-primary">
+                         <button type="submit" class="btn btn-primary" value="Login Account" class="btn btn-primary" style="border-radius: 0px;margin-left: 10px;">
                                      {{ __('Login') }}
                                  </button>
                                  @if (Route::has('password.request'))
-                                     <a class="btn btn-link" href="{{ route('password.request') }}">
+                                     <a class="btn btn-link" href="{{ route('password.request') }}" style="float:right;color:#333">
                                          {{ __('Forgot Your Password?') }}
                                      </a>
                                  @endif
-                                 <a href="register" class="btn btn-link">Register New account?</a>
+                                 <p style="text-align:center;padding-top:100px"><a href="register" class="btn btn-link" style="background: #149AC9;color:#fff">Register New account?</a> </p>
                      </div>
                    </form><!--Login Form Ends--> </div>
                </div>
