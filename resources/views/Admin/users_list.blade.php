@@ -56,8 +56,8 @@
                                            @foreach($users as $user)
                                            <tr>
                                                <td>{{$user->id}}</td>
-                                               <td>{{$user->firstname.' '.$user->lastname}}</td>
-                                               <td>{{$user->email}}</td>
+                                               <td> <a href="{{route('Admin.user.all-posts',$user->id)}}">{{$user->firstname.' '.$user->lastname}}</a>  </td>
+                                               <td> <a href="{{route('Admin.user.all-posts',$user->id)}}">{{$user->email}}</a>  </td>
                                                <td>{{$user->phone}}</td>
                                                <td>
                                                    @if($user->active_status == 1)
