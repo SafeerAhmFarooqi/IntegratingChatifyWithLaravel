@@ -18,13 +18,13 @@
   </div><!--profile card ends-->
   <ul class="nav-news-feed">
     <li><i class="icon ion-ios-paper"></i><div><a href="{{route('home')}}">My Newsfeed</a></div></li>
-    <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('profile.index')}}">Profile</a></div></li>
+    <li><i class="icon fa fa-user"></i><div><a href="{{route('profile.index')}}">Profile</a></div></li>
     <li><i class="icon ion-ios-people"></i><div><a href="{{route('people_nearby.index')}}">People Nearby</a></div></li>
     <li><i class="icon ion-chatboxes"></i><div><a href="/message/-1">Messages</a></div></li>
-    <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('groups.index')}}">Groups</a></div></li>
-    <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('users.index')}}">Users</a></div></li>
-    <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('user_voucher.index')}}">Vouchers</a></div></li>
-    <li><i class="icon ion-ios-people-outline"></i><div><a href="{{route('savings')}}">Savings</a></div></li>
+    <li><i class="icon fa fa-users"></i><div><a href="{{route('groups.index')}}">Groups</a></div></li>
+    <li><i class="icon fa fa-user"></i><div><a href="{{route('users.index')}}">Users</a></div></li>
+    <li><i class="icon fa fa-cc-discover"></i><div><a href="{{route('user_voucher.index')}}">Vouchers</a></div></li>
+    <li><i class="icon fa fa-opencart"></i><div><a href="{{route('savings')}}">Savings</a></div></li>
 
     <!-- 
     <li><i class="icon ion-images"></i><div><a href="newsfeed-images.html">Images</a></div></li>
