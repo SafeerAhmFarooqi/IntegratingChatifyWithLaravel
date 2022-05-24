@@ -1,4 +1,4 @@
- @include('Shop.shop_layouts.header');
+@include('Shop.shop_layouts.header');
 
 </head>
 

@@ -44,6 +44,10 @@
     body{
         font-size: 11px;
     }
+    .btnsmall
+    {
+        font-size: 10px;
+    }
 </style>
 
  
