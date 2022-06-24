@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profile_Privacy;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class ProfileController extends Controller
 {
@@ -23,6 +24,7 @@ class ProfileController extends Controller
         $user= Auth::user()->id;
 
         $data= User::where('id',$user)->first();
+        $data['firstname']=Crypt::decryptString($data->firstname);
 
         return view('profile2', compact('data'));
     }
@@ -90,7 +92,7 @@ class ProfileController extends Controller
     {
 
         User::where('id',$id)->update([
-            'firstname'=>$request->firstname,
+            'firstname'=>Crypt::encryptString($request->firstname),
             'lastname'=>$request->lastname,
             'dob'=>$request->dob,
             'address'=>$request->address,

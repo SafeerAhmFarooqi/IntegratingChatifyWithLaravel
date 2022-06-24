@@ -24,6 +24,7 @@
  
 
 <div class="container">
+    <h1>first name : {{$data['firstname']}}</h1>
     <!-- Timeline
     ================================================= -->
     <div class="timeline">
