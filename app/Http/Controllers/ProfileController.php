@@ -24,7 +24,7 @@ class ProfileController extends Controller
         $user= Auth::user()->id;
 
         $data= User::where('id',$user)->first();
-        $data['firstname']=Crypt::decryptString($data->firstname);
+        $data['firstname']=$data->firstname;
 
         return view('profile2', compact('data'));
     }
